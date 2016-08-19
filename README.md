@@ -1,2 +1,4 @@
-# zhuanbang-javascript-notes
-朱安邦的JavaScript学习笔记
+# 朱安邦的JavaScript学习笔记
+我的学习笔记
+
+- JavaScript基础
