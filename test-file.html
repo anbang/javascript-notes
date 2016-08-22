@@ -5,19 +5,38 @@
     <title>Document</title>
 </head>
 <body>
+<button type="button" name="button" id="btn1">click me</button>
+
+<label for="forever1">
+  <input id="forever1" name="forever" value="0" type="radio" checked="true" >
+  普通封禁（验证用户可以正常摇红包）
+</label>
+<label for="forever2">
+  <input id="forever2" name="forever" value="1" type="radio">
+  永久封禁
+</label>
+
+
+
 <script>
-    //num1是多少分
-    var num1="564878.12415ssss";
 
-    var min1=Number(num1)/60,
-            min2=parseInt(num1)/60,
-            min3=parseFloat(num1)/60;
-    console.log(min1,min2,min3);
 
-    var targetMin=parseInt(min2);
-    console.log(targetMin);//9414秒
-
-    console.log(0===(-0));//true
+function callerDemo() {
+    if (arguments.callee.caller) {
+        var a = callerDemo.caller.toString();
+        console.log(a);
+    } else {
+        console.log("this is a top function");
+    }
+}
+function handleCaller() {
+    callerDemo();
+}
+handleCaller();
+function calleeDemo() {
+    console.log(arguments.callee);
+}
+calleeDemo();
 </script>
 </body>
 </html>
