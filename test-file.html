@@ -1,42 +1,23 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
 </head>
 <body>
-<button type="button" name="button" id="btn1">click me</button>
-
-<label for="forever1">
-  <input id="forever1" name="forever" value="0" type="radio" checked="true" >
-  普通封禁（验证用户可以正常摇红包）
-</label>
-<label for="forever2">
-  <input id="forever2" name="forever" value="1" type="radio">
-  永久封禁
-</label>
-
-
-
-<script>
-
-
-function callerDemo() {
-    if (arguments.callee.caller) {
-        var a = callerDemo.caller.toString();
-        console.log(a);
-    } else {
-        console.log("this is a top function");
-    }
-}
-function handleCaller() {
-    callerDemo();
-}
-handleCaller();
-function calleeDemo() {
-    console.log(arguments.callee);
-}
-calleeDemo();
-</script>
+    <form id="form1" runat="server">
+        <div>
+            <input type="file" name="f" id="f" />
+            <input type="button" name="aa" id="aa" value="测试" onclick="javascript: _s();" />
+        </div>
+    </form>
 </body>
 </html>
+<script type="text/javascript">
+
+
+(function(num){
+  var testStr="test"+num;
+  console.log(num);
+})(100);
+console.log(testStr);// testStr is not defined
+</script>
