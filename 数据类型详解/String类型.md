@@ -136,32 +136,70 @@ String 类型的每个实例都有一个 length 属性，表示字符串中包�
 		- charAt与charCodeAt共性：都是根据下标来查询字符，一个是查找实际的字符，一个是字符对应的Unicode值，有效范围0-length-1
 		- charCodeAt与fromCharCode互为方向操作;但是charCodeAt是查询，而fromCharCode是创建
 - 位置方法**（ 常用 ）**
-	- indexOf(searchValue)
+	- indexOf(searchValue，fromindex)
 		- 功能：返回某个指定的字符串值在字符串中首次出现的位置。
-	- lastIndexOf()
+		- 参数：searchValue是必需的，规定需检索的字符串值；fromindex是可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。
+		- 注释：indexOf() 方法对大小写敏感！如果要检索的字符串值没有出现，则该方法返回 -1。
+	- lastIndexOf(searchValue，fromindex)
+		- 功能：返回一个指定的字符串值最后出现的位置，在一个字符串中的指定位置从后向前搜索。如果在 stringObject 中的 fromindex 位置之前存在 searchvalue，则返回的是出现的最后一个 searchvalue 的位置。
+		- 参数：searchValue是必需的，规定需检索的字符串值；fromindex是可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。
+		- 注释：lastIndexOf() 方法对大小写敏感！如果要检索的字符串值没有出现，则该方法返回 -1。
 	- 共性
 - 匹配方法
 	- natch()
-	- search()
-	- replace()
-	- split()
+	- search(regexp)
+    	- 功能：用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。
+    	- 该参数可以是需要在 stringObject 中检索的子串，也可以是需要检索的 RegExp 对象。要执行忽略大小写的检索，请追加标志 i。
+    	- 注释：search() 方法不执行全局匹配，它将忽略标志 g。它同时忽略 regexp 的 lastIndex 属性，并且总是从字符串的开始进行检索，这意味着它总是返回 stringObject 的第一个匹配的位置。如果没有找到任何匹配的子串，则返回 -1。
+	- replace(regexp/substr,replacement)
+    	- 功能：于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。
+    	- 参数：regexp/substr必需。规定子字符串或要替换的模式的 RegExp 对象。如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。replacement必需。一个字符串值。规定了替换文本或生成替换文本的函数。
+    	- 返回值：一个新的字符串，是用 replacement 替换了 regexp 的第一次匹配或所有匹配之后得到的。
+    	- 说明：字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 replacement 来替换这些子串。如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。replacement 可以是字符串，也可以是函数。如果它是字符串，那么每个匹配都将由字符串替换。但是 replacement 中的 $ 字符具有特定的含义。如下表所示，它说明从模式匹配得到的字符串将用于替换。
+    	- 注意：ECMAScript v3 规定，replace() 方法的参数 replacement 可以是函数而不是字符串。在这种情况下，每个匹配都调用该函数，它返回的字符串将作为替换文本使用。该函数的第一个参数是匹配模式的字符串。接下来的参数是与模式中的子表达式匹配的字符串，可以有 0 个或多个这样的参数。接下来的参数是一个整数，声明了匹配在 stringObject 中出现的位置。最后一个参数是 stringObject 本身。
+	- split(separator,howmany)
+    	- 功能：把字符串分割为字符串数组。
+    	- 参数：separator必需。字符串或正则表达式，从该参数指定的地方分割 stringObject。howmany，可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。
+    	- 返回值：一个字符串数组。该数组是通过在 separator 指定的边界处将字符串 stringObject 分割成子串创建的。返回的数组中的字串不包括 separator 自身。但是，如果 separator 是包含子表达式的正则表达式，那么返回的数组中包括与这些子表达式匹配的字串（但不包括与整个正则表达式匹配的文本）。
+    	- 注释：如果把空字符串 ("") 用作 separator，那么 stringObject 中的每个字符之间都会被分割。String.split() 执行的操作与 Array.join 执行的操作是相反的。
 
 #####操作方法
 - 拼接方法	
-	- concat()
+	- concat(stringX,stringX,...,stringX)
+    	- 功能：连接两个或多个字符串。
+    	- 参数：stringX	必需。将被连接为一个字符串的一个或多个字符串对象。
+    	- concat() 方法将把它的所有参数转换成字符串，然后按顺序连接到字符串 stringObject 的尾部，并返回连接后的字符串。请注意，stringObject 本身并没有被更改。stringObject.concat() 与 Array.concat() 很相似。
+    	- 提示：请注意，使用 " + " 运算符来进行字符串的连接运算通常会更简便一些。
 - 截取方法
 	- 根据下标截取子串
-		- slice()
-		- substring()
+		- slice(start,end)
+    		- 提取字符串的片断，并在新的字符串中返回被提取的部分。
+    		- 参数：start	要抽取的片断的起始下标。如果是负数，则该参数规定的是从字符串的尾部开始算起的位置。也就是说，-1 指字符串的最后一个字符，-2 指倒数第二个字符，以此类推。end	紧接着要抽取的片段的结尾的下标。若未指定此参数，则要提取的子串包括 start 到原字符串结尾的字符串。如果该参数是负数，那么它规定的是从字符串的尾部开始算起的位置。
+    		- 一个新的字符串。包括字符串 stringObject 从 start 开始（包括 start）到 end 结束（不包括 end）为止的所有字符。
+    		- String 对象的方法 slice()、substring() 和 substr() （不建议使用）都可返回字符串的指定部分。slice() 比 substring() 要灵活一些，因为它允许使用负数作为参数。slice() 与 substr() 有所不同，因为它用两个字符的位置来指定子串，而 substr() 则用字符位置和长度来指定子串。还要注意的是，String.slice() 与 Array.slice() 相似。
+		- substring(start,stop)
+    		- 功能：提取字符串中两个指定的索引号之间的字符。
+    		- 参数：start	必需。一个非负的整数，规定要提取的子串的第一个字符在 stringObject 中的位置。stop可选。一个非负的整数，比要提取的子串的最后一个字符在 stringObject 中的位置多 1。如果省略该参数，那么返回的子串会一直到字符串的结尾。
+    		- 返回值：一个新的字符串，该字符串值包含 stringObject 的一个子字符串，其内容是从 start 处到 stop-1 处的所有字符，其长度为 stop 减 start。
+    		- 说明：substring() 方法返回的子串包括 start 处的字符，但不包括 stop 处的字符。如果参数 start 与 stop 相等，那么该方法返回的就是一个空串（即长度为 0 的字符串）。如果 start 比 stop 大，那么该方法在提取子串之前会先交换这两个参数。
 	- 根据长度截取子串
-		- substr()
-- 空格处理
-	- trim
-	- trimLeft
-	- trimRight
+		- substr(start,length)
+    		- 功能：在字符串中抽取从 start 下标开始的指定数目的字符。
+    		- start	必需。要抽取的子串的起始下标。必须是数值。如果是负数，那么该参数声明从字符串的尾部开始算起的位置。也就是说，-1 指字符串中最后一个字符，-2 指倒数第二个字符，以此类推。length可选。子串中的字符数。必须是数值。如果省略了该参数，那么返回从 stringObject 的开始位置到结尾的字串。- 空格处理
+    		- 返回值：一个新的字符串，包含从 stringObject 的 start（包括 start 所指的字符） 处开始的 length 个字符。如果没有指定 length，那么返回的字符串包含从 start 到 stringObject 的结尾的字符。
+    		- 提示和注释：注释：substr() 的参数指定的是子串的开始位置和长度，因此它可以替代 substring() 和 slice() 来使用。
+    		- 重要事项：ECMAscript 没有对该方法进行标准化，因此反对使用它。
+	- trim : 清除前置以及后缀空格
+	- trimLeft：清除前置空格
+	- trimRight：清除后缀空格
 - 比较方法
 	- localCompare()
-
+    	- 功能：用本地特质顺序比较两个字符串
+    	- 参数：用元字符串进行比较的字符串
+    	- 返回值：说明比较结果的数字，
+        	- 负数：元字符串<参数字符串
+        	- 0：原字符串=参数字符串
+        	- 正数：元字符串>参数字符串
 
 ##### 编码方法
 - 字符串常规编码与解码
