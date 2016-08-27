@@ -8,13 +8,16 @@
 </head>
 <body>
   <script>
-  var stringObject = new String("hello world one");
-  var testString="hello word too"
-
-  console.log(stringObject,stringObject.length);
-  console.log(testString,testString.length);
-
-
+  var name="window name"
+  function sum(num1, num2){
+    var name="sum name"
+    console.log(this.name,num1,num2);
+  }
+  function callSum2(num1, num2){
+    var name="callSum2 name"
+    sum.call(this, num1, num2); // 传入单个的参数
+  }
+  callSum2(10,30); //window name 10 30
 
   </script>
 </body>
