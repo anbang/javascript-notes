@@ -8,17 +8,7 @@
 </head>
 <body>
   <script>
-  var name="window name"
-  function sum(num1, num2){
-    var name="sum name"
-    console.log(this.name,num1,num2);
-  }
-  function callSum2(num1, num2){
-    var name="callSum2 name"
-    sum.call(this, num1, num2); // 传入单个的参数
-  }
-  callSum2(10,30); //window name 10 30
-
+  console.dir(Math)
   </script>
 </body>
 </html>
