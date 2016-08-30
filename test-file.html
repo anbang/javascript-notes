@@ -7,17 +7,15 @@
   <title>Document</title>
 </head>
 <body>
+  <div id="div1"></div>
   <script>
-  var name="window name"
-  function sum(num1, num2){
-    var name="sum name"
-    console.log(this.name,num1,num2);
-  }
-  function callSum2(num1, num2){
-    var name="callSum2 name"
-    sum.call(this, num1, num2); // 传入单个的参数
-  }
-  callSum2(10,30); //window name 10 30
+
+
+  var i = 5;
+  console.log(1 + i++);//6
+  console.log(1 + (++i));//8
+  console.log(2 + (i++) + (++i) + (++i) + (i++));//38
+  console.log(i);//11
 
   </script>
 </body>
