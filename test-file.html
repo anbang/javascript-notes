@@ -7,41 +7,25 @@
   <title>Document</title>
 </head>
 <body>
-<div id="div1">
-  <p>0000</p>
-  <p>1111</p>
-  <p>2222</p>
-  <p>3333</p>
-  <p>4444</p>
-</div>
+  <div class="box">
+  	<h2>问题: 同意否？</h2>
+  	<div id="btn">
+  		我非常赞同以上的观点
+  		<span id="spanNum">0</span>
+  	</div>
+  </div>
+
 <script>
 
-var banner = document.getElementById("banner");
-var tip = document.getElementById("tip");
-var oDivs = banner.getElementsByTagName("div");
-var oLis = tip.getElementsByTagName("li");
-//鼠标滑过某一个li,我们让所有的li和所有的div都没有选中的样式(select),然后让当前选中的这个li和对应的div有选中的样式
-
-function changeTab(nIndex) {
-  for (var i = 0; i < oLis.length; i++) {
-  　oLis[i].className = null;
-  　oDivs[i].className = null;
-  }
-  oLis[nIndex].className = "select";
-  oDivs[nIndex].className = "select";
+var oBtn = document.getElementById("btn");
+var spanNum = document.getElementById("spanNum");
+oBtn.onclick = function () {
+    var oldNum = spanNum.innerHTML;
+    //下面两个都可以
+    // spanNum.innerHTML = Number(oldNum) + 1;
+    spanNum.innerHTML++;
 }
 
-/*
-i=0
-oLis[0].onmouseover=function(){changeTab(i);}; 我们绑定事件其实是把匿名函数定义的主体赋值给元素的事件行为 -> oLis[0].onmouseover=xxxfff000;
-i=1
-oLis[1].onmouseover=function(){changeTab(i);};
-...
-i=4
-oLis[4].onmouseover=function(){changeTab(i);};
-i=5
-循环结束
-*/
 </script>
 </body>
 </html>
