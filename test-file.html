@@ -8,23 +8,17 @@
 </head>
 <body>
   <div class="box">
-  	<h2>问题: 同意否？</h2>
+  	<h2>问题: 同意？</h2>
   	<div id="btn">
-  		我非常赞同以上的观点
+  		赞同
   		<span id="spanNum">0</span>
   	</div>
   </div>
 
 <script>
 
-var oBtn = document.getElementById("btn");
-var spanNum = document.getElementById("spanNum");
-oBtn.onclick = function () {
-    var oldNum = spanNum.innerHTML;
-    //下面两个都可以
-    // spanNum.innerHTML = Number(oldNum) + 1;
-    spanNum.innerHTML++;
-}
+console.log(window.aabb);//这样的方式去读aabb不会报错
+console.log(aabb);//这样就会报错
 
 </script>
 </body>
