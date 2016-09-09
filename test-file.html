@@ -8,31 +8,38 @@
 </head>
 <body>
   <script>
-  var person = {
-      name: "zab",
-      age: 26,
-      job: "WEB",
-      sayName: function(){
-          console.log(this.name);
+
+  var book = {};
+  Object.defineProperties(book, {
+    _year: {
+      value: 2004
+    },
+    age: {
+      value: 0
+    },
+    year: {
+      get: function(){
+        return this._year;
+      },
+      set: function(newValue){
+        if (newValue > 2004) {
+          this._year = newValue;
+          this.age = newValue - 2004;
+        }
       }
-  };
-  console.log(person.name);//zab 26
-Object.defineProperty(person,"name",{//注意：属性一定要放在字符串中；
-  enumerable:false,
-  writable:false,
-  configurable:false,
-  value:"zab1"
-});
-console.log(person.name);//zab1
-person.name="zab MODI"
-console.log(person.name);//zab1,person.name="zab MODI"无效；
-delete person.name;
-console.log(person.name);//zab1 命令delete person.name;无效；
+    }
+  })
 
-for (var variable in person) {
-    console.log("枚举对象的属性,是否有name:",variable);//其它的所有属性都枚举出来了，就是name没有枚举出来；
-}
 
+  var descriptor = Object.getOwnPropertyDescriptor(book, "_year");
+  console.log(descriptor.value); //2004
+  console.log(descriptor.configurable); //false
+
+  console.log(typeof descriptor.get); //"undefined"
+  var descriptor = Object.getOwnPropertyDescriptor(book, "year");
+  console.log(descriptor.value); //undefined
+  console.log(descriptor.enumerable); //false
+  console.log(typeof descriptor.get); //"function"
 
 
 </script>
