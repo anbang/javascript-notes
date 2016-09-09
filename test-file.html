@@ -7,41 +7,16 @@
   <title>Document</title>
 </head>
 <body>
-  <script>
-
-  var book = {};
-  Object.defineProperties(book, {
-    _year: {
-      value: 2004
-    },
-    age: {
-      value: 0
-    },
-    year: {
-      get: function(){
-        return this._year;
-      },
-      set: function(newValue){
-        if (newValue > 2004) {
-          this._year = newValue;
-          this.age = newValue - 2004;
-        }
-      }
+<script>
+function sum(num) {
+    if (typeof num === "undefined") {
+        console.log("您没有传参啊，请仔细检查");
+        return;
     }
-  })
-
-
-  var descriptor = Object.getOwnPropertyDescriptor(book, "_year");
-  console.log(descriptor.value); //2004
-  console.log(descriptor.configurable); //false
-
-  console.log(typeof descriptor.get); //"undefined"
-  var descriptor = Object.getOwnPropertyDescriptor(book, "year");
-  console.log(descriptor.value); //undefined
-  console.log(descriptor.enumerable); //false
-  console.log(typeof descriptor.get); //"function"
-
-
+    console.log(num);
+}
+sum(100);
+sum();
 </script>
 </body>
 </html>
