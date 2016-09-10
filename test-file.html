@@ -8,15 +8,14 @@
 </head>
 <body>
 <script>
-function sum(num) {
-    if (typeof num === "undefined") {
-        console.log("您没有传参啊，请仔细检查");
-        return;
-    }
-    console.log(num);
-}
-sum(100);
-sum();
+
+
+String.prototype.startsWith = function (text) {
+	return this.indexOf(text) == 0;
+};
+var msg = "Hello world!";
+console.log(msg.startsWith("Hello")); //true
+console.log(msg.startsWith("world")); //true
 </script>
 </body>
 </html>
