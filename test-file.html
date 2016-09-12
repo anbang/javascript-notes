@@ -11,19 +11,33 @@
 
 
 
+function A() {
+    this.x = 100;
+    this.flagA="flagA"
+}
+A.prototype.getX = function () {
+    console.log(this.x);
+};
+function B() {
+    // A.call(this);
+    this.flagB="flagB"
+
+    var temp = new A;//->temp中现在就存有了A中的私有和公有的属性/方法
+　　for (var key in temp) {
+　　    this[key] = temp[key];
+　　}
+　　temp = null;
+}
+B.prototype.getBPrototype = function () {
+    console.log("B.prototype");
+};
+
+var b = new B;
+console.log(b);
 
 
-  var ary = [1,2,3,4];
-  function fn(ary){
-/*    ary[0] = 0;//ary=[0,2,3,4] 这个时候修改了变量ary[0]了;ary[0] = 0;这个没有重写变量ary；参数ary只是代表了变量ary,保存的还是变量ary的地址；参数ary[0]指向的还是变量ary[0]，也就是1，只是把1改为了0；
-    ary = [0];//ary=[0]，这里是重写参数ary了，等号右边的数据[0]保存在fn执行时候产生的堆内存中，参数ary指向的地址，由原来的变量ary地址，重写指向到数据[0]的保存地址，此时的参数ary已经与原来ary无关系了；两者保存的分别是不同的内存地址；
-    ary[0] = 100;//ary=[100]
-    return ary;//[100]*/
 
-  }
-  var res = fn(ary);
-  console.log(ary);// [0,2,3,4]
-  console.log(res);//[100]
+
 
 </script>
 </body>
