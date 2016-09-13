@@ -5,19 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+    <style>
+        div{
+
+
+        }
+    </style>
 </head>
 <body>
 <script>
 
+    function toChinaNumber (options) {
+        options=options+"";
+        options = options.replace(/^0+/, "");
+        var numberAry = ["零","壹","贰","叁","肆","伍","陆","柒","捌","玖"],
+                unitAry = ["","拾","佰","仟"],
+                bigUnitAry = ["","万","亿"];
+        var targetStr = "";
+        var zeroFlag = 0;
+        var i, p, nowAloneNumber;
+        var quotient, modulus;
+        var len=options.length;
+        if(len==0){
+            targetStr += "零";
+        }else{
+            for (i = 0; i < len; i++) {
+                p = len - i - 1;
+                nowAloneNumber = options.substr(i, 1);
+                quotient = p / 4;//商
+                modulus = p % 4;//余数
+                if (nowAloneNumber == "0") {
+                    zeroFlag++;
+                } else {
+                    if (zeroFlag > 0) {
+                        targetStr += numberAry[0];
+                    }
+                    zeroFlag = 0;
+                    targetStr += numberAry[Number(nowAloneNumber)] + unitAry[modulus];
+                }
+                if (modulus == 0 && zeroFlag < 4) {
+                    targetStr += bigUnitAry[quotient];
+                    zeroFlag = 0;
+                }
+            }
+        }
+        targetStr += "元整";
+        return targetStr;
+    }
 
-    var reg = /zhu(\d+)/g;
-    var str = "zhu1234zhu3456zhu5678";
-    //我们用exec执行三次,每一次不仅仅把大正则匹配的获取到,而且还可以获取第一个分组匹配的内容
-    console.log(reg.exec(str));//->["zhu1234", "1234"...]
-    console.log(reg.exec(str));//->["zhu3456", "3456"...]
-    console.log(reg.exec(str));//->["zhu5678", "5678"...]
-    //而match只能捕获大正则匹配的内容
-    console.log(str.match(reg));//->["zhu1234", "zhu3456", "zhu5678"]
+    var testNumber=35987;
+    var testStr="298";
+    console.log(toChinaNumber(testNumber));
+    console.log(toChinaNumber(testStr));
+
 
 </script>
 </body>
