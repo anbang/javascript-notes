@@ -15,49 +15,18 @@
 <body>
 <script>
 
-    function toChinaNumber (options) {
-        options=options+"";
-        options = options.replace(/^0+/, "");
-        var numberAry = ["零","壹","贰","叁","肆","伍","陆","柒","捌","玖"],
-                unitAry = ["","拾","佰","仟"],
-                bigUnitAry = ["","万","亿"];
-        var targetStr = "";
-        var zeroFlag = 0;
-        var i, p, nowAloneNumber;
-        var quotient, modulus;
-        var len=options.length;
-        if(len==0){
-            targetStr += "零";
-        }else{
-            for (i = 0; i < len; i++) {
-                p = len - i - 1;
-                nowAloneNumber = options.substr(i, 1);
-                quotient = p / 4;//商
-                modulus = p % 4;//余数
-                if (nowAloneNumber == "0") {
-                    zeroFlag++;
-                } else {
-                    if (zeroFlag > 0) {
-                        targetStr += numberAry[0];
-                    }
-                    zeroFlag = 0;
-                    targetStr += numberAry[Number(nowAloneNumber)] + unitAry[modulus];
-                }
-                if (modulus == 0 && zeroFlag < 4) {
-                    targetStr += bigUnitAry[quotient];
-                    zeroFlag = 0;
-                }
-            }
-        }
-        targetStr += "元整";
-        return targetStr;
-    }
-
-    var testNumber=35987;
-    var testStr="298";
-    console.log(toChinaNumber(testNumber));
-    console.log(toChinaNumber(testStr));
-
+        var str = "my name is {0},my age is {1},i can write {2},so ~~";
+        var ary = ["zhu", "18", "JavaScript"];
+        //->"my name is zhu,my age is 18,i can write JavaScript,so~~";
+        str = str.replace(/{(\d)}/g, function () {
+            //每一次执行function
+            //arguments[0] ->当前大正则捕获的内容 {0}
+            //arguments[1] ->当前第一个小分组捕获的内容 0
+            //return value; ->用value把大正则捕获的内容替换 {0}被value替换了
+            console.log(arguments);
+            return ary[arguments[1]];
+        });
+        console.log(str);
 
 </script>
 </body>
