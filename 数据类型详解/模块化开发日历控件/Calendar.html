@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>日历控件</title>
+    <style>
+        body{-webkit-user-select: none;}
+        #calendar{width: 200px;padding: 5px;background: orange;}
+        #calendar h6{font-size: 16px;background: blue;color:#FFF;height: 30px;line-height: 30px;text-align: center; padding: 0;margin: 0;position: relative;cursor: pointer;}
+        #calendar h6 span{width: 35px;height: 30px;position: absolute;top:0;}
+        #calendar h6 span.prev{left: 0;background: #000000;}
+        #calendar h6 span.next{right: 0;background: #000000;}
+        #calendar ul{padding: 0;margin: 0;list-style: none;overflow: hidden;}
+        #calendar ul li{float: left;width: 26px;height: 26px;background: darkgreen;line-height: 25px;text-align: center;border: 1px solid #CCC;cursor: pointer;}
+    </style>
+</head>
+<body>
+<div id="calendar">
+    <h6><span class="prev">上</span>2015年9月<span class="next">下</span></h6>
+    <ul>
+        <li>日</li>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+        <li>六</li>
+    </ul>
+    <ul>
+        <li>12</li>
+        <li>12</li>
+        <li>12</li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+
+</script>
