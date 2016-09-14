@@ -15,27 +15,14 @@
 <body>
 <script>
 
-    var text = "cat, bat, sat, fat";
-    var pattern1 = /.at/;
-    var matches = pattern1.exec(text);
-    console.log(matches.index); //0
-    console.log(matches[0]); //cat
-    console.log(pattern1.lastIndex); //0
-    matches = pattern1.exec(text);
-    console.log(matches.index); //0
-    console.log(matches[0]); //cat
-    console.log(pattern1.lastIndex); //0
+    var myJSONText = '{"bindings": [{"ircEvent": "PRIVMSG", "method": "newURI", "regex": "^http://.*"},{"ircEvent": "PRIVMSG", "method": "deleteURI", "regex": "^delete.*"},{"ircEvent": "PRIVMSG", "method": "randomURI", "regex": "^random.*"}]}';
 
-    var pattern2 = /.at/g;
-    var matches = pattern2.exec(text);
-    console.log(matches.index); //0
-    console.log(matches[0]); //cat
-    console.log(pattern2.lastIndex); //3
+    console.log(typeof myJSONText);//string
 
-    matches = pattern2.exec(text);
-    console.log(matches.index); //5
-    console.log(matches[0]); //bat
-    console.log(pattern2.lastIndex); //8
+    var testJSONObject=eval("("+myJSONText+")");
+    console.log(typeof testJSONObject);//Object
+    console.log(testJSONObject.bindings);
+
 
 
 
