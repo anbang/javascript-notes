@@ -14,16 +14,17 @@
 </head>
 <body>
 <script>
+    var falseObject = new Boolean(false);
+    var result = falseObject && true;
+    console.log(falseObject,result); //true,因为falseObject会被转为true；因为是当作对象来解析的；
+    var falseValue = false;
+    result = falseValue && true;
+    console.log(falseValue,result); //false
 
-    var myJSONText = '{"bindings": [{"ircEvent": "PRIVMSG", "method": "newURI", "regex": "^http://.*"},{"ircEvent": "PRIVMSG", "method": "deleteURI", "regex": "^delete.*"},{"ircEvent": "PRIVMSG", "method": "randomURI", "regex": "^random.*"}]}';
-
-    console.log(typeof myJSONText);//string
-
-    var testJSONObject=eval("("+myJSONText+")");
-    console.log(typeof testJSONObject);//Object
-    console.log(testJSONObject.bindings);
-
-
+    console.log(typeof falseObject); //object
+    console.log(typeof falseValue); //boolean
+    console.log(falseObject instanceof Boolean); //true
+    console.log(falseValue instanceof Boolean); //false
 
 
 
