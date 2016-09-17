@@ -1,0 +1,32 @@
+html, body, div, input, table, tr, td, th{
+    margin:0;
+    padding: 0;
+    font-size: 12px;
+    font-family:  "微软雅黑", "宋体";
+}
+ul,li,td,th{
+    list-style: none;}
+#div1{
+    width: 700px;
+    margin: 50px auto 0;
+    padding: 5px;
+    border: 1px solid #008CD7;
+    border-radius: 5px;
+}
+thead tr,tbody tr{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    -webkit-user-select: none;
+}
+thead{
+    height: 30px;
+    background: #008CD7;
+    cursor: pointer;
+}
+.w30 {   width: 30px;}
+.w70{width: 70px;}
+.w100{  width: 100px;}
+.w200{  width: 200px;}
+.c{background: #cccccc}
+.cy{background: #CDE074}

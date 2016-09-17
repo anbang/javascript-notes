@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表格排序　-　Powered By Broszhu</title>
+    <link rel="stylesheet" type="text/css" href="css/table.css"/>
+    <style>
+        #home_top {height: 48px;line-height:48px;font-size:18; text-align: center; color:#008CD7;}
+        #home_bottom {color:#008CD7;text-align:center;font-size:14px;}
+    </style>
+</head>
+<body>
+<h2 id="home_top">表格排序　-　Powered By <a href="https://github.com/Broszhu"target="_blank">broszhu</a>　　博客网址：<a href="http://taobao.fm/" target="_blank">taobao.fm</a> </h2>
+
+<p id="home_bottom">学习JavaScript是一件很有趣的事，可以做出很多自豪的小玩意！--broszhu （这个页面是实现原理：<a href="http://taobao.fm/archives/967" target="_blank">点此查看</a>）</p>
+<div id="div1">
+    <table id="tab" cellpadding="0"     cellspacing="0" >
+        <thead>
+            <tr>
+                <th class="w30">
+                    <input type="checkbox"/>
+                </th>
+                <th class="w70" id="name">姓名</th>
+                <th class="w100 cursor" id="age">年龄</th>
+                <th class="w100" id="mail">邮箱</th>
+                <th class="w200" id="phone">手机</th>
+                <th class="w200 cursor" id="score">工资</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript" src="js/jsonPerson.js"></script>
+<!--json这个数据一定要在table.js前面，否则可能会出现报错undefined的情况-->
+<script type="text/javascript" src="js/tools.js"></script>
+<script type="text/javascript" src="js/table.js"></script>
+</body>
+</html>
