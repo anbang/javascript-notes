@@ -1,21 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-    <style>
-        div{
-
-
-        }
-    </style>
+    <meta charset="UTF-8">
+    <title>Document</title>
 </head>
 <body>
-<script>
+    <p>hello word</p>
+    <p id="test1">hello word</p>
+    <p>hello word</p>
+    <p>hello word</p>
 
-
-</script>
+    <script>
+        var testOne=document.getElementById("test1");
+        console.dir(testOne);//p#test1
+        console.dir(testOne.__proto__);//HTMLParagraphElement
+        console.dir(testOne.__proto__.__proto__);//HTMLElement
+        console.dir(testOne.__proto__.__proto__.__proto__);//Element
+        console.dir(testOne.__proto__.__proto__.__proto__.__proto__);//Node,重点关注这个属性；
+        console.dir(testOne.__proto__.__proto__.__proto__.__proto__.__proto__);//EventTarget
+        console.dir(testOne.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__);//Object
+    </script>
 </body>
 </html>

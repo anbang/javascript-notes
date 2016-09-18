@@ -42,6 +42,22 @@ Global 对象的 encodeURI() 和 encodeURIComponent() 方法可以对 URI（Unif
 
 eval()方法就像是一个完整的 ECMAScript 解析器,它只接受一个参数，即要执行的 ECMAScript （或 JavaScript）字符串。
 
+    eval("console.log('test name')"); //"test name"
+
+    var msg = "hello world";
+    eval("console.log(msg)"); //"hello world"
+
+
+> 在 eval() 中创建的任何变量或函数都不会被提升，因为在解析代码的时候，它们被包含在一个字符串中；它们只在 eval() 执行的时候创建。
+
+    var testVar;
+    console.log(testVar);//undefined
+    console.log(msg);//Uncaught ReferenceError: msg is not defined
+    eval('var msg = "hello world eval"');
+    eval("console.log(msg)"); //"hello world"
+
+> 严格模式下，在外部访问不到 eval() 中创建的任何变量或函数，因此前面两个例子都会导致错误。同样，在严格模式下，为 eval 赋值也会导致错误
+
 #### json字符串，转为json对象；
 
     var myJSONText = '{"bindings": [{"ircEvent": "PRIVMSG", "method": "newURI", "regex": "^http://.*"},{"ircEvent": "PRIVMSG", "method": "deleteURI", "regex": "^delete.*"},{"ircEvent": "PRIVMSG", "method": "randomURI", "regex": "^random.*"}]}';
