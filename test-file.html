@@ -5,21 +5,20 @@
     <title>Document</title>
 </head>
 <body>
-    <p>hello word</p>
-    <p id="test1">hello word</p>
-    <p>hello word</p>
-    <p>hello word</p>
-    <div class="test1"></div>
-
+    <div id="parent-id">
+        <p>hello word1</p>
+        <p class="test">hello word2</p>
+        <p >hello word3</p>
+        <p>hello word4</p>
+    </div>
     <script>
-        var testOne=document.getElementById("test1");
-        console.dir(testOne);//p#test1
-        console.dir(testOne.__proto__);//HTMLParagraphElement
-        console.dir(testOne.__proto__.__proto__);//HTMLElement
-        console.dir(testOne.__proto__.__proto__.__proto__);//Element
-        console.dir(testOne.__proto__.__proto__.__proto__.__proto__);//Node,重点关注这个属性；
-        console.dir(testOne.__proto__.__proto__.__proto__.__proto__.__proto__);//EventTarget
-        console.dir(testOne.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__);//Object
+        var parentDOM = document.getElementById("parent-id");
+
+        var test=parentDOM.getElementsByClassName("test");//test is not target element
+        console.log(test);//HTMLCollection[1]
+
+        var testTarget=parentDOM.getElementsByClassName("test")[0];//year , this element is target
+        console.log(testTarget);//<p class="test">hello word2</p>
     </script>
 </body>
 </html>
