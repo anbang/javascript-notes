@@ -12,13 +12,34 @@
         <p>hello word4</p>
     </div>
     <script>
-        var parentDOM = document.getElementById("parent-id");
 
-        var test=parentDOM.getElementsByClassName("test");//test is not target element
-        console.log(test);//HTMLCollection[1]
+        var ary=[11,2,31,45,6,78,37,33,21];
 
-        var testTarget=parentDOM.getElementsByClassName("test")[0];//year , this element is target
-        console.log(testTarget);//<p class="test">hello word2</p>
+        function sortAry(ary){
+            var aryLen=ary.length;//获取数组的长度；有aryLen个数在排序；
+            var temp=null;//临时变量，交换数据中用的
+            var flag=false;//设置标志位，初始化为false
+            for(var i= 0,iLen=aryLen-1;i<iLen;i++){//外层循环n-1次；
+                for(var j= 0,jLen=aryLen-1-i;j<jLen;j++){//每次循环完，都能从剩下的数组中找出个最大的数组放在aryLen-1-i的位置；
+                    if(ary[j]>ary[j+1]){
+                        temp=ary[j];
+                        ary[j]=ary[j+1];
+                        ary[j+1]=temp;
+                        flag=true;//如果交换好了，做个标记，避免无效的循环；
+                    }
+                }
+                if(!!flag){//只要交换了位置，flag的值就重新设置为false了；
+                    flag=false;
+                }else{//如果没有交换，说明数组已经排好序了，可以结束循环了；
+                    break;
+                }
+            }
+            return ary;
+        }
+
+        var newAry=sortAry(ary);
+        console.log(newAry);//[2, 6, 11, 21, 31, 33, 37, 45, 78]
+
     </script>
 </body>
 </html>
