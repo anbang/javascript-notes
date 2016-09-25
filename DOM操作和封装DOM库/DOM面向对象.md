@@ -205,6 +205,12 @@ DOM结构如下
 
 ### Node的方法
 
+- appendChild
+- insertBefore
+- replaceChild
+- cloneNode
+- hasChildNodes
+
 ##### appendChild 
 
 将节点添加到指定容器的最后面,返回新增的节点。
@@ -240,7 +246,7 @@ DOM结构如下
 
 如果参照节点是null ，则 insertBefore() 与 appendChild() 执行相同的操作
 
-![](https://developer.mozilla.org/en-US/docs/Web/API/Node/insertbefore)
+https://developer.mozilla.org/en-US/docs/Web/API/Node/insertbefore
 
 ##### replaceChild  
 
@@ -334,7 +340,11 @@ DOM结构如下
 
 ### 查找元素
 
-查看 Document 上的方法，最常用的就是查找元素的方法了；
+查看 Document 上的方法，最常用的就是查找元素的方法了；document的意思是整个页面的
+
+    console.log(document)
+
+输出看一下；
 
 - getElementById
 - getElementsByClassName
@@ -342,8 +352,6 @@ DOM结构如下
 - getElementsByTagName
 - querySelector
 - querySelectorAll
-- document.documentElement
-- document.body
 
 ###### document.getElementById()
 **在整个文档中，通过元素的ID获取这个元素的对象，如果页面中没有这个ID，则获取的内容为null；**
@@ -390,7 +398,7 @@ DOM结构如下
 ###### document.getElementsByTagName()   
 **在整个文档中，通过元素的标签名来获取一组元素(HTMLcollection集合)，获取的是一个类数组，获取的个数可以通过length获取，获取集合的某一个元素，通过对象的索引即可查找；**
 
-
+ 即使一个文档里面，只有一个元素集合；这个元素也需要用[0]的方式给选出来，否则操作的是一个类数组；
 
 ###### document.getElementsByName()
 **在整个文档中，通过元素的name值来获取一组元素（NodeList集合），在IE浏览器中，此方法只对表单元素起作用；**
@@ -409,18 +417,202 @@ DOM结构如下
         console.log(test2);//[]
     </script>
 
-
-
 ###### document.querySelector()      在整个文档中，通过不同的选择器获取一个元素对象,IE678不兼容
+
 ###### document.querySelectorAll()   在整个文档中，通过不同的选择器获取一组元素对象集合，IE678不兼容；
+
 ###### document.documentElement  获取整个HTML对象
+
 ###### document.body             获取整个body对象
 
 ### 特殊集合
+
+除了属性和方法，document对象还有一个特殊的集合，这些集合都是HTMLCollection对象，为了访问文档常用的部分提供的快捷方式；
+
+正常工作中，很少直接这么用的；
+
+- document.anchors      包含文档中所有带name特性的<a>元素；
+- document.links        包含文档中所有带href特性的<a>元素，
+- document.forms        包含文档中所有带form的元素，与document.getElementsByName("form")相同；
+- document.imges        包含文档中所有带<img>的元素，与document.getElementsByName("img")相同；
+
+
 ### 文档写入
+
+将输出流写入到网页中，有4个方法；
+
+- write(string)       原样写入
+- writeIn(string)     在字符串的末尾添加一个换行符(\n)；
+- open()
+- close()
+
+write和writeIn
+
+    <!doctype html>
+    <htm>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <script>
+            window.onload=function(){
+                document.write("<strong>"+(new Date()).toString()+"</strong>");
+                document.write("22222");
+                document.writeln("11111");
+                document.writeln("11111");
+                document.write("22222");
+                document.write("22222");
+            };
+        </script>
+    </head>
+    <body>
+    <p>now time is:</p>
+    </body>
+    </htm>
+
+open()和close()分别用于打开和关闭网页的输出流；如果是加载期间使用write()或者writeIn()方法，则不需要用到这两个方法；
+
 ### 文档的子节点
+
+- document.documentElement;//拿到<html>这个标签；
+- document.body//拿到body这个层的标签；
+
+主要就是这两个方法的，当然也可以用别的方法来获取同样的效果的；
+
+比如
+
+    document.childNodes[0];
+    document.firstChild;
+
+这两个都可以获取到html标签；
+
 ### 文档信息
+
+- document.title        设置文档的标题
+- document.URL          获取或者设置完整的URL
+- document.domain       获取或者设置域名
+- document.referrer     取得来源页面的URL
+
+
 ### DOM一致性检测
+
+- hasFeartrue()
+
+# Element类型
+
+- HTML元素
+- 操作特性
+- attributes属性
+- 创建元素
+
+Element和Document类型一样，都是非常使用的类型；
+
+Element的类型，nodeType的值为1、nodeName为元素的标签名，nodeValu是null；如果要访问元素的标签名，可以使用nodeName属性，也可以使用tagName属性；两个属性返回相同的值；
+
+    <div id="test">这是一个ID为test的div内容</div>
+    <script>
+        var test=document.getElementById("test");
+        console.log(test.nodeType,test.nodeName,test.nodeValue,test.tagName);//1 "DIV" null "DIV"
+    </script>
+
+返回的标签名是大写的DIV；一般比较都会转成小写然后比较；如下；
+
+    if(test.tagName.toLowerCase()=="div"){
+        console.log("目标的元素是div标签，开始执行代码");
+    }
+
+### HTML元素
+
+所有的HTML元素都是由HTMLElement类型表示，如果不是直接通过这个类型，也是通过它的子类型表示；可以输出看下，HTMlElement类型继承自ELement类型的；
+
+    <div id="test">这是一个ID为test的div内容</div>
+    <script>
+        var test=document.getElementById("test");
+        console.log("test本身："+test);//div#test
+        console.log("test向上找1级："+test.__proto__);//HTMLDivElement
+        console.log("test向上找2级："+test.__proto__.__proto__);//HTMLElement
+        console.log("test向上找3级："+test.__proto__.__proto__.__proto__);//Element
+        console.log("test向上找4级："+test.__proto__.__proto__.__proto__.__proto__);//Node
+        console.log("test向上找5级："+test.__proto__.__proto__.__proto__.__proto__.__proto__);//EventTarget
+        console.log("test向上找6级："+test.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__);//Object
+        console.log("test向上找7级："+test.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__.__proto__);//null
+        console.dir(test);//顺着原型链查找；
+    </script>
+
+输出的图片的如下；
+
+![](http://i.imgur.com/Mto2IWP.png)
+
+每个HTML元素都存在下面的标准特性
+
+- id        元素在文档中的唯一标识符
+- title     有关元素的附加说明信息，鼠标放上去会显示，（以前我以为只有a标签才有，其实是都有的）
+- lang      元素内容的语言代码，很少使用
+- dir       语言的方向，值为ltr或者rtl，很少使用（left-to-right和right-to-left）;rtl可以起到右对齐的效果；
+- className 与元素的class特性对应，是元素指定的CSS类，没有将这个属性命名为class，是因为class是ECMAscript的保留字；【*】
+
+    <div id="test" title="鼠标放上来的提示" class="test-class-name" lang="en" dir="rtl">
+        这是一个ID为test的div内容!!!ddddd.
+        <p>这是一段文字</p>
+    </div>
+    <script>
+        var test=document.getElementById("test");
+        console.log(test.id);//test
+        console.log(test.className);//test-class-name
+        console.log(test.title);//鼠标放上来的提示
+        console.log(test.lang);//en
+        console.log(test.dir);//rtl(最后一个字符不能是符号，否则符号在前面显示)
+    
+        test.id="testChange";//
+        test.className="test-class-name-change";//
+        test.title="鼠标放上来的提示-change";//
+        test.lang="cn";//
+        test.dir="ltr";//
+    
+        console.log(test.id);//testChange
+        console.log(test.className);//test-class-name-change
+        console.log(test.title);//鼠标放上来的提示-change
+        console.log(test.lang);//cn
+        console.log(test.dir);//ltr
+    </script>
+
+### 操作特性
+
+- getAttribute()
+- setAttribute()
+- removeAttribute()
+
+**getAttribute**:
+
+    var test=document.getElementById("test");
+    console.log(test.getAttribute("id"));//test
+    console.log(test.getAttribute("className"));//null
+    console.log(test.getAttribute("class"));//test-class-name
+    console.log(test.getAttribute("title"));//鼠标放上来的提示
+    console.log(test.getAttribute("lang"));//en
+    console.log(test.getAttribute("dir"));//rtl(最后一个字符不能是符号，否则符号在前面显示)
+    console.log(test.getAttribute("diy-data"));//hehe
+
+这个属性要注意的是，如果想获取到属性，必须先取得这个属性所在的元素；然后再进行相关的Attribute操作；这个属性可以获得自定义属性，根据HTML5规范，自定义的特性应该加上data-前缀进行验证；
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -435,10 +627,6 @@ DOM结构如下
     - oDiv.style.backgroundColor="red";就是设置元素的行内北京颜色是红色；
 - window.getComputerStyle   获取元素所有经过计算的样式（只要在页面中显示出来，那么该元素的样式都是经过计算的）这个方法，不兼容，一般是下面这种处理
     - window.getComputerStyle?window.getComputedStyle(ele,null)[attr]:ele.currenStyle[attr]
-
-
-
-
 
 - document.creatElement()           创建一个元素节点，例如document.creatElement("div")就是创建一个div元素
 - document.creatDocumentFragment()      创建文档碎片

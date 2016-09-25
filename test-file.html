@@ -1,35 +1,24 @@
 <!doctype html>
-<html>
+<htm>
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
 <body>
-    <div id="parent-id">
-        <p>hello word1</p>
-        <p class="test">hello word2</p>
-        <p >hello word3</p>
-        <p>hello word4</p>
-    </div>
-    <script>
+<div id="test" title="鼠标放上来的提示" class="test-class-name" lang="en" dir="rtl"diy-data="hehe">
+    这是一个ID为test的div内容!!!ddddd.
+    <p>这是一段文字</p>
+</div>
+<script>
+    var test=document.getElementById("test");
+    console.log(test.getAttribute("id"));//test
+    console.log(test.getAttribute("className"));//null
+    console.log(test.getAttribute("class"));//test-class-name
+    console.log(test.getAttribute("title"));//鼠标放上来的提示
+    console.log(test.getAttribute("lang"));//en
+    console.log(test.getAttribute("dir"));//rtl(最后一个字符不能是符号，否则符号在前面显示)
+    console.log(test.getAttribute("diy-data"));//hehe
 
-        var ary=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
-        function selectOption(ary,optionNumber){
-            var targetAry=[];
-            if(!optionNumber){
-                console.log("请指定需要删选的数量!");
-            }
-            for(var i=0;i<optionNumber;i++){
-                var ran=Math.round(Math.random()*(ary.length-1));//获取0-数组最大索引的一个随机数；
-                targetAry.push(ary[ran]);//按照获取的随机索引，把对应的值取出来，放到新书组中；
-                ary[ran]=ary[ary.length-1];//把数组最后一项放到当前要删除索引的这一项；
-                ary.length=ary.length-1;//删除最后一项；
-            }
-            return targetAry;
-        }
-        var newAry=selectOption(ary,10);
-        console.log(newAry);
-
-    </script>
+</script>
 </body>
-</html>
+</htm>
