@@ -4,20 +4,22 @@
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+    <style>
+        #test{
+            padding: 50px;
+            background-color: red;
+        }
+    </style>
 <body>
-<div id="test" title="鼠标放上来的提示" class="test-class-name" lang="en" dir="rtl"diy-data="hehe">
-    这是一个ID为test的div内容!!!ddddd.
-    <p>这是一段文字</p>
-</div>
+<div style="color: #999;" id="test">这是一段测试文字；</div>
+
 <script>
     var test=document.getElementById("test");
-    console.log(test.getAttribute("id"));//test
-    console.log(test.getAttribute("className"));//null
-    console.log(test.getAttribute("class"));//test-class-name
-    console.log(test.getAttribute("title"));//鼠标放上来的提示
-    console.log(test.getAttribute("lang"));//en
-    console.log(test.getAttribute("dir"));//rtl(最后一个字符不能是符号，否则符号在前面显示)
-    console.log(test.getAttribute("diy-data"));//hehe
+    var creatEle=document.createElement('p');
+    creatEle.id="test-id";
+    creatEle.className="class-test";
+    creatEle.innerHTML="innerHTML";
+    test.appendChild(creatEle);
 
 </script>
 </body>

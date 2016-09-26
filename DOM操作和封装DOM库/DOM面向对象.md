@@ -594,12 +594,74 @@ Element的类型，nodeType的值为1、nodeName为元素的标签名，nodeValu
 
 这个属性要注意的是，如果想获取到属性，必须先取得这个属性所在的元素；然后再进行相关的Attribute操作；这个属性可以获得自定义属性，根据HTML5规范，自定义的特性应该加上data-前缀进行验证；
 
+转给getAttribute的特性名，与实际的特性名相同，因此要想得到class特性值，应该传入class而不是calssName；
 
 
+但是有两类特殊的特性，虽然有对应的属性名，但是属性的值与通过getAttribute返回的不同；
+
+- 1、style
+- 2、onclick
+
+    <!doctype html>
+    <htm>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+        <style>
+            #test{
+                padding: 50px;
+                background-color: red;
+            }
+        </style>
+    <body>
+    <div style="color: #999;" id="test">这是一段测试文字；</div>
+    <script>
+        var test=document.getElementById("test");
+        test.onclick=function(){
+            console.log("test被点击了")
+        };
+        console.log(test.getAttribute("style"));//只能获取到行内的样式；
+        console.log(test.getAttribute("onclick"));//null
+        
+    </script>
+    </body>
+    </htm>
+
+通过JS操作DOM的时候，一般不适应getAttribute，而是只使用对象的属性，在取得自定义特性质的情况下，才会使用getAttribute的方法；
 
 
+**setAttribute**：
+
+接受两个参数，第一个参数是特性名，第二个参数是特性值；如果特性已经存在，setAttribute会以指定的值替换现有的值；如果没有的值会创建并且新增；
+
+通过这个方法设置的特性名会被统一转换为小写的形式；"ID"会最终变成id，"CLASS"会被变为"class"；
+
+    var test=document.getElementById("test");
+    test.setAttribute("CLASS","dddddd");//class="dddddd"
 
 
+**removeAttribute**：
+
+彻底删除元素的特性，调用这个方法不仅清除特性的值，而且也会从元素中完全删除特性；（IE6不支持）
+
+### 创建元素，
+
+document.creatElement()方法，可以创建新元素，接受一个参数，就是要创建的元素，参数可以是标签名，也可以是全部的标签；
+
+- div
+- <div style="color: #999;" id="test">这是一段测试文字；</div>
+
+上面这两种都可以做为参数的；一般都使用标签名；
+
+创建的元素属于游离状态，还没有被添加到文档树中，因为新建的元素并不会马上看到，可以使用appendChild,inserBefore,replaceChild()方法，
+
+    var test=document.getElementById("test");
+    var creatEle=document.createElement('p');
+    creatEle.id="test-id";
+    creatEle.className="class-test";
+    creatEle.innerHTML="innerHTML";
+    test.appendChild(creatEle);
 
 
 
