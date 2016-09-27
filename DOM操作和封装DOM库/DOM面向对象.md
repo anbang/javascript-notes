@@ -7,9 +7,6 @@
 - Document类型
 - Element类型
 - Text类型
-- Comment类型
-- CDATASection类型
-- DocumentType类型
 - DocumentFragment类型
 - Attr类型
 
@@ -183,6 +180,55 @@ NodeType 有以下几种；但是并不需要都记住的；
         }
         var arrayOfNodes = convertToArray(selectAll);
         console.log({}.toString.call(arrayOfNodes));//[object Array]
+
+** childNodes需要注意的（元素的子节点方法；）**
+
+看下面的代码
+
+	<ul id="myList1">
+	    <li>Item 1</li>
+	    <li>Item 2</li>
+	    <li>Item 3</li>
+	</ul>
+	<ul id="myList2"><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>
+	<script>
+	    var test1=document.getElementById("myList1");
+	    var test2=document.getElementById("myList2");
+	    console.log(test1.childNodes);//[text, li, text, li, text, li, text]
+	    console.log(test2.childNodes);//[li, li, li]
+	</script>
+
+
+myList1的childNodes是7，myList2的chilNodes是3；(myList1里面有Text 类型)
+
+如果在myList1中获取全部的li，可以直接用getElementByTagName；
+
+    var test1=document.getElementById("myList1");
+    var lis=test1.getElementsByTagName("li");
+    console.log(lis);
+
+这样就拿到了，先确定范围，然后通过标签名来获取；还可以判断元素的是否为原来来获取
+
+    var test1=document.getElementById("myList1");
+    var ary=[];
+    for(var i=0,len=test1.childNodes.length;i<len;i++){
+        if(test1.childNodes[i].nodeType===1){
+            ary.push(test1.childNodes[i]);
+        }
+    }
+    console.log(ary);
+
+**Text 类型的介绍**
+
+	<!-- 没有内容，也就没有文本节点 -->
+	<div></div>
+	<!-- 有空格，因而有一个文本节点 -->
+	<div> </div>
+	<!-- 有内容，因而有一个文本节点 -->
+	<div>Hello World!</div>
+
+上面代码给出的第一个 <div> 元素没有内容，因此也就不存在文本节点。开始与结束标签之间只要存在内容，就会创建一个文本节点。因此，第二个 <div> 元素中虽然只包含一个空格，但仍然有一个文本子节点；文本节点的 nodeValue 值是一个空格。第三个 <div> 也有一个文本节点，其 nodeValue 的值为 "Hello World!" 。
+
 
 ##### parentNode、firstNode、lastNode、nextSibling、previousSibling
 
@@ -647,12 +693,11 @@ Element的类型，nodeType的值为1、nodeName为元素的标签名，nodeValu
 
 ### 创建元素，
 
-document.creatElement()方法，可以创建新元素，接受一个参数，就是要创建的元素，参数可以是标签名，也可以是全部的标签；
+document.creatElement()方法，可以创建新元素，接受一个参数，就是要创建的元素，参数可以是标签名
 
 - div
-- <div style="color: #999;" id="test">这是一段测试文字；</div>
 
-上面这两种都可以做为参数的；一般都使用标签名；
+一般都使用标签名；
 
 创建的元素属于游离状态，还没有被添加到文档树中，因为新建的元素并不会马上看到，可以使用appendChild,inserBefore,replaceChild()方法，
 
@@ -663,17 +708,87 @@ document.creatElement()方法，可以创建新元素，接受一个参数，就
     creatEle.innerHTML="innerHTML";
     test.appendChild(creatEle);
 
+** 借助createDocumentFragment创建元素 **
+
+文档碎片；document fragment在文档没有对应的标记，为了赋值大量数据渲染时的一种节约性能方法；
+
+原理是：创建大量元素的时候，把元素都先放在文档碎片里，等元素创建添加完，把文档碎片统一插入到指定的元素中；
+
+> 类似与我们生活中，发快递的时候，快递公司通过三轮车把所有的件搜收集起来，然后再统一拉回仓库去发件；
+
+代码如下：
+
+	<ul id="myList"></ul>
+	<script>
+	    var fragment = document.createDocumentFragment();
+	    var oUl = document.getElementById("myList");
+	    var li = null;
+	    for (var i=0; i < 300; i++){
+	        li = document.createElement("li");
+	        li.appendChild(document.createTextNode("Item " + (i+1)));
+	        fragment.appendChild(li);
+	    }
+	    oUl.appendChild(fragment);
+	</script>
 
 
+# Text类型的方法
 
+- document.createTextNode()		 创建新文本节点
+- normalize()		相邻文本节点合并
+- splitText()		分割文本节点
 
+**document.createTextNode()**
 
+创建新文本节点，接收一个参数，要插入节点中的文本，（作为参数的文本将按照HTML或者XML的格式进行编码）
 
+    var ele=document.createElement("div");
+    var textNode=document.createTextNode('<strong>hello</strong> word');
+    var anotherTextNode = document.createTextNode("lee!");
 
+    ele.className="message";
+    ele.appendChild(textNode);
+    ele.appendChild(anotherTextNode);
+    document.body.appendChild(ele);
 
+如果两个文本节点是相邻的同胞节点，那么这两个节点中的文本就会连起来显示，中间不会有空格。
 
+**normalize**
 
+如果在一个包含两个或多个文本节点的父元素上调用 normalize() 方法，则会将所有文本节点合并成一个节点，结果节点的 nodeValue 等于将合并前每个文本节点的 nodeValue 值拼接起来的值。
 
+    var ele=document.createElement("div");
+    var textNode=document.createTextNode('<strong>hello</strong> word');
+    var anotherTextNode = document.createTextNode("lee!");
+
+    ele.className="message";
+    ele.appendChild(textNode);
+    ele.appendChild(anotherTextNode);
+    document.body.appendChild(ele);
+
+    console.log("childNodes的长度："+ele.childNodes.length+",第一个节点值是"+ele.firstChild.nodeValue);//childNodes的长度：2,第一个节点值是<strong>hello</strong> word
+    ele.normalize();
+    console.log("childNodes的长度："+ele.childNodes.length+",第一个节点值是"+ele.firstChild.nodeValue);//childNodes的长度：1,第一个节点值是<strong>hello</strong> wordlee!
+
+**splitText()**
+
+和normalize()相反的方法;按照指定的位置分割 nodeValue 值。
+
+- 原来的文本节点将包含从开始到指定位置之前的内容;(不包含所传的索引)
+- 新文本节点将包含剩下的文本。
+
+    var ele=document.createElement("div");
+    var textNode=document.createTextNode('hello word');
+
+    ele.className="message";
+    ele.appendChild(textNode);
+    document.body.appendChild(ele);
+
+    console.log("childNodes的长度："+ele.childNodes.length+",第一个节点值是"+ele.firstChild.nodeValue);//childNodes的长度：2,第一个节点值是<strong>hello</strong> word
+    var newNode=ele.firstChild.splitText(2);
+    console.log(ele.childNodes.length);//2
+    console.log(ele.firstChild.nodeValue);//he
+    console.log(newNode.nodeValue);//llo word
 
 
 

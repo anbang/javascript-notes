@@ -1,26 +1,21 @@
 <!doctype html>
-<htm>
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
-    <style>
-        #test{
-            padding: 50px;
-            background-color: red;
-        }
-    </style>
 <body>
-<div style="color: #999;" id="test">这是一段测试文字；</div>
-
+<ul id="myList"></ul>
 <script>
-    var test=document.getElementById("test");
-    var creatEle=document.createElement('p');
-    creatEle.id="test-id";
-    creatEle.className="class-test";
-    creatEle.innerHTML="innerHTML";
-    test.appendChild(creatEle);
-
+    var fragment = document.createDocumentFragment();
+    var oUl = document.getElementById("myList");
+    var li = null;
+    for (var i=0; i < 300; i++){
+        li = document.createElement("li");
+        li.appendChild(document.createTextNode("Item " + (i+1)));
+        fragment.appendChild(li);
+    }
+    oUl.appendChild(fragment);
 </script>
 </body>
-</htm>
+</html>
