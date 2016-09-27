@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 1000%;
+            background: #FFF38F;
+        }
+
+        #div1 {
+            display: none;
+            position: fixed;
+            right: 5px;
+            bottom: 10px;
+            width: 50px;
+            height: 50px;
+            background: #E44072;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    function getWin(attr) {//获取window下的元素属性
+        return document.documentElement[attr] || document.body[attr];
+    }
+    var ch = getWin("clientHeight"),
+        oDiv = document.getElementById("div1");
+    window.onscroll = function () {//判断返回顶部的出现时候；
+        var sT = getWin("scrollTop");
+        if (sT >= ch) {
+            oDiv.style.display = "block";
+        }else{
+            oDiv.style.display = "none";
+        }
+    };
+    oDiv.onclick = move;
+    function move() {
+        oDiv.style.display = "none";
+        window.clearTimeout(this.timer);
+        oDiv.timer = null;
+        document.body.scrollTop -= 300;
+        if ((document.body.scrollTop - 300) <= 0) {
+            document.body.scrollTop = 0;
+            return;
+        }
+        oDiv.timer = window.setTimeout(move, 10);
+    }
+</script>
+</body>
+</html>

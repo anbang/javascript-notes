@@ -5,17 +5,14 @@
     <title>Document</title>
 </head>
 <body>
-<ul id="myList"></ul>
+<div id="myList" style="width: 100px;height: 100px;background-color: #CDE074;border: 1px dashed darkcyan;"></div>
 <script>
-    var fragment = document.createDocumentFragment();
-    var oUl = document.getElementById("myList");
-    var li = null;
-    for (var i=0; i < 300; i++){
-        li = document.createElement("li");
-        li.appendChild(document.createTextNode("Item " + (i+1)));
-        fragment.appendChild(li);
-    }
-    oUl.appendChild(fragment);
+    var oDiv = document.getElementById("myList");
+    var targetObj=oDiv.currentStyle;
+    console.log(targetObj.width);//100px
+    console.log(targetObj.height);//100px
+    console.log(targetObj.padding);//0
+    console.log(targetObj);
 </script>
 </body>
 </html>

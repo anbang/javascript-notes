@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>处理后台动态返回数据的图片延迟加载</title>
+    <style type="text/css">
+        body, div, ul, li, img, p {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 14px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        img {
+            border: none;
+        }
+
+        html, body {
+            width: 100%;
+        }
+
+        #con {
+            margin: 10px 50px;
+            padding: 10px;
+            border: 1px dashed #ff0000;
+        }
+
+        #con li {
+            padding: 5px 0;
+            border-bottom: 1px dashed #ccc;
+            overflow: hidden;
+        }
+
+        #con li img {
+            display: block;
+            float: left;
+            width: 250px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        #con li p {
+            display: block;
+            float: right;
+            width: 70%;
+            line-height: 30px;
+            font-size: 16px;
+        }
+
+        #top {
+            display: none;
+            position: fixed;
+            right: 5px;
+            bottom: 10px;
+            padding: 2px;
+            width: 36px;
+            height: 36px;
+            text-align: center;
+            font-size: 13px;
+            border-radius: 5px;
+            background: #FFF38F;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="con"><ul></ul></div>
+<div id="top">回到顶部</div>
+<script type="text/javascript" src="js/json.js"></script>
+<script >
+    var oDiv = document.getElementById("con"),
+        oUl  = oDiv.getElementsByTagName("ul")[0],
+        oTop = document.getElementById("top");
+    //创建文档碎片;
+    var frg = document.createDocumentFragment();
+    for (var i = 0; i < data.length; i++) {
+        var cur = data[i];
+        var oLi = document.createElement("li");
+        oLi.innerHTML = "<img src='img/ddd.jpg' trueImg='" + cur.img + "' alt=''/><p>" + cur.txt + "</p>";
+        frg.appendChild(oLi);
+    }
+    oUl.appendChild(frg);
+    /*创建完毕*/
+
+    window.setTimeout(loadImg, 100);//默认加载第一屏显示的图片
+    window.onscroll = loadImg;//当滚动的时候，还要加载之前没有显示的图片，问题：之前加载过的图片存在多次重新的加载的问题
+    function loadImg() {
+        var winTop = getWin("clientHeight") + getWin("scrollTop");
+        var images = oUl.getElementsByTagName("img");
+        for (var i = 0; i < images.length; i++) {
+            var cur = images[i],
+                curTop = offset(cur).top,
+                trueImg = cur.getAttribute("trueImg");
+            if (curTop <= winTop && !cur.isLoad) {//cur.isLoad自定义属性判断是否加载了
+                showTrueImg(cur, trueImg);
+            }
+        }
+        //回到顶部
+        var cH = getWin("clientHeight");
+        if (!oTop.isMove) {
+            oTop.style.display = (winTop >= (cH * 2)) ? "block" : "none";
+        }
+    }
+    function showTrueImg(ele, trueImg) {
+        var oImg = new Image;
+        oImg.src = trueImg;
+        oImg.onload = function () {
+            ele.src = trueImg;
+            ele.isLoad = true;
+            move(ele);
+        }
+    }
+
+    //设置延迟显示
+    function move(ele) {
+        var speed = 0;
+        _move();
+        function _move() {
+            window.clearTimeout(ele.timer);
+            speed += 0.02;
+            setCss(ele, "opacity", speed);
+            if (speed >= 1) {
+                setCss(ele, "opacity", 1);
+                return;
+            }
+            ele.timer = window.setTimeout(_move, 10);
+        }
+    };
+
+    function getWin(value) {
+        return document.documentElement[value] || document.body[value];
+    };
+    function setCss(curEle,attr,value) {//设置CSS属性值；
+        switch (attr) {
+            case "opacity":
+                curEle["style"][attr] = value;
+                curEle["style"]["filter"] = "alpha(opacity=" + (value * 100) + ")";
+                break;
+            case "zIndex":
+                curEle["style"][attr] = value;
+                break;
+            default:
+                curEle["style"][attr] = !isNaN(value) ? value += "px" : value;
+        }
+    };
+    function offset() {//获取偏移量；
+        var curEle = arguments[0],
+            par = curEle.offsetParent,
+            left = curEle.offsetLeft,
+            top = curEle.offsetTop;
+        while (par) {
+            left += par.offsetLeft;
+            top += par.offsetTop;
+            if (navigator.userAgent.indexOf("MSIE 8.0") <= -1) {
+                left += par.clientLeft;
+                top += par.clientTop;
+            }
+            par = par.offsetParent;
+        }
+        return {left: left, top: top};
+    };
+
+    /*返回顶部的代码*/
+    oTop.onclick = toTop;
+    function toTop() {
+        this.style.display = "none";
+        this.isMove = true;
+        var count = document.body.scrollTop,
+                _this = this;
+        _toTop();
+        function _toTop() {
+            window.clearTimeout(_this.timer);
+            if (count - 200 <= 0) {
+                document.body.scrollTop = 0;
+                _this.isMove = false;
+                return;
+            }
+            count -= 200;
+            document.body.scrollTop = count;
+            _this.timer = window.setTimeout(_toTop, 10);
+        }
+    };
+</script>
+</body>
+</html>
