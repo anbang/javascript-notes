@@ -3,16 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="test.css" id="test-css-link"/>
 </head>
 <body>
-<div id="myList" style="width: 100px;height: 100px;background-color: #CDE074;border: 1px dashed darkcyan;"></div>
+<div id="myList" style="width: 100px;height: 100px;background-color: #CDE074;border: 1px dashed darkcyan;padding: 5px;"></div>
 <script>
-    var oDiv = document.getElementById("myList");
-    var targetObj=oDiv.currentStyle;
-    console.log(targetObj.width);//100px
-    console.log(targetObj.height);//100px
-    console.log(targetObj.padding);//0
-    console.log(targetObj);
+    var oCssLink = document.getElementById("test-css-link");
+    console.log(oCssLink.disabled);
+    console.log(oCssLink.href);
+    console.log(document.styleSheets.href);
+    console.log(oCssLink.media);
+    console.log(oCssLink.title);
+    console.log(oCssLink.type);
+
+    var docHeight=Math.max(document.documentElement.scrollHeight,document.documentElement.clientHeight);
+
 </script>
 </body>
 </html>

@@ -1,25 +1,3 @@
-#JS中的盒子模型
-
-    clientWidth;//获取元素的可见宽度。width+左右padding；
-    clientHeight;//获取元素的可见高度。width+上下padding；
-    clientLeft;//获取元素的左边框宽度
-    clientTop;//获取元素的上边框高度；
-
-    offsetWidth;//获取元素width+左右padding+左右border；
-    offsetHeight;//获取元素的width+上下padding+上下border；
-    offsetLeft;//获取元素距离父级参照物的左偏移量；
-    offsetTop;//获取元素距离父级参照物的上偏移量；
-    offsetParent;//获取元素的父级参照物/上级参照物（和parentNode区分开）
-
-	window.onscroll;//随时的计算当前页面距离body顶部的偏移量(左上角)；
-    scrollWidth;//获取元素实际内容的宽，在没有内容溢出的情况下和clientWidth一样，有内容的溢出，则是width+左padding；
-    scrollHeight;//获取元素实际内容的宽，在没有内容溢出的情况下和clientWidth一样，有内容的溢出，则是width+左padding；
-    scrollLeft;//横向滚动条卷去的高度，这是一个可读写的属性；设置scrollLeft=0；就回到了页面横向第一屏最上边；
-    scrollTop;//纵向滚动条卷去的高度，这是一个可读写的属性；设置scrollTop=0；就回到了页面纵向第一屏最上边；
-
-
-JS中没有直接获取margin值的属性；
-
 
 **jQuery中的盒子模型**:
 
@@ -94,7 +72,7 @@ JS中没有直接获取margin值的属性；
 ----------
 
 
-# 知识点：访问和设置元素的样式；
+# 知识点一：访问和设置元素的样式；
 
 
 ##### 获取样式
@@ -214,3 +192,116 @@ getComputerStyle第二种写法
             return element.currentStyle[value];
         }
     }
+
+# 知识点二：操作样式表；
+
+- disabled
+- href
+- media
+- ownerNode			指向拥有当前样式表的节点的指针，样式表可能是在 HTML 中通过 < link > 或 < style /> 引入的,如果当前样式表是其他样式表通过@import 导入的，则这个属性值为 null 。IE 不支持这个属性。
+- parentStyleSheet	在当前样式表是通过 @import 导入的情况下，这个属性是一个指向导入它的样式表的指针。
+- type			表示样式表类型的字符串。对 CSS 样式表而言，这个字符串是 "type/css" 。
+
+除了 disabled 属性之外，其他属性都是只读的。在支持以上所有这些属性的基础上，CSSStyleSheet 类型还支持下列属性和方法
+
+- cssRules
+- ownerRule
+- deleteRule
+- insertRule
+
+
+# 知识点三：元素大小
+
+**JS中的盒子模型**
+
+    clientWidth;//获取元素的可见宽度。width+左右padding；
+    clientHeight;//获取元素的可见高度。width+上下padding；
+    clientLeft;//获取元素的左边框宽度
+    clientTop;//获取元素的上边框高度；
+
+    offsetWidth;//获取元素width+左右padding+左右border+（可见的）垂直滚动条的宽度；
+    offsetHeight;//获取元素的width+上下padding+上下border+（可见的）水平滚动条的高度；
+    offsetLeft;//获取元素距离父级参照物的左偏移量；
+    offsetTop;//获取元素距离父级参照物的上偏移量；
+    offsetParent;//获取元素的父级参照物/上级参照物（和parentNode区分开）
+
+	window.onscroll;//随时的计算当前页面距离body顶部的偏移量(左上角)；
+    scrollWidth;//获取元素实际内容的宽，在没有内容溢出的情况下和clientWidth一样，有内容的溢出，则是width+左padding；
+    scrollHeight;//获取元素实际内容的宽，在没有内容溢出的情况下和clientWidth一样，有内容的溢出，则是width+左padding；
+    scrollLeft;//横向滚动条卷去的高度，这是一个可读写的属性；设置scrollLeft=0；就回到了页面横向第一屏最上边；
+    scrollTop;//纵向滚动条卷去的高度，这是一个可读写的属性；设置scrollTop=0；就回到了页面纵向第一屏最上边；
+
+
+JS中没有直接获取margin值的属性；
+
+##### 客户区相关的
+
+![](http://i.imgur.com/oaKk1jG.png)
+
+##### 偏移量相关的
+
+![](http://i.imgur.com/nTWwumg.png)
+
+
+offsetLeft 和 offsetTop 属性与包含元素有关，包含元素的引用保存在 offsetParent属性中。 offsetParent 属性不一定与parentNode 的值相等。
+
+**offsetParent取决于position，parentNode取决于DOM结构**
+
+如果获取元素距离页面左上角的绝对位置，可以下面这么写；
+
+	function getElementLeft(element){
+		var actualLeft = element.offsetLeft;
+		var current = element.offsetParent;
+		while (current !== null){
+			actualLeft += current.offsetLeft;
+			current = current.offsetParent;
+		}
+		return actualLeft;
+	}
+
+    function getElementTop(element){
+        var actualTop = element.offsetTop;
+        var current = element.offsetParent;
+        while (current !== null){
+            actualTop += current. offsetTop;
+            current = current.offsetParent;
+        }
+        return actualTop;
+    }
+
+这两个函数利用 offsetParent 属性在 DOM 层次中逐级向上回溯，将每个层次中的偏移量属性合计到一块。对于简单的 CSS 布局的页面，这两函数可以得到非常精确的结果。对于使用表格和内嵌框架布局的页面，由于不同浏览器实现这些元素的方式不同，因此得到的值就不太精确了。一般来说，页面中的所有元素都会被包含在几个 <div> 元素中，而这些 <div> 元素的 offsetParent 又是<body> 元素，所以 getElementLeft() 与 getElementTop() 会返回与 offsetLeft 和 offsetTop
+相同的值。
+
+在IE中有些问题，封一个方法，可以直接获取到元素的所有绝对偏移量；
+
+    function offset(curEle) {//获取偏移量；
+        var par = curEle.offsetParent,
+            left = curEle.offsetLeft,
+            top = curEle.offsetTop;
+        while (par) {
+            left += par.offsetLeft;
+            top += par.offsetTop;
+            if (navigator.userAgent.indexOf("MSIE 8.0") <= -1) {
+                left += par.clientLeft;
+                top += par.clientTop;
+            }
+            par = par.offsetParent;
+        }
+        return {left: left, top: top};
+    }
+
+> 所有这些偏移量属性都是只读的，而且每次访问它们都需要重新计算。因此，应该尽量避免重复访问这些属性；如果需要重复使用其中某些属性的值，可以将它们保存在局部变量中，以提高性能。
+
+##### 滚动相关的
+
+![](http://i.imgur.com/J7WbqWk.png)
+[图片引自高程三]
+
+
+** scrollWidth 和 scrollHeight的作用** 
+
+ 主要用于确定元素内容的实际大小。例如，通常认为 <html> 元素是在 Web 浏览器的视口中滚动的元素（IE6 之前版本运行在混杂模式下时是 <body> 元素）。因此，带有垂直滚动条的页面总高度就是 document.documentElement.scrollHeight 。
+
+在不包含滚动条的时候， scrollWidth / scrollHeight 与 clientWidth / clientHeight 之间在不同浏览器的区别
+
+- Firefox中：都是文档内容
