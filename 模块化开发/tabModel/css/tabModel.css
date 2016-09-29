@@ -1,0 +1,153 @@
+div,ul,li{
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+}
+ul,li{
+    list-style: none;
+}
+.tabModel{
+    width: 600px;
+    height: 500px;
+    border:1px solid #ccc ;
+    border-radius: 5px;
+    margin: 10px auto;
+    padding: 5px;
+}
+.tabHeads{position: relative;top: 1px}
+.tabHead1{
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid red ;
+    background: orange;
+    float: left;
+    margin-right:10px ;
+    cursor: pointer;
+}
+.tabHead2{
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid red ;
+    background: #37C7D4;
+    float: left;
+    margin-right:10px ;
+    cursor: pointer;
+}
+.tabHead3{
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid red ;
+    background: #E44072;
+    float: left;
+    margin-right:10px ;
+    cursor: pointer;
+}
+.tabHead4{
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid red ;
+    background: #cccccc;
+    float: left;
+    margin-right:10px ;
+    cursor: pointer;
+}
+.tabHead5{
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid red ;
+    background: #00FF00;
+    float: left;
+    margin-right:10px ;
+    cursor: pointer;
+}
+
+
+
+.tabContent1{
+    width: 100%;
+    height: 465px;
+    line-height: 465px;
+    text-align: center;
+    border: 1px solid red ;
+    background: orange;
+    clear: both;
+    display: none;
+}
+.tabContent2{
+    width: 100%;
+    height: 465px;
+    line-height: 465px;
+    text-align: center;
+    border: 1px solid red ;
+    background: #37C7D4;
+    clear: both;
+    display: none;
+}
+.tabContent3{
+    width: 100%;
+    height: 465px;
+    line-height: 465px;
+    text-align: center;
+    border: 1px solid red ;
+    background: #E44072;
+    clear: both;
+    display: none;
+}
+.tabContent4{
+    width: 100%;
+    height: 465px;
+    line-height: 465px;
+    text-align: center;
+    border: 1px solid red ;
+    background: #37C7D4;
+    clear: both;
+    display: none;
+}
+.tabContent5{
+    width: 100%;
+    height: 465px;
+    line-height: 465px;
+    text-align: center;
+    border: 1px solid red ;
+    background: #00FF00;
+    clear: both;
+    display: none;
+}
+
+/*第二模块*/
+.tabHead{
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid red ;
+    background: brown;
+    float: left;
+    margin-right:10px ;
+    cursor: pointer;
+}
+.tabContent{
+    width: 100%;
+    height: 465px;
+    line-height: 465px;
+    text-align: center;
+    border: 1px solid red ;
+    background: blanchedalmond;
+    clear: both;
+    display: none;
+}
+
+.highlight{color: #00FF00 }
+.selectTabHead{background: #000000;color: #FFFFFF;}
+.selectTabContent{display: block}
