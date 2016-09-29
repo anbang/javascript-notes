@@ -302,6 +302,156 @@ offsetLeft 和 offsetTop 属性与包含元素有关，包含元素的引用保�
 
  主要用于确定元素内容的实际大小。例如，通常认为 <html> 元素是在 Web 浏览器的视口中滚动的元素（IE6 之前版本运行在混杂模式下时是 <body> 元素）。因此，带有垂直滚动条的页面总高度就是 document.documentElement.scrollHeight 。
 
-在不包含滚动条的时候， scrollWidth / scrollHeight 与 clientWidth / clientHeight 之间在不同浏览器的区别
+ **document.documentElement**在不包含滚动条的时候， scrollWidth / scrollHeight 与 clientWidth / clientHeight 之间在不同浏览器的区别
 
-- Firefox中：都是文档内容
+- Firefox中：都是文档内容,而非视口内容
+- Opera、Safari 3.1 及更高版本、Chrome 中的这两组属性是有差别的，其中 scrollWidth 和 scrollHeight 等于视口大小，而 clientWidth 和 clientHeight 等于文档内容区域的大小。
+- IE（在标准模式）中的这两组属性不相等，其中 scrollWidth 和 scrollHeight 等于文档内容区域的大小，而 clientWidth 和 clientHeight 等于视口大小。
+
+可以在不同浏览器下看属性；代码如下；
+
+    console.log(document.documentElement.scrollHeight+"---"+document.documentElement.clientHeight);
+    console.log(document.documentElement.scrollWidth+"---"+document.documentElement.clientWidth);
+
+**在确定文档的总高度时，必须取得 scrollWidth / clientWidth  和scrollHeight/clientHeight 中的最大值,才能保证在跨浏览器的环境下得到精确的结果**
+
+    var docHeight=Math.max(document.documentElement.scrollHeight,document.documentElement.clientHeight);
+    var docWidth=Math.max(document.documentElement.scrollWidth,document.documentElement.clientWidth);
+
+**scrollLeft / scrollTop**可设置的； 
+
+一般用在做返回顶部的功能；如果当前和顶部的距离不是0，说明已经滚动了；设置他的scrollTop为0就可以返回原位了；
+
+    function scrollToTop(element){
+        if (element.scrollTop != 0){
+            element.scrollTop = 0;
+        }
+    }
+
+##### getBoundingClientRect方法
+
+这个方法返回会一个矩形对象，包含 4 个属性： left 、 top 、 right 和 bottom 。这些属性给出了,元素在页面中相对于视口的位置;如果用offset和offsetParent配合做距离页面的距离，需要做很多兼容；但是用getBoundingClientRect方法比较简单；但也是有兼容性问题的；
+
+兼容问题主要在IE678这些低版本浏览器；
+
+IE8 及更早版本认为文档的左上角坐标是(2, 2)，而其他浏览器包括 IE9 则将传统的(0,0)作为起点坐标。因此，就需要在一开始检查一下位于(0,0)处的元素的位置，在 IE8 及更早版本中，会返回(2,2)，而在其他浏览器中会返回(0,0)。
+
+如果不兼容IE678可以直接的使用；getBoundingClientRect()方法；如果需要兼容低版本IE，可以下面这么写；
+
+
+	<!doctype html>
+	<html>
+	<head>
+	    <meta charset="UTF-8">
+	    <title>Document</title>
+	    <link rel="stylesheet" href="test.css" id="test-css-link"/>
+	    <style>
+	        #myList{
+	            width: 100px;
+	            height: 100px;
+	            background-color: #CDE074;
+	            border: 1px dashed darkcyan;
+	            padding: 5px;
+	            position: absolute;
+	            left: 500px;
+	            top: 200px;
+	        }
+	    </style>
+	</head>
+	<body>
+	<div id="myList"></div>
+	<script>
+	    var odiv = document.getElementById("myList");
+	
+	    console.log("原生的getBoundingClientRect方法");
+	    console.log(odiv.getBoundingClientRect().top);//200
+	    console.log(odiv.getBoundingClientRect().right);//612
+	    console.log(odiv.getBoundingClientRect().bottom);//312
+	    console.log(odiv.getBoundingClientRect().left);//500
+	
+	    console.log("自定义的getBoundingClientRect方法");
+	    console.log(getBoundingClientRect(odiv).top);//200
+	    console.log(getBoundingClientRect(odiv).right);//612
+	    console.log(getBoundingClientRect(odiv).bottom);//312
+	    console.log(getBoundingClientRect(odiv).left);//500
+	
+	    function getBoundingClientRect(element){
+	        if (typeof arguments.callee.offset != "number"){
+	            var scrollTop = document.documentElement.scrollTop;
+	            var temp = document.createElement("div");
+	            temp.style.cssText = "position:absolute;left:0;top:0;";
+	            document.body.appendChild(temp);
+	            arguments.callee.offset = -temp.getBoundingClientRect().top - scrollTop;
+	            document.body.removeChild(temp);
+	            temp = null;
+	        }
+	        var rect = element.getBoundingClientRect();
+	        var offset = arguments.callee.offset;
+	        console.log("偏差值offset的值是:"+offset);
+	        return {
+	            left: rect.left + offset,
+	            right: rect.right + offset,
+	            top: rect.top + offset,
+	            bottom: rect.bottom + offset
+	        };
+	    }
+	</script>
+	</body>
+	</html>
+
+getBoundingClientRect返回参数的示意图；
+
+![](http://i.imgur.com/rhPip4F.png)
+
+于不支持 getBoundingClientRect() 的浏览器，可以通过其他手段取得相同的信息。一般来说， right 和 left 的差值与 offsetWidth 的值相等，而 bottom 和 top 的差值与 offsetHeight相等。而且， left 和 top 属性大致等于使用本章前面定义的 getElementLeft() 和 getElementTop()函数取得的值。综合上述，就可以创建出下面这个跨浏览器的函数
+
+
+    function getBoundingClientRect(element){
+        var scrollTop = document.documentElement.scrollTop;
+        var scrollLeft = document.documentElement.scrollLeft;
+        if (element.getBoundingClientRect){
+            if (typeof arguments.callee.offset != "number"){
+                var temp = document.createElement("div");
+                temp.style.cssText = "position:absolute;left:0;top:0;";
+                document.body.appendChild(temp);
+                arguments.callee.offset = -temp.getBoundingClientRect().top - scrollTop;
+                document.body.removeChild(temp);
+                temp = null;
+            }
+            var rect = element.getBoundingClientRect();
+            var offset = arguments.callee.offset;
+            return {
+                left: rect.left + offset,
+                right: rect.right + offset,
+                top: rect.top + offset,
+                bottom: rect.bottom + offset
+            };
+        } else {
+            var actualLeft = getElementLeft(element);
+            var actualTop = getElementTop(element);
+            return {
+                left: actualLeft - scrollLeft,
+                right: actualLeft + element.offsetWidth - scrollLeft,
+                top: actualTop - scrollTop,
+                bottom: actualTop + element.offsetHeight - scrollTop
+            }
+        }
+    }
+    function getElementLeft(element){
+        var actualLeft = element.offsetLeft;
+        var current = element.offsetParent;
+        while (current !== null){
+            actualLeft += current.offsetLeft;
+            current = current.offsetParent;
+        }
+        return actualLeft;
+    }
+    function getElementTop(element){
+        var actualTop = element.offsetTop;
+        var current = element.offsetParent;
+        while (current !== null){
+            actualTop += current. offsetTop;
+            current = current.offsetParent;
+        }
+        return actualTop;
+    }
