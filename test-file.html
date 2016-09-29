@@ -3,86 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="test.css" id="test-css-link"/>
-    <style>
-        #myList{
-            width: 100px;
-            height: 100px;
-            background-color: #CDE074;
-            border: 1px dashed darkcyan;
-            padding: 5px;
-            position: absolute;
-            left: 500px;
-            top: 200px;
-        }
-    </style>
 </head>
 <body>
-<div id="myList"></div>
-<script>
-    var odiv = document.getElementById("myList");
-
-    console.log("原生的getBoundingClientRect方法");
-    console.log(odiv.getBoundingClientRect().top);//200
-    console.log(odiv.getBoundingClientRect().right);//612
-    console.log(odiv.getBoundingClientRect().bottom);//312
-    console.log(odiv.getBoundingClientRect().left);//500
-
-    console.log("自定义的getBoundingClientRect方法");
-    console.log(getBoundingClientRect(odiv).top);//200
-    console.log(getBoundingClientRect(odiv).right);//612
-    console.log(getBoundingClientRect(odiv).bottom);//312
-    console.log(getBoundingClientRect(odiv).left);//500
-
-    function getBoundingClientRect(element){
-        var scrollTop = document.documentElement.scrollTop;
-        var scrollLeft = document.documentElement.scrollLeft;
-        if (element.getBoundingClientRect){
-            if (typeof arguments.callee.offset != "number"){
-                var temp = document.createElement("div");
-                temp.style.cssText = "position:absolute;left:0;top:0;";
-                document.body.appendChild(temp);
-                arguments.callee.offset = -temp.getBoundingClientRect().top - scrollTop;
-                document.body.removeChild(temp);
-                temp = null;
-            }
-            var rect = element.getBoundingClientRect();
-            var offset = arguments.callee.offset;
-            return {
-                left: rect.left + offset,
-                right: rect.right + offset,
-                top: rect.top + offset,
-                bottom: rect.bottom + offset
-            };
-        } else {
-            var actualLeft = getElementLeft(element);
-            var actualTop = getElementTop(element);
-            return {
-                left: actualLeft - scrollLeft,
-                right: actualLeft + element.offsetWidth - scrollLeft,
-                top: actualTop - scrollTop,
-                bottom: actualTop + element.offsetHeight - scrollTop
-            }
-        }
-    }
-    function getElementLeft(element){
-        var actualLeft = element.offsetLeft;
-        var current = element.offsetParent;
-        while (current !== null){
-            actualLeft += current.offsetLeft;
-            current = current.offsetParent;
-        }
-        return actualLeft;
-    }
-    function getElementTop(element){
-        var actualTop = element.offsetTop;
-        var current = element.offsetParent;
-        while (current !== null){
-            actualTop += current. offsetTop;
-            current = current.offsetParent;
-        }
-        return actualTop;
-    }
-</script>
+<p><b>hello </b>word!</p>
 </body>
 </html>
