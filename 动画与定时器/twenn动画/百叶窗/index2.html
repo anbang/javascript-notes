@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>百叶窗效果</title>
+    <style>
+        #container{
+            width: 816px;
+            height: 434px;
+            position: relative;
+            background: orange;
+        }
+        #container div{
+            display: block;
+            position: absolute;
+            background: url("img/zhume.jpg") repeat 0 0;
+        }
+        #btn1{width: 100px;height: 30px;position: absolute;left: 716px;top:450px;}
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<input type="button" value="按钮1" id="btn1"/>
+</body>
+</html>
+<script src="starMove方法-优化3.js"></script>
+<script>
+    /*下面是百叶窗，布局*/
+    var container=document.getElementById("container");
+    var rows=3;
+    var cols=10;
+    var w=container.offsetWidth/cols;//每个DIV的宽；
+    var h=container.offsetHeight/rows;//每个DIV的宽；
+    var a=[];
+
+    for(var i= 0,len=rows*cols;i<len;i++){
+        var oDiv=document.createElement("div");
+        container.appendChild(oDiv);
+        var l=i%cols*w;
+        var t=Math.floor(i/cols)*h;
+
+        oDiv.t=t;//把最终的目的地保存在自定义属性上；
+        oDiv.l=l;
+        oDiv.style.height=h+"px";
+        oDiv.style.width=w+"px";
+        oDiv.style.backgroundPosition=-l+"px -"+t+"px";//图片背景定位；
+        //通过设置left和top把DIV隐藏起来
+        if(Math.floor(i/cols)===0){
+            oDiv.style.left=-1000+l+"px";
+            oDiv.style.top=-500+t+"px";
+        }else if(Math.floor(i/cols)===1){
+            oDiv.style.left=-1000+l+"px";
+            oDiv.style.top=t+"px";
+        }else if(Math.floor(i/cols)===2){
+            oDiv.style.left=-1000+l+"px";
+            oDiv.style.top=500+t+"px";
+        }
+        /*DIV放到数组里*/
+        a.push(oDiv);
+    }
+
+    var oBtn1=document.getElementById("btn1");
+    oBtn1.onclick=function(){
+        for(i=0,len= a.length;i<len;i++){
+            (function(i){
+                setTimeout(function(){
+                    starMove(a[i],{left:a[i].l,top:a[i].t},600,9)
+                },i%cols*100)
+            })(i)
+       }
+    };
+
+
+
+</script>

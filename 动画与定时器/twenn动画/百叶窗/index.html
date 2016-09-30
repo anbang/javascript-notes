@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>百叶窗效果的布局</title>
+    <style>
+        #container{
+            width: 816px;
+            height: 582px;
+            position: relative;
+            background: orange;
+        }
+        #container div{
+            display: block;
+            position: absolute;
+            background: url("img/zhume.jpg") repeat 0 0;
+        }
+    </style>
+</head>
+<body>
+<img src="img/zhume.jpg" alt="图片"/>
+<div id="container"></div>
+</body>
+</html>
+<script>
+    /*下面是百叶窗，布局*/
+    var container=document.getElementById("container");
+    var rows=5;
+    var cols=10;
+    var w=container.offsetWidth/cols;//每个DIV的宽；
+    var h=container.offsetHeight/rows;//每个DIV的宽；
+
+    for(var i= 0,len=rows*cols;i<len;i++){
+        var oDiv=document.createElement("div");
+        container.appendChild(oDiv);
+/*        i%cols;//这是列号；
+        Math.floor(i/cols);//这是行号；*/
+        var l=i%cols*w;
+        var t=Math.floor(i/cols)*h;
+        oDiv.style.left=l+"px";
+        oDiv.style.top=t+"px";
+        oDiv.style.height=h+"px";
+        oDiv.style.width=w+"px";
+        oDiv.style.backgroundPosition=-l+"px -"+t+"px";//图片背景定位；
+    }
+
+
+
+
+
+
+</script>
