@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background: orange;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    var oDiv=document.getElementById("div1");
+    function bind(ele,type,fn){
+        if(ele.addEventListener){
+            ele.addEventListener(type,fn,false);
+            //ele.addEventListener(type,fn);//也可以写成这样的
+        }else{
+            ele.attachEvent("on"+type,fn);
+        }
+    }
+/*    alert(typeof oDiv.addEventListener);//function
+    alert(typeof oDiv.attachEvent);//在IE7里面是object*/
+    function unbind(ele,type,fn){
+        if(ele.removeEventListener){
+            ele.removeEventListener(type,fn,false);
+        }else{
+            ele.detachEvent("on"+type,fn)
+        }
+    }
+
+
+
+    bind(oDiv,"click",fn1);
+    bind(oDiv,"click",fn2);
+    bind(oDiv,"click",fn3);
+    bind(oDiv,"click",fn4);
+    bind(oDiv,"click",fn5);
+    bind(oDiv,"click",fn6);
+    bind(oDiv,"click",fn7);
+    bind(oDiv,"click",fn8);
+    bind(oDiv,"click",fn9);
+    bind(oDiv,"click",fn10);
+    /*标准浏览器打印：1,2,3,4,5,6,7,8,9,10
+    * IE7/8：9,8,7,10,6,5,4,3,2,1
+    * */
+    //IE和标准浏览器的区别：
+    // 1、this不指向被绑定的DOM元素了；
+    // 2、顺序是乱了，如果少，会是倒序的；
+    // 3、可以在一个元素上绑定同一个方法；
+
+     function fn1(){console.log("1")}
+    function fn2(){console.log("2")}
+    function fn3(){console.log("3")}
+    function fn4(){console.log("4")}
+    function fn5(){console.log("5")}
+    function fn6(){console.log("6")}
+    function fn7(){console.log("7")}
+    function fn8(){console.log("8")}
+    function fn9(){console.log("9")}
+    function fn10(){console.log("10")}
+
+
+</script>

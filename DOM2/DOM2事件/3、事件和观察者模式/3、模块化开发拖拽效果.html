@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{width: 100px;height: 100px;position: absolute;background: orange;top:0;left: 0;cursor: move;}
+        #div2{  top:100px;left: 160px;background: blueviolet;}
+        #div3{  top:30px;left: 360px;background: chocolate;}
+    </style>
+</head>
+<body>
+<div id="div1"><img src="logo.jpg" alt="logo"/></div>
+<div id="div2"></div>
+<div id="div3"></div>
+</body>
+</html>
+<script src="event3.js"></script>
+<script>
+    var oDiv1=document.getElementById("div1");
+    var oDiv2=document.getElementById("div2");
+    var oDiv3=document.getElementById("div3");
+    on(oDiv1,"mousedown",down);
+    on(oDiv2,"mousedown",down);
+    on(oDiv3,"mousedown",down);
+
+
+    function down(e){
+        this.x=this.offsetLeft;
+        this.y=this.offsetTop;
+        this.mouseX= e.pageX;
+        this.mouseY= e.pageY;
+        if(this.setCapture){
+            this.setCapture();
+            on(this,"mousemove",move);
+            on(this,"mouseup",up);
+        }else{
+            this._move=bindThis(this,move);
+            this._up=bindThis(this,up);
+            on(document,"mousemove",this._move);
+            on(document,"mouseup",this._up);
+        }
+    }
+
+    function move(e){
+        this.style.left=this.x+ (e.pageX-this.mouseX)+"px";
+        this.style.top=this.y+ (e.pageY-this.mouseY)+"px";
+    }
+
+    function up(e){
+        if(this.releaseCapture){
+            this.releaseCapture();
+            off(this,"mousemove",move);
+            off(this,"mouseup",up);
+        }else{
+            off(document,"mousemove",this._move);
+            off(document,"mouseup",this._up);
+        }
+    }
+
+
+
+</script>

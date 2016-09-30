@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #menu{width: 400px}
+        #menu span{display: block;cursor: pointer;}
+        #menu span.close:before{content: "[+] ";}
+        #menu span.open:before{content: "[·] ";}
+        ul li{margin-bottom: 10px; cursor: pointer;}
+        span ul li{margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <li>
+        <span>第一：1111111</span>
+        <ul>
+            <li><span>第一：1111111</span></li>
+            <li><span>第二：222222</span></li>
+            <li><span>第三：333333</span></li>
+            <li><span>第四：444444</span></li>
+            <li><span>第五：555555</span></li>
+            <li><span>第六：666666</span></li>
+        </ul>
+    </li>
+    <li>
+        <span>第二：222222</span>
+        <ul>
+            <li><span>第一：1111111</span></li>
+            <li><span>第二：222222</span></li>
+            <li><span>第三：333333</span></li>
+            <li><span>第四：444444</span></li>
+            <li><span>第五：555555</span></li>
+            <li><span>第六：666666</span></li>
+        </ul>
+    </li>
+    <li>
+        <span>第三：333333</span>
+        <ul>
+            <li><span>第一：1111111</span></li>
+            <li><span>第二：222222</span></li>
+            <li>
+                <span>第三：333333</span>
+                <ul>
+                    <li><span>第一：1111111</span></li>
+                    <li><span>第二：222222</span></li>
+                    <li><span>第三：333333</span></li>
+                    <li><span>第四：444444</span></li>
+                    <li><span>第五：555555</span></li>
+                    <li><span>第六：666666</span></li>
+                </ul>
+            </li>
+            <li><span>第四：444444</span></li>
+            <li><span>第五：555555</span></li>
+            <li><span>第六：666666</span></li>
+        </ul>
+    </li>
+    <li>
+        <span>第四：444444</span>
+        <ul>
+            <li><span>第一：1111111</span></li>
+            <li><span>第二：222222</span></li>
+            <li><span>第三：333333</span></li>
+            <li><span>第四：444444</span></li>
+            <li><span>第五：555555</span></li>
+            <li><span>第六：666666</span></li>
+        </ul>
+    </li>
+    <li>
+        <span>第五：555555</span>
+        <ul>
+            <li><span>第一：1111111</span></li>
+            <li><span>第二：222222</span></li>
+            <li><span>第三：333333</span></li>
+            <li><span>第四：444444</span></li>
+            <li><span>第五：555555</span></li>
+            <li><span>第六：666666</span></li>
+        </ul>
+    </li>
+    <li>
+        <span>第六：666666</span>
+        <ul>
+            <li><span>第六：第一：1111111</span></li>
+            <li><span>第六：第二：222222</span></li>
+            <li><span>第六：第三：333333</span></li>
+            <li><span>第六：第四：444444</span></li>
+            <li><span>第六：第五：555555</span></li>
+            <li>
+                <span>第六：第六：666666</span>
+                <ul>
+                    <li><span>>第六：第六：第一：1111111</span></li>
+                    <li><span>第六：第六：第二：222222</span></li>
+                    <li><span>第六：第六：第三：333333</span></li>
+                    <li><span>第六：第六：第四：444444</span></li>
+                    <li><span>第六：第六：第五：555555</span></li>
+                    <li><span>第六：第六：第六：666666</span></li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+</body>
+</html>
+<script>
+    var oSpans=document.getElementById("menu").getElementsByTagName("span");
+    for(var i=0;i<oSpans.length;i++){
+        var oSapn=oSpans[i];
+        var oUl=getNext(oSapn);
+        if(oUl&&oUl.nodeName==="UL"){
+            oUl.style.display="none";
+            oSapn.style.backgroundColor="orange";
+            oSapn.className="close"
+        }else{
+            oSapn.style.backgroundColor="#CCC";
+        }
+
+    }
+    document.getElementById("menu").onclick=function(event){
+        event=event||window.event;
+        var target=event.target||event.srcElement;
+        if(target.nodeName=="SPAN"){
+            var oUl=getNext(target);
+            if(oUl&&oUl.nodeName=="UL"){
+                if(oUl.style.display=="none"){
+                    oUl.style.display="block";
+                    target.className="open"
+                }else{
+                    oUl.style.display="none";
+                    target.className="close";
+                    /*解决顶级关闭然后打开；第二级和第三级处于打开状态的bug*/
+                    if(oUl.getElementsByTagName("UL")){
+                        var oUls=oUl.getElementsByTagName("UL");
+                        for(var i=0;i<oUls.length;i++){
+                            getPre(oUls[i]).className="close";
+                            oUls[i].style.display="none";
+                        }
+                    }
+                }
+            }
+        }
+    };
+
+    function getNext(curEle) {//下一个弟弟节点，第一个弟弟节点；
+        if ("getElementsByClassName" in window) {
+            return curEle.nextElementSibling;
+        }
+        var next = curEle.nextSibling;
+        while (next && next.nodeType !== 1) {
+            next = next.nextSibling;
+        }
+        return next;
+    };
+    function getPre(curEle) {//上一个哥哥节点；
+        if ("getElementsByClassName" in window) {
+            return curEle.previousElementSibling;
+        }
+        var pre = curEle.previousSibling;
+        while (pre && pre.nodeType !== 1) {
+            pre = pre.previousSibling;
+        }
+        return pre;
+    }
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>点击哪个标签就把哪个标签名输出</title>
+</head>
+<body>
+<div id="div1" style="background: red">
+    <br/>
+    <ul id="ul1" style="background: blue">
+        <br/>
+        <li id="li1" style="background: orange">
+            <br/>
+            <a href="1" style="background: olive;display: block;"><br/>1</a>
+            <a href="2" style="background:blueviolet;display: block;"><br/>2</a>
+            <a href="3" style="background: olive;display: block;"><br/>3</a>
+            <a href="4" style="background: chocolate;display: block;"><br/>4</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    function fn(e){
+        e=e||event;
+        if(e.stopPropagation){
+            e.stopPropagation();
+        }else{
+            e.cancelable=true;
+        }
+        if(e.preventDefault){
+            e.preventDefault();//标准浏览器阻止默认行为
+        }else{
+            e.returnValue=false;//IE阻止默认行为
+        }
+        console.log(this.nodeName);
+    }
+    eles=document.getElementsByTagName("*");
+    for(var i=0;i<eles.length;i++){
+        eles[i].addEventListener("click",fn,false);
+    }
+
+    //下面是动态创建的
+    var p=document.createElement("p");
+    document.body.appendChild(p);
+    p.innerHTML="222312312312";
+    /*动态创建的，不能有效果，可以用事件委托来实现*/
+</script>

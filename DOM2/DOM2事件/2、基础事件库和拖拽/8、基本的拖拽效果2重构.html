@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>基本的拖拽效果</title>
+    <style>
+        body{-webkit-user-select: none;-moz-user-select: none;}
+        #div1{width: 100px;height: 100px;background: orange;position: absolute;top: 0;left: 0;cursor: move;}
+    </style>
+</head>
+<body>
+    <div id="div1">拖拽效果</div>
+    <div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        1、鼠标点击；
+        2、鼠标移动；
+        3、鼠标松开；
+        <br/>
+        盒子是随着鼠标移动而移动的，鼠标移动多远它就移动多远;
+        <br/>
+        盒子移动的距离=盒子原来的位置+鼠标移动的距离；
+        <br/>
+        鼠标移动的距离=鼠标现在的位置-鼠标按下去时候的距离；
+        <br/><br/>
+        1、鼠标点击的清零；<br/>
+        mousedown:记下盒子原来的位置和鼠标原始的位置；也就是鼠标和盒子的清零；
+        <br/>
+        记再被拖拽的自定义属性上；
+        <br/>
+        盒子的原始位置；<br/>
+        this.x=this.offsetLeft;
+        this.y=this.offsetTop;
+        <br/>
+        鼠标的原始位置<br/>
+        this.mouseX=e.clientX;
+        this.mouseY=e.clientY;
+        <br/>
+        <br/>
+        2、鼠标移动的时候；
+        <br/>
+        盒子移动的位置；
+        <br/>
+        this.style.top=this.y+(e.clientY-this.mouseY)+"px";
+        <br/>
+        this.style.left=this.x+(e.clientX-this.this.mouseX)+"px";
+        <br/><br/>
+        3、鼠标松开；
+        <br/>mouseup结束拖拽；
+    </div>
+</body>
+</html>
+<script>
+    var oDiv=document.getElementById("div1");
+    oDiv.onmousedown=down;
+
+
+    /*第一步*/
+    function down(e){
+        e=e||window.event;
+        this.x=this.offsetLeft;
+        this.y=this.offsetTop;
+        this.mouseX=e.clientX;
+        this.mouseY=e.clientY;
+        if(this.setCapture){
+            //捕捉鼠标焦点的；IE的解决方法；
+            this.setCapture();
+            this.onmousemove=move;
+            this.onmouseup=up;
+        }else{
+            /*解决document.onmousemove的this关键字*/
+            var _this=this;
+            var _move=function(e){move.call(_this,e)};
+            var _up=function(e){up.call(_this,e)};
+
+            document.onmousemove=_move;
+            document.onmouseup=_up;
+        }
+    };
+    /*第二步*/
+    function move(e){
+        this.style.top=this.y+(e.clientY-this.mouseY)+"px";
+        this.style.left=this.x+(e.clientX-this.mouseX)+"px";
+    };
+    /*第三步*/
+    function up(e){
+        /*IE解决鼠标丢失焦点*/
+        if(this.releaseCapture){
+            this.releaseCapture();
+            this.onmousemove=null;
+            this.onmouseup=null;
+        }else{
+            document.onmousemove=null;
+            document.onmouseup=null;
+        }
+
+    };
+
+    function bindThis(obj,fn){
+        return function(e){fn.call(obj,e)}
+    }
+</script>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1" style="background: red">
+    <br/>
+    <ul id="ul1" style="background: blue">
+        <br/>
+        <li id="li1" style="background: orange">
+            <br/>
+            <a href="javascript:;" style="background: olive;display: block;"><br/>1</a>
+            <a href="javascript:;" style="background:blueviolet;display: block;"><br/>2</a>
+            <a href="javascript:;" style="background: olive;display: block;"><br/>3</a>
+            <a href="javascript:;" style="background: chocolate;display: block;"><br/>4</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
+<script>
+    document.documentElement.onclick=function(event){
+        event=event||window.event;
+        //事件源委托给documentElement
+        target=event.target||event.srcElement;//事件源
+        console.log(target.nodeName)
+    };
+
+    //下面是动态创建的
+    var p=document.createElement("p");
+    document.body.appendChild(p);
+    p.innerHTML="222312312312";
+    /*事件委托也可以实现动态绑定*/
+    /*所有的事件，都可以用事件委托来实现；时间委托是一个高级技巧*/
+</script>

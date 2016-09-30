@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{width: 200px;height: 200px;background: orange;}
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    var oDiv=document.getElementById("div1");
+    oDiv.onmousemove=function(event){
+        //直接把一个方法赋值给一个事件属性.这个方法运行的时候，浏览器会自动的给这个方法传一个对象；这个对象就是事件对象；
+        event=event||window.event;//IE下的事件对象，是一个全局的event；这种的是兼容写法；
+        event.clientX;//鼠标的X轴坐标；
+        event.clientY;//鼠标的Y轴坐标；
+        //时间有即时行；
+        event.type;//事件类型；只和当时发生的类型有关；只能同时处理一个事件；
+        this.innerHTML="X:"+event.clientX+" Y:"+event.clientY;
+    };
+
+    document.documentElement.onkeydown= function (event) {
+        event=event||window.event;
+        oDiv.innerHTML=event.keyCode;
+    }
+
+</script>

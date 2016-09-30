@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body,ul,li,img{margin: 0;padding: 0;-webkit-user-select: none;  }
+        ul{list-style: none;width: 465px;height: 620px;position: absolute;top:0;left:-225px;padding:5px 0 0 5px;margin: 50px 50% 0;border: 2px solid orange;border-radius: 10px;}
+        ul li{float: left;margin: 0 5px 5px 0;width: 150px;height: 150px;line-height: 150px;text-align: center;
+            cursor: move;}
+        ul li img{border: none;}
+    </style>
+</head>
+<body>
+<ul id="photolist">
+    <li><img  alt="图片1" width="150" height="150" style="background: olive"/></li>
+    <li><img  alt="图片2" width="150" height="150" style="background: orange"/></li>
+    <li><img  alt="图片3" width="150" height="150" style="background: blueviolet"/></li>
+    <li><img  alt="图片4" width="150" height="150" style="background: chocolate"/></li>
+    <li><img  alt="图片5" width="150" height="150" style="background: darkblue"/></li>
+    <li><img  alt="图片6" width="150" height="150" style="background: aquamarine"/></li>
+    <li><img  alt="图片7" width="150" height="150" style="background: wheat"/></li>
+    <li><img  alt="图片8" width="150" height="150" style="background: rosybrown"/></li>
+    <li><img  alt="图片9" width="150" height="150" style="background: teal"/></li>
+    <li><img  alt="图片10" width="150" height="150" style="background: yellowgreen"/></li>
+    <li><img  alt="图片11" width="150" height="150" style="background: peru"/></li>
+    <li><img  alt="图片12" width="150" height="150" style="background: indigo"/></li>
+</ul>
+
+</body>
+</html>
+<script src="tool.js"></script>
+<script src="event.js"></script>
+<script src="drag.js"></script>
+<script src="tween.js"></script>
+<script>
+    var dom=new Tool();
+    var oLis=document.getElementsByTagName("li");
+    for(var i=oLis.length-1;i>=0;i--){
+        var oLi=oLis[i];
+        oLi.l=oLi.offsetLeft;
+        oLi.t=oLi.offsetTop;
+        oLi.style.left=oLi.l+"px";
+        oLi.style.top=oLi.t+"px";
+        oLi.style.position="absolute";
+        oLi.style.margin=0;
+        console.log("第"+i+"元素的：left，top值是："+oLi.style.left+""+oLi.style.top+oLi.style.position)
+
+
+        on(oLi,"mousedown",down);
+        on(oLi,"selfDragStart",zIndexNum);
+        on(oLi,"selfDragMove",getHitedEle);
+        on(oLi,"selfDragEnd",changePosition);
+/*        on(oLi,"selfDragEnd",function(){
+            starMove(this,{left:this.l,top:this.t},600,8,restore)
+            }
+        )*/
+    }
+
+    var zIndex=1;
+    function zIndexNum(){
+        this.style.zIndex=++zIndex;
+        this.style.border="2px solid red"
+    }
+    function restore(){
+        this.style.border=""
+    }
+
+    function isHited(r,b){//判断是否判断
+        if(r.offsetLeft+ r.offsetWidth< b.offsetLeft
+        || r.offsetTop+ r.offsetHeight< b.offsetTop
+        || r.offsetLeft> b.offsetLeft+ b.offsetWidth
+        || r.offsetTop> b.offsetTop+ b.offsetHeight){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    //*获取相交最近的li*//
+    function getHitedEle(){
+        this["aHitedEle"]=[];
+        var subs= dom.getSiblings(this);
+        for(var i=0;i<subs.length;i++){
+            var oLi=subs[i];
+            oLi.style.border="";
+            if(isHited(this,oLi)){
+                oLi.style.border="2px solid blue";
+                this["aHitedEle"].push(oLi);
+            }
+        }
+    }
+
+    /*交换w位置*/
+    function changePosition(){
+        var ary= this["aHitedEle"];
+        if(ary&&ary.length){
+            var oMin={};
+            for(var i=0;i< ary.length;i++){
+                var oLi=ary[i];
+                if(!oMin.ele){
+                    oMin.min=Math.sqrt(Math.pow(this.offsetLeft-oLi.offsetLeft,2)+Math.pow(this.offsetTop-oLi.offsetTop,2));
+                    oMin.ele=oLi;
+                }else{
+                    var distance=Math.sqrt(Math.pow(this.offsetLeft-oLi.offsetLeft,2)+Math.pow(this.offsetTop-oLi.offsetTop,2));
+                    if(oMin.min>distance){
+                        oMin.min=distance;
+                        oMin.ele=oLi;
+                    }
+                }
+            }
+/*            //下面是交换位置
+            oMin.ele.style.left=this.l+"px";
+            oMin.ele.style.top=this.t+"px";
+            this.style.left=oMin.ele.l+"px";
+            this.style.top=oMin.ele.t+"px";
+            *//*下面是更新交换后的位置*//*
+            var objEle={l:this.l,t:this.t};
+            this.l=oMin.ele.l;
+            this.t=oMin.ele.t;
+            oMin.ele.l=objEle.l;
+            oMin.ele.t=objEle.t;*/
+
+            /*下面是加动画效果的*/
+            starMove(oMin.ele,{left:this.l,top:this.t},600,8,restore);
+            starMove(this,{left:oMin.ele.l,top:oMin.ele.t},600,8,restore);
+            //*下面是更新交换后的位置*//*
+            var objEle={l:this.l,t:this.t};
+            this.l=oMin.ele.l;
+            this.t=oMin.ele.t;
+            oMin.ele.l=objEle.l;
+            oMin.ele.t=objEle.t;
+            this["aHitedEle"]=null;
+        }else{
+            starMove(this,{left:this.l,top:this.t},600,8,restore)
+        }
+
+    }
+</script>

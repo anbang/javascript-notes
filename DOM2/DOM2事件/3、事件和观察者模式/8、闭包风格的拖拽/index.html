@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>闭包的拖拽</title>
+    <style>
+        div{width: 100px;height: 100px;position: absolute;left: 0;top: 0;background: red;cursor: move;}
+        #div2{left: 200px;top:20px;background: darkblue;}
+        #div3{left: 350px;top:30px;background: olive;}
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+</body>
+</html>
+<script src="event.js"></script>
+<script>
+    var oDivs=document.getElementsByTagName("div");
+    for(var i= 0,len=oDivs.length;i<len;i++){
+        (function(ele) {
+            on(ele,"mousedown",down)
+            var x=null,y=null,mx=null,my=null;
+            function down(e){
+                x=this.offsetLeft;
+                y=this.offsetTop;
+                mx= e.pageX;
+                my= e.pageY;
+                if(ele.setCapture){
+                    ele.setCapture();
+                    on(ele,"mousemove",move);
+                    on(ele,"mouseup",up);
+                }else{
+                    on(document,"mousemove",move);
+                    on(document,"mouseup",up);
+                }
+                e.preventDefault();
+            }
+            function move(e){
+                ele.style.left=x+(e.pageX-mx)+"px";
+                ele.style.top=y+(e.pageY-my)+"px";
+            }
+            function up(e){
+                if(ele.releaseCapture){
+                    ele.releaseCapture();
+                    off(ele,"mousemove",move);
+                    off(ele,"mouseup",up);
+                }else{
+                    off(document,"mousemove",move)
+                    off(document,"mouseup",up)
+                }
+            }
+        })(oDivs.item(i));
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

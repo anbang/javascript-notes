@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{width: 400px;height: 400px;background: orange;}
+        #newDiv{width: 100px;height: 100px;background: red;position: absolute;color: black;}
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+    var oDiv=document.getElementById("div1");
+    oDiv.onmouseenter=function(event) {
+        var event=event||window.event;
+        var newDiv=document.createElement("div");
+        newDiv.id="newDiv";
+        this.appendChild(newDiv);//this添加，而不是document.body；
+        /*下面是offsetWidth只能算文档树里的，所以需要先把创建的newDiv添加到文档树里面*/
+        newDiv.style.left=event.clientX-newDiv.offsetWidth/2+"px";
+        newDiv.style.top=event.clientY-newDiv.offsetHeight/2+"px";
+    };
+    oDiv.onmousemove=function(event) {
+        event=event||window.event;
+        var newDiv=document.getElementById("newDiv");
+        if(newDiv){
+            newDiv.style.left=event.clientX-newDiv.offsetWidth/2+"px";
+            newDiv.style.top=event.clientY-newDiv.offsetHeight/2+"px";
+        }
+
+    };
+    oDiv.onmouseleave= function (event) {
+        var newDiv=document.getElementById("newDiv");
+        if(newDiv){
+            newDiv.parentNode.removeChild(newDiv);
+        }
+    };
+
+
+    function setMark(newDiv, event) {
+        event = event || window.event;
+        //上面是绑定事件的标配；
+        //获取mark这个div的宽度和高度；并且让mark这个DIV显示在鼠标出现位置的正中间；
+        newDiv.style.left =event.clientX-newDiv.offsetWidth/2+"px";
+        newDiv.style.top =event.clientY-newDiv.offsetHeight/2+"px";
+        //下面是判断边界，当鼠标移到左边界和右边界的判断；
+        if (l < 0) {
+            newDiv.style.left = 0 + "px";
+        } else if (l > (tabW - markW)) {
+            newDiv.style.left = tabW - markW + "px";
+        }
+        //当鼠标移到上边界和下边界的判断；
+        if (t < 0) {
+            newDiv.style.top = 0 + "px";
+        } else if (t > (tabH - markH)) {
+            newDiv.style.top = tabH - markH + "px";
+        }
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
