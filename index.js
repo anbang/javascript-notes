@@ -1,17 +1,13 @@
-var JSONStr = '{"title": "标题","authors": ["one","two","rhree"],"edition": 3,"year": 2016,"releaseDate": "2016,10,08 12:59:01"}';
-var JSONObj1 = JSON.parse(JSONStr);
-console.log(JSONObj1);
-console.log(typeof JSONObj1);//object
+var testStr = 'cccccccc';
+var testAry = [2,3,4,5];
+var testObj = {
+    name:"zhu",
+    age:26,
+    gender:"man"
+};
 
-var JSONObj2 = JSON.parse(JSONStr,function(key,value){
-    if(key === "releaseDate"){
-        return new Date(value);
-    }else{
-        return value;
-    }
-});
-console.log(JSONObj2);
-console.log(typeof JSONObj2);//object
+console.log({}.toString.call(testStr));//[object String]
+console.log({}.toString.call(testAry));//[object Array]
+console.log({}.toString.call(testObj));//[object Object]
 
-console.log(JSONObj2.releaseDate.getFullYear()+" - "+JSONObj2.releaseDate.getMinutes());//2016 - 59
 
