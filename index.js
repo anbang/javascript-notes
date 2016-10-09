@@ -1,19 +1,35 @@
-function Parent(name,age,job){
-    if(this instanceof Parent){
-        console.log("Chilren用法 - 正确");
-        this.name=name;
-        this.age=age;
-        this.job=job;
+//console.log(createXHR.toString());//这么写会报错
+var createXHR=(function (){
+    if(typeof XMLHttpRequest != 'undefined'){
+        /*return new XMLHttpRequest();*/
+        return function(){
+            return new XMLHttpRequest();
+        }
+    }else if(typeof ActiveXObject != "undefined"){
+        return function(){
+            if (typeof arguments.callee.activeXString != "string"){
+                var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp"];
+                for (var i=0,len=versions.length; i < len; i++){
+                    try {
+                        new ActiveXObject(versions[i]);
+                        arguments.callee.activeXString = versions[i];
+                        break;
+                    } catch (ex){
+                        //跳过
+                    }
+                }
+            }
+            return new ActiveXObject(arguments.callee.activeXString);
+        };
     }else{
-        console.log("Chilren用法 - 不正确");
-        return new Parent(name,age,job);
+        return function(){
+            throw new Error("浏览器不支持XHR")
+        };
     }
-}
-function Chilren(parentName){
-    Parent.call(this,"child","1","null");
-    this.name=parentName;
-}
-Chilren.prototype = new Parent();//【加上这一行代码，让Chilren的实例可以指到Chilren即可】
-var target=new Chilren("ooooo");
-console.log(target);//Chilren {name: "ooooo", age: "1", job: "null"}
-console.log(target.age);//1
+})();
+console.log(createXHR.toString());//createXHR已经是改写后的createXHR了
+
+//执行后,createXHR
+createXHR();
+
+console.log(createXHR.toString());//createXHR已经是改写后的createXHR了
