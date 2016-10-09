@@ -6,8 +6,6 @@ var testObj = {
     gender:"man"
 };
 
-console.log({}.toString.call(testStr));//[object String]
+console.log(Object.prototype.toString.call(testStr));//[object String]
 console.log({}.toString.call(testAry));//[object Array]
 console.log({}.toString.call(testObj));//[object Object]
-
-
