@@ -5,7 +5,27 @@
     <title>Document</title>
 </head>
 <body>
-<a href="javascript:;" id="btn">00000000000</a>
+
+
+
+<fieldset class="cbi-section" id="cbi-system-system">
+    <legend>Reboots</legend>
+    <span class="panel-title">Reboots the operating system of your device</span>
+    <fieldset class="cbi-section-node">
+        <div class="cbi-value">
+            <label class="cbi-value-title">Reboot </label>
+            <div class="cbi-value-field">
+                <div>
+                    <a href="/cgi-bin/luci/;stok=b1bf433a70ef977c412861b6fee905fa/admin/system/reboot" class="cbi-input-reboot">Reboot System</a>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <br>
+</fieldset>
+
+
+<a href="javascript:;" id="btn">cbi-input-invalid  j-cbi-input-wpakey </a>
 <script src="index.js"></script>
 <script>
     //这里是事件工具库；
@@ -80,8 +100,14 @@
     }
 
     var oBtn=document.getElementById("btn");
-    EventUtil.addHandler(oBtn,"click",bind(handler.handleClick, handler, "btn"));
+//    EventUtil.addHandler(oBtn,"click",bind(handler.handleClick, handler, "btn"));
 
+    oBtn.onclick=function(){
+        var target="cbi-input-invalid j-cbi-input-wpakey";
+        console.log("1"+target);
+        var end=target.replace(/(cbi-input-invalid)|(j-cbi-input-wpakey)/g, ' ');
+        console.log("2"+end);
+    }
 </script>
 </body>
 </html>
