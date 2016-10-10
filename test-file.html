@@ -6,6 +6,7 @@
 </head>
 <body>
 <a href="javascript:;" id="btn">00000000000</a>
+<script src="index.js"></script>
 <script>
     //这里是事件工具库；
     var EventUtil = {
@@ -62,16 +63,24 @@
     };
 
     //这里是绑定函数的代码；
-    var handler={
-        message:"Event handler",
-        handleClick:function(e){
-            console.log(this.message+":"+ e.type);
+    var handler = {
+        message: "Event handled",
+        handleClick: function(name, event){
+            console.log(this.message + ":"+ name + ":"+ event.type);
         }
     };
+    function bind(fn,context){
+        var args=Array.prototype.slice.call(arguments,2);
+        return function (){
+            var innerArgs=Array.prototype.slice.call(arguments);
+            var finnalArgs=args.concat(innerArgs);
+            console.log("args->"+args+"  innerArgs->"+innerArgs+"   finnalArgs->"+finnalArgs);
+            return fn.apply(context,finnalArgs);
+        }
+    }
+
     var oBtn=document.getElementById("btn");
-    oBtn.message="这是ID为btn的message属性";
-//    EventUtil.addHandler(oBtn,"click",bind(handler.handleClick,handler));
-    EventUtil.addHandler(oBtn,"click",handler.handleClick.bind(handler));//原生的bind方法；
+    EventUtil.addHandler(oBtn,"click",bind(handler.handleClick, handler, "btn"));
 
 </script>
 </body>
