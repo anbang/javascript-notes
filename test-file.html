@@ -5,21 +5,73 @@
     <title>Document</title>
 </head>
 <body>
-
-<div id="btn">00000000000</div>
-
-
-
-
-<script src="index.js"></script>
+<a href="javascript:;" id="btn">00000000000</a>
 <script>
+    //这里是事件工具库；
+    var EventUtil = {
+        addHandler: function (element, type, handler) {
+            if (element.addEventListener) {
+                element.addEventListener(type, handler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = handler;
+            }
+        },
+        removeHandler: function (element, type, handler) {
+            if (element.removeEventListener) {
+                element.removeEventListener(type, handler, false);
+            } else if (element.detachEvent) {
+                element.detachEvent("on" + type, handler);
+            } else {
+                element["on" + type] = null;
+            }
+        },
+
+        getEvent: function (event) {
+            return event ? event : window.event;
+        },
+        getTarget: function (event) {
+            return event.target || event.srcElement;
+        },
+        preventDefault: function (event) {
+            if (event.preventDefault) {
+                event.preventDefault();
+            } else {
+                event.returnValue = false;
+            }
+        },
+        stopPropagation: function (event) {
+            if (event.stopPropagation) {
+                event.stopPropagation();
+            } else {
+                event.cancelBubbles = true;
+            }
+        },
+        getRelatedTarget: function (event) {
+            if (event.relatedTarger) {
+                return event.relatedTarget;
+            } else if (event.toElement) {
+                return event.toElement;
+            } else if (event.fromElement) {
+                return event.fromElement;
+            } else { return null; }
+
+        }
+
+    };
+
+    //这里是绑定函数的代码；
     var handler={
         message:"Event handler",
-        handleCLick:function(e){
-            console.log(this.message);
+        handleClick:function(e){
+            console.log(this.message+":"+ e.type);
         }
     };
     var oBtn=document.getElementById("btn");
+    oBtn.message="这是ID为btn的message属性";
+//    EventUtil.addHandler(oBtn,"click",bind(handler.handleClick,handler));
+    EventUtil.addHandler(oBtn,"click",handler.handleClick.bind(handler));//原生的bind方法；
 
 </script>
 </body>
