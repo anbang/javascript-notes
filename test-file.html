@@ -3,44 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        html,body{
+            width:100% ;
+            height: 100%;
+            position: relative;
+        }
+        .diy-window{
+            position: fixed;
+            width: 500px;
+            height: 150px;
+            border: 1px dashed darkcyan;
+            /*opacity: 0.2;*/
+        }
+        .window-title{
+            padding: 10px 15px;
+            background-color: #f4f4f4;
+            position: relative;
+        }
+        .window-title .close-window{
+            display: inline-block;
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+        }
+        .diy-window .window-body{
+            position: absolute;
+            right: 50px;
+            bottom: 30px;
+        }
+    </style>
 </head>
 <body>
 
+<a href="javascript:;">点击我吧</a>
 
+<div class="diy-window">
+    <div class="window-title">
+        <span>的感觉如何</span>
+        <span class="close-window" id="close-window">X</span>
+    </div>
+    <div class="window-body">
+        <input type="button" class="select-btn" id="input-one" name="islike" value="我喜欢"/>
+        <input type="button" class="select-btn" id="input-two" name="islike" value="不喜欢"/>
+    </div>
+</div>
 
-<fieldset class="cbi-section" id="cbi-system-system">
-    <legend>Reboots</legend>
-    <span class="panel-title">Reboots the operating system of your device</span>
-    <fieldset class="cbi-section-node">
-        <div class="cbi-value">
-            <label class="cbi-value-title">Reboot </label>
-            <div class="cbi-value-field">
-                <div>
-                    <a href="/cgi-bin/luci/;stok=b1bf433a70ef977c412861b6fee905fa/admin/system/reboot" class="cbi-input-reboot">Reboot System</a>
-                </div>
-            </div>
-        </div>
-    </fieldset>
-    <br>
-</fieldset>
-
-
-<a href="javascript:;" id="btn">cbi-input-invalid  j-cbi-input-wpakey </a>
-<script src="index.js"></script>
 <script>
-    var person={
-        name:"person name",
-        age:23
+    //todo 获取需要的元素
+    var inoputOne=document.getElementById("input-one");
+    var inoputTwo=document.getElementById("input-two");
+    var closeWindow=document.getElementById("close-window");
+
+    //todo input-two的mouse事件
+    inoputTwo.onmouseover=function(){
+        inoputTwo.value="我喜欢";
+        inoputOne.value="不喜欢";
     };
-    console.log(Object.isExtensible(person));//true
-    console.log(Object.isSealed(person));//false
-    console.log(Object.isFrozen(person));//false
+    inoputTwo.onmouseout=function(){
+        defaultValue();
+    };
 
-    Object.freeze(person);
-    console.log(Object.isExtensible(person));//false
-    console.log(Object.isSealed(person));//true
-    console.log(Object.isFrozen(person));//true
+    inoputOne.onmouseover=function(){
+        defaultValue()
+    };
+    inoputOne.onmouseout=function(){
+        defaultValue();
+    };
 
+    //todo 点击关闭
+    closeWindow.onclick=function(){
+
+    };
+
+    //默认的value值
+    function defaultValue(){
+        inoputOne.value="我喜欢";
+        inoputTwo.value="不喜欢";
+    }
 </script>
 </body>
 </html>
