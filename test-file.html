@@ -4,39 +4,95 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
-        html,body{
-            width:100% ;
+        html, body {
+            width: 100%;
             height: 100%;
             position: relative;
         }
-        .diy-window{
+
+        .diy-window {
             position: fixed;
             width: 500px;
             height: 150px;
             border: 1px dashed darkcyan;
             /*opacity: 0.2;*/
         }
-        .window-title{
+
+        .window-title {
             padding: 10px 15px;
             background-color: #f4f4f4;
             position: relative;
         }
-        .window-title .close-window{
+
+        .window-title .close-window {
             display: inline-block;
             position: absolute;
             right: 20px;
             cursor: pointer;
         }
-        .diy-window .window-body{
+
+        .diy-window .window-body {
             position: absolute;
             right: 50px;
             bottom: 30px;
+        }
+        .test-one {
+            width: 500px;
+            height: 300px;
+            background-color: #37C7D4;
+            border-radius: 30px 10px;
+            -webkit-border-radius: 30px 10px;
+        }
+        .test-two {
+            width: 500px;
+            height: 300px;
+            background-color: #d46c4d;
+            -webkit-border-radius: 30px 10px;
+            border-radius: 30px 10px;
         }
     </style>
 </head>
 <body>
 
-<a href="javascript:;">点击我吧</a>
+<div class="test-one">
+    <ul>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+    </ul>
+</div>
+
+<div class="test-two">
+    <ul>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+        <li><a href=""></a></li>
+    </ul>
+</div>
+<DIV>
+    <UL>
+        <LI><A></A></LI>
+        <LI><A></A></LI>
+        <LI><A></A></LI>
+        <LI><A>
+        </A></LI>
+    </UL>
+</DIV>
+
+
+<button class="wui-button wui-button-s wui-button-orange j-block-today-user"
+        data-users="{&quot;data&quot;:[{&quot;user_id&quot;:&quot;723579806832907230&quot;,&quot;wx_nick_name&quot;:&quot;暖宝宝&quot;,&quot;black_status&quot;:2,&quot;wx_head_img_url&quot;:&quot;http://wx.qlogo.cn/mmopen/qGusKyb0IEchePqdeTeVSkgNy7TKehZCFlK5XSjxlt7rGLoaGeqdPnHOtI28gvn8ZseicboUDwFprYVIico8SVxQ/0&quot;},{&quot;user_id&quot;:&quot;721899587060764672&quot;,&quot;wx_nick_name&quot;:&quot;名字还没想好。。&quot;,&quot;black_status&quot;:2,&quot;wx_head_img_url&quot;:&quot;http://wx.qlogo.cn/mmopen/Mb2TiaPnTNictgZU0DHJwfbCHlxg3niaaIgibztSYm0S2oFP3nw1Ny1iaB4gPPykIQUyyVEWSB0GjIpCeIZaJXTZWib3hPJWkqiadut/0&quot;},{&quot;user_id&quot;:&quot;721524177898700800&quot;,&quot;wx_nick_name&quot;:&quot;小海螺   ~&quot;,&quot;black_status&quot;:2,&quot;wx_head_img_url&quot;:&quot;http://wx.qlogo.cn/mmopen/ajNVdqHZLLBa8boOZ7cNjY9uYPico3VC2u2nvcaSqTibaibG0B8YJoMFeekfVlnPmpOahcH1e4RNPposaRQice2jMg/0&quot;}],&quot;count&quot;:3}">
+    <i class="iconfont wui-txt-sm"></i> 拉黑该IMEI用户
+</button>
+
+<div id="dsdsdsd"></div>
+<mark>Text</mark>
+<strong>Text</strong>
+<em>Text</em>
+
+<span id="test">ddddd</span>
 
 <div class="diy-window">
     <div class="window-title">
@@ -49,38 +105,80 @@
     </div>
 </div>
 
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=www@taobao.fm" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png"/></a>
+
+<br/>
+
+<div class="shake-monery-user">
+    <span class="shake-monery-user-avatar">
+        <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png" alt="用户头像">
+    </span>
+    <a href="/shakemoney/user_detail?id=688189193821626368" target="_blank" data-userid="688189193821626368" class="j-user-cardinfo">用户名字</a>
+</div>
+
 <script>
+    var ooTest = document.getElementById("test");
+    console.dir(ooTest);
     //todo 获取需要的元素
-    var inoputOne=document.getElementById("input-one");
-    var inoputTwo=document.getElementById("input-two");
-    var closeWindow=document.getElementById("close-window");
+    var inoputOne = document.getElementById("input-one");
+    var inoputTwo = document.getElementById("input-two");
+    var closeWindow = document.getElementById("close-window");
 
     //todo input-two的mouse事件
-    inoputTwo.onmouseover=function(){
-        inoputTwo.value="我喜欢";
-        inoputOne.value="不喜欢";
+    inoputTwo.onmouseover = function () {
+        inoputTwo.value = "我喜欢";
+        inoputOne.value = "不喜欢";
     };
-    inoputTwo.onmouseout=function(){
+    inoputTwo.onmouseout = function () {
         defaultValue();
     };
 
-    inoputOne.onmouseover=function(){
+    inoputOne.onmouseover = function () {
         defaultValue()
     };
-    inoputOne.onmouseout=function(){
+    inoputOne.onmouseout = function () {
         defaultValue();
     };
 
     //todo 点击关闭
-    closeWindow.onclick=function(){
+    closeWindow.onclick = function () {
 
     };
 
     //默认的value值
-    function defaultValue(){
-        inoputOne.value="我喜欢";
-        inoputTwo.value="不喜欢";
+    function defaultValue() {
+        inoputOne.value = "我喜欢";
+        inoputTwo.value = "不喜欢";
     }
+
+    "use strict";
+
+    var aaa=2;
+    console.log(typeof aaa);//number
+    aaa="222";
+    console.log(typeof aaa);//string
+    aaa=true;
+    console.log(typeof aaa);//boolean
+    aaa=null;
+    console.log(typeof aaa);//object
+    aaa=function(){};
+    console.log(typeof aaa);//function
+    aaa={"name":"test"};
+    console.log(typeof aaa);//object
+
 </script>
 </body>
 </html>
