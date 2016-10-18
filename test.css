@@ -1,1 +1,8 @@
 body{ background-color: #008CD7; }
+
+.test-min{
+    min-width: 140px;padding: 0 15px;
+}
+
+
+.tabs > li {  float: left;  border: 1px solid #e7e7eb;  margin-left: -1px;  border-bottom: 3px solid #e7e7e7;  text-align: center; min-width: 170px;padding: 0 10px;}

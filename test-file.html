@@ -1,23 +1,36 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="test.css"/>
+    <style>
+        #test{
+        width: 200px;height: 200px;background-color: #002d32;
+            position: absolute;
+            top: 300px;
+            left: 20px;
+        }
+    </style>
 </head>
 <body>
 <div id="test">2222222222</div>
 <script>
-    var oTest=document.getElementById("test");
-    oTest.onclick=function(){
-        var nowTime=new Date();
-        setTimeout(function(){
-            console.log("定时器的代码");
-            console.log(new Date()-nowTime);//534
-        },100);
-//        for(var i=0;i<1000000000;i++){}
-        var clickTime=new Date();
-        console.log(clickTime-nowTime);//532
-    }
+    var div = document.getElementById("test");
+    var left;
+    var timer=setTimeout(function(){
+        //处理中
+        left = parseFloat(window.getComputedStyle(div,null).left)+5;
+        console.log(left);
+        div.style.left = left + "px";
+        if (left < 200) {
+            setTimeout(arguments.callee, 500);
+            console.log("star agin ");
+        }else{
+            console.log("clear Timeout");
+            clearTimeout(timer);
+        }
+    }, 10);
 </script>
 </body>
 </html>
