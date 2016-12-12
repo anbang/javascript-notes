@@ -17,21 +17,21 @@
 <div id="test">2222222222</div>
 
 <script>
-    var div = document.getElementById("test");
-    var left;
-    var timer=setTimeout(function(){
-        //处理中
-        left = parseFloat(window.getComputedStyle(div,null).left)+5;
-        console.log(left);
-        div.style.left = left + "px";
-        if (left < 200) {
-            setTimeout(arguments.callee, 500);
-            console.log("star agin ");
-        }else{
-            console.log("clear Timeout");
-            clearTimeout(timer);
-        }
-    }, 10);
+
+    var a;
+    // a 的值是 undefined
+    console.log("The value of a is " + a);
+
+    // Uncaught ReferenceError: b is not defined
+//    console.log("The value of b is " + b);
+
+    // c 的值是 undefined
+    console.log("The value of c is " + c);
+    var c;
+
+    // Uncaught ReferenceError: x is not defined
+    console.log("The value of x is " + x);
+    let x;
 </script>
 </body>
 </html>
