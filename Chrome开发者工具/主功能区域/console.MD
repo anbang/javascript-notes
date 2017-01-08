@@ -168,8 +168,73 @@ API列表如下：
 17. **console.profileEnd()**
 18. **console.table()**
 19. **console.time()**
+	
+	这个方法是和timeEnd一起配合使用的，可以用来检测某段代码的执行时间
+
+	    console.time("timer");
+	    for(var i=0;i<10000;i++){
+	    }
+	    console.timeEnd("timer");//timer: 0.270ms
+
 20. **console.timeEnd()**
 21. **console.timeStamp()**
 22. **console.timeline()**
 23. **console.limelineEnd()**
 24. **console.trace()**
+
+一些属性和方法：
+
+["$$", "$x", "dir", "dirxml", "keys", "values", "profile", "profileEnd", "monitorEvents", "unmonitorEvents", "inspect", "copy", "clear", "getEventListeners", "undebug", "monitor", "unmonitor", "table", "$0", "$1", "$2", "$3", "$4", "$_"]
+
+# 控制台的一些快捷键
+
+- 方向键盘的上下键
+- $_命令返回最近一次表达式执行的结果，功能跟按向上的方向键再回车是一样的
+
+	- ![](https://sfault-image.b0.upaiyun.com/319/083/3190830157-56fdf0d7d355e_articlex)
+	
+	- 上面的$_需要领悟其奥义才能使用得当
+- $0-4代表了最近5个你选择过的DOM节点
+	- 什么意思？在页面右击选择审查元素，然后在弹出来的DOM结点树上面随便点选，这些被点过的节点会被记录下来，而$0会返回最近一次点选的DOM结点，以此类推，$1返回的是上上次点选的DOM节点，最多保存了5个，如果不够5个，则返回undefined。
+	- ![](https://sfault-image.b0.upaiyun.com/282/256/2822561375-56022eab67825_articlex)
+- Chrome 控制台中原生支持类jQuery的选择器(并不是jQuery选择器);
+	- 也就是说你可以用$加上熟悉的css选择器来选择DOM节点，它查出来的是node或者nodelist
+	- 简单理解就是 document.querySelector 而已（$$ 简单理解就是 document.querySelectorAll ）
+	- ![](https://sfault-image.b0.upaiyun.com/243/706/2437068952-56fdf0df2c76c_articlex)
+
+- keys和values前者返回传入对象所有属性名组成的数据，后者返回所有属性值组成的数组
+	- ![](https://sfault-image.b0.upaiyun.com/297/867/2978671118-56fdf0e0a6169_articlex)
+	- 说到这，不免想起console.table方法了
+	- ![](https://sfault-image.b0.upaiyun.com/214/148/214148831-56fdf0e101121_articlex)
+
+# console也可以作为辅助使用
+
+主功能区有一个console，此时按ESC后，会呼出一个辅助功能区，这里也有一个console，可以配合除console以外的主功能使用，当然如果同时切换到主功能的console，和辅助区的console，只会显示一个console；
+
+![](http://i.imgur.com/mtWDNBD.png)
+
+console默认的情况下，如果相邻的两个数是一样的，如果不想智能折叠，可以在设置里设置下；
+
+	settings-Preferences - console - timestamps(显示时间戳)。
+	由于每个信息的时间戳不同，每条信息都显示在其自己单独的行上。
+
+    for (let i=0;i<5;i++){
+        console.log("1");
+    }
+
+	前后的区别如下；
+
+![](http://i.imgur.com/wsVv2zU.png)
+
+console的设置有如下的功能：
+
+![](http://i.imgur.com/A50dcsd.jpg)
+
+
+- report input events blocked for too long
+- hide network messages
+- log XMLHttpRequests
+- show timestamps
+- autocomplete form history
+- enable custom formatters
+- preserve log upon navigation
