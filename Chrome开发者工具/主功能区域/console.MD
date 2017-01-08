@@ -29,10 +29,16 @@ API列表如下：
 
 	![](http://i.imgur.com/kEdYQXO.png)
 
-2. **console.clear()**		清除控制台
-	1. 这个方法是清空控制台的作用
-	2. 同样的效果还可以点击右上角的![](https://sfault-image.b0.upaiyun.com/212/811/2128116153-56fde2dbba5f5_articlex)进行清除
+2. **console.clear()**		JS代码中此方法清除控制台
+	1. console.clear这个方法是清空控制台的作用;
+	2. 如果在控制台中，可以写为clear();
+	3. 如果勾选了 Preserve log(保留日志)复选框,那么console.clear()将被禁用;这个时候如果想清空打印日志，可以通过清楚按钮或者通过clear+L,再或者右键clear console来清除；
+
+	同样功能的方法有下面几种：
+	1. console.clear()
+	2. 点击右上角的![](https://sfault-image.b0.upaiyun.com/212/811/2128116153-56fde2dbba5f5_articlex)进行清除
 	3. 快捷键ctrl+l 可以清除控制台
+	4. 在console面板上右键，选择clear console
 	
 3. **console.count()**		执行次数
 	
@@ -49,13 +55,23 @@ API列表如下：
 
 	![](http://i.imgur.com/BA8rOFL.png)
 
+		function countFn(data){
+		        console.count("目标被执行的次数"+data)
+		    }
+		    var users=["zhu1","zhu2","zhu3"];
+		    users.forEach(function (ele, index, ary) {
+		        countFn(ele);
+		    });
+		    countFn(users[0]);
+
+
 4. **console.debug()**	输出调试信息
 
 	console.log方法的别称,功能和log一样，使用方法可以参考Console.log()
 
 5. **console.dir()**
 	
-	详细输出信息,打印一条以三角形符号开头的语句，可以点击三角展开查看对象的属性；就像开始想知道console有哪些API的时候，dir输出就可以看有哪些方法和属性了，学习和了解新知识非常有用；
+	详细输出信息,打印一条以三角形符号开头的语句，可以点击三角展开查看对象的属性；就像开始想知道console有哪些API的时候，dir输出就可以看有哪些方法和属性了，学习和了解新知识非常有用；比for in 好用多了；
 
 	![](http://i.imgur.com/TVKNmUY.png)
 	![](http://i.imgur.com/yvlnYAB.png)
@@ -76,6 +92,13 @@ API列表如下：
 
 	![](http://i.imgur.com/ss8Xrlr.png)
 
+	CSS格式说明符允许您在控制台中自定义显示。在字符串开始的地方使用说明符,并在第二参数中给出你想要应用的样式即可。
+	
+		console.log("%c这里声明了是字符串，第二个参数是CSS的样式", "color: blue; font-size: x-large");
+
+
+
+
 
 6. **console.log()**
 7. **console.info()**
@@ -83,9 +106,60 @@ API列表如下：
 8. **console.warn()**
 
 7. **console.dirxml()**
+
+	<table id="mytable">
+	    <tr>
+	        <td>A</td>
+	        <td>A</td>
+	        <td>A</td>
+	    </tr>
+	    <tr>
+	        <td>bbb</td>
+	        <td>aaa</td>
+	        <td>ccc</td>
+	    </tr>
+	    <tr>
+	        <td>111</td>
+	        <td>333</td>
+	        <td>222</td>
+	    </tr>
+	</table>
+
+	    var mytable = document.getElementById('mytable');
+	    console.dirxml(mytable);
+
+	![](http://i.imgur.com/WbfcbBJ.png)
+
+	在HTML和XML元素上调用console.dirxml()等效于调用console.log()
+
 8. **console.group()**
-9. **console.groupCollapsed()**
 9. **console.groupEnd()**
+
+		group和groupEnd是一套使用的；group里面是该分组的标题；关闭上面的日志记录分组
+
+	    function name(obj) {
+	        console.group('groupName');
+	        console.log('first: ', obj.first);
+	        console.log('middle: ', obj.middle);
+	        console.log('last: ', obj.last);
+	        console.groupEnd();
+	    }
+	
+	    name({"first":"Wile","middle":"E","last":"Coyote"});
+	
+	    function doStuff() {
+	        //还可以分组里面套分组
+	        console.group('doStuff()');
+	        name({"first":"Wile2","middle":"E2","last":"coyote2"});
+	        console.groupEnd();
+	    }
+	
+	    doStuff();
+
+9. **console.groupCollapsed()**
+
+	groupCollapsed和group是一样的功能，唯一的区别就是groupCollapsed默认打印的是折叠的记录；
+
 12. **console.markTimeline()**
 13. **console.memory**
 14. **console.get()**

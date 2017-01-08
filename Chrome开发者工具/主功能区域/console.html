@@ -6,6 +6,25 @@
 </head>
 <body>
 <div>console.log</div>
+<body>
+<table id="mytable">
+    <tr>
+        <td>A</td>
+        <td>A</td>
+        <td>A</td>
+    </tr>
+    <tr>
+        <td>bbb</td>
+        <td>aaa</td>
+        <td>ccc</td>
+    </tr>
+    <tr>
+        <td>111</td>
+        <td>333</td>
+        <td>222</td>
+    </tr>
+</table>
+</body>
 <script>
     console.dir(console);//查看console的api
     console.dir(console.memory);
@@ -28,6 +47,21 @@
     test();
     test();
     test();
+    function countFn(data){
+        console.count("目标被执行的次数"+data)
+    }
+    var users=["zhu1","zhu2","zhu3"];
+    users.forEach(function (ele, index, ary) {
+        countFn(ele);
+    });
+    countFn(users[0]);
+    /*
+    * 目标被执行的次数zhu1: 1
+      目标被执行的次数zhu2: 1
+      目标被执行的次数zhu3: 1
+      目标被执行的次数zhu1: 2
+    *
+    * */
 
     //dir      详细信息
     console.log(test);
@@ -40,6 +74,59 @@
     console.log("%d年%d月%d日",2017,01,07);//2017年1月7日
     console.log("%f是JS中的浮点数，计算时候容易出错，需要转换成整数再运算",1.22);//1.22是JS中的浮点数，计算时候容易出错，需要转换成整数再运算
     console.log("第一个参数%s，第二个参数%d,第三个参数%f,第四个参数%o",2017,2018,2019,2020);//这里都是数字类的
+
+    //dirxml
+    var mytable = document.getElementById('mytable');
+    console.dirxml(mytable);
+
+    //group
+    function name(obj) {
+        console.group('groupName');
+        console.log('first: ', obj.first);
+        console.log('middle: ', obj.middle);
+        console.log('last: ', obj.last);
+        console.groupEnd();
+    }
+
+    name({"first":"Wile","middle":"E","last":"Coyote"});
+
+    function doStuff() {
+        //还可以分组里面套分组
+        console.group('doStuff()');
+        name({"first":"Wile2","middle":"E2","last":"coyote2"});
+        console.groupEnd();
+    }
+
+    doStuff();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 </script>
