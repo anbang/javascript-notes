@@ -233,8 +233,32 @@ console的设置有如下的功能：
 
 - report input events blocked for too long
 - hide network messages
+	- 默认情况下，控制台报告网络问题。勾选此选项将指示控制台不显示这些错误的日志。例如，将不记录404和500这种系列的错误。
 - log XMLHttpRequests
+	- 决定控制台是否要记录每个XMLHttpRequest。
 - show timestamps
+	- 当调用控制台方法的时候，为显示在控制台上的每个消息预置时间戳。 这个主要用于在发生特定事件时进行调试。这将禁用消息栈（message stacking）。
 - autocomplete form history
+	- 控制台会记住你的历史消息记录，当您在控制台中键入时，控制台会自动显示自动完成下拉菜单，这个下拉菜单匹配您已键入文本的相关方法。这包括您以前执行的命令。，轻松实现自动完成功能，有合适的，安table键即可；
 - enable custom formatters
+	- 控制JavaScript对象的格式。
+	- https://docs.google.com/document/d/1FTascZXT9cxfetuPRT2eXPQKXui4nWFivUnS_335T3U/preview
 - preserve log upon navigation
+	- 在页刷新或页面跳转期间保留控制台历史记录。
+
+![](http://i.imgur.com/TCFC5BM.jpg)
+
+上面是几个按钮的说明，除了清除日志比较常用，别的很少用到；
+
+- 清除日志
+	- 把日志都清空，上面有介绍过的；
+- 过滤日志
+	- 很少用到的，就是对日志的一个筛选
+- 执行上下文
+	- 一般都是在top下，如果非top下，会红色警戒你；
+- 保留日志，
+	- 刷新不清空
+
+![](http://i.imgur.com/Iw0HX5P.jpg)
+
+右键还有一个save as 可以把日志储存起来，同样没什么用处，一般用不到；
