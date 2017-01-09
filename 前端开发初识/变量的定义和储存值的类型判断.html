@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变量的定义和储存值的类型判断</title>
+</head>
+<body>
+<div>
+    变量的定义和储存值的类型判断
+</div>
+
+<script>
+    var a="hello word";
+    //var 是变量声明富豪，同样的还有 let const(后面会介绍)
+    //a     是变量名，可以任意起，但是有些单词是不能用的，后面会介绍
+    //"hello word"  是代表了JS中的数据值；
+
+    var string="2222";//字符串
+    var testNum=2;//数字
+    var tetBool=true;//布尔值
+    var testUndef=undefined;//understand
+    var testNull=null;//null
+    var tetFun=function () {};//函数
+    var testObj={name:"brozhu"};//对象,JS中的一切数据的基础；
+
+    console.log(typeof string);//string
+    console.log(typeof testNum);//number
+    console.log(typeof tetBool);//boolean
+    console.log(typeof testUndef);//undefined
+    console.log(typeof testNull);//object
+    console.log(typeof tetFun);//function
+    console.log(typeof testObj);//object
+
+    //Javascript中代表的数据的变量，可以随意修改类型；但是不建议这么做；
+    var testVar=2;
+    console.log(typeof testVar);//number
+    testVar="3";
+    console.log(typeof testVar);//string
+
+    testVar=true;
+    console.log(typeof testVar);//boolean
+
+    testVar=undefined;
+    console.log(typeof testVar);//undefined
+
+    testVar={name:"brozhu"};
+    console.log(typeof testVar);//object
+
+
+</script>
+
+</body>
+</html>
