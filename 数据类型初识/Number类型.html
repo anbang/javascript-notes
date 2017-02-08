@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //浮点数直接运算，结果不一定是正确的;
+    var test1=0.1+0.2;
+    console.log(test1);//0.30000000000000004
+    var test2=(0.1*10+0.2*10)/10;
+    console.log(test2);//0.3
+
+    //NaN
+    console.log(10-"zhuanbang");//NaN   Not a Number
+    var NaNVal=10-"zhuanbang";
+    console.log(typeof NaNVal);//number NaN是number类型
+    console.log(NaNVal==NaNVal);//false
+
+    //isNaN
+    var age=25;
+    var ageError=25-"男";
+    console.log(isNaN(age));//false       age这个值不是一个数，对不对？      -> 不对  ->false
+    console.log(isNaN(ageError));//true   ageError这个值不是一个数，对不对？ -> 对    ->true
+
+    //num1是多少分
+    var num1="564878.12415ssss";
+
+    var min1=Number(num1)/60,
+        min2=parseInt(num1)/60,
+        min3=parseFloat(num1)/60;
+    console.log(min1,min2,min3);
+
+    var targetMin=parseInt(min2);
+    console.log(targetMin);//9414秒
+</script>
+</body>
+</html>

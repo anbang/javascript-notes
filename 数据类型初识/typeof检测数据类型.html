@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    console.log(typeof qqqq);//undefined，这个变量没有定义,但是不会报错；qqqq此时是变量；
+    console.log(typeof (222));//number，是一个数字； typeof是操作符而不是方法，所以后面可以加()也可以不加；
+    console.log(typeof "222");//string，是一个字符串
+    console.log(typeof false);//boolean，是一个布尔值
+    console.log(typeof {});//object 是一个对象
+    console.log(typeof null);//objecy 是一个对象，在javascript里，null是一个空指针；
+    console.log(typeof function(){});//function，是一个方法，也是属于object类型的；js里万物皆对象
+
+    //两次检测 结果是string
+    console.log("开始2次typeof");
+    console.log(typeof typeof qqqq);
+    console.log(typeof typeof 222);
+    console.log(typeof typeof "222");
+    console.log(typeof typeof {});
+    console.log(typeof typeof null);
+    console.log(typeof typeof function(){});
+
+</script>
+</body>
+</html>

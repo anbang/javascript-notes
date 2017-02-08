@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str1="2";
+    var str2='2';
+    var str3="";
+    var str4=" ";
+    var str5="function(){}";
+    //上面都是合法的string类型
+    console.log(typeof str1);
+    console.log(typeof str2);
+    console.log(typeof str3);
+    console.log(typeof str4);
+    console.log(typeof str5);
+
+    //字符串长度
+    var strTest1="zhuanbang";//共9个
+    var strTest2="朱安邦的JavaScript学习笔记";//共18
+    console.log(strTest1.length);//9
+    console.log(strTest2.length);//18
+    //这只是个简单的判断，如果想用JavaScript判断或者获取所占的字符，就不能这么判断了，因为中文和英文字符所占的长度不同，所以要想获得中文字符的真正长度，就需要对输入的字符进行判断或过滤，如果符合中文字符，则使用不同的标准。
+
+    //toString()和String()
+    var testNum=1;
+    console.log(typeof testNum);//number
+    var testTarget1=toString(testNum);
+    var testTarget2=testNum.toString();//推荐用法
+    var testTarget3=String(testNum);
+    //var testTarget4=testNum.String();//错误的用法
+    console.log(typeof testTarget1);//string
+    console.log(typeof testTarget2);//string
+    console.log(typeof testTarget3);//string
+
+    var testNull=null;
+    console.log(typeof testNull);//object
+    //var testString2=testNull.toString();//Uncaught TypeError:Cannot read property 'toString' of null
+    var testString3=String(testNull);
+    console.log(typeof testString3);//string
+
+    //+""用来转换字符串
+    var numVal=2;
+    var boolVal=false;
+    var nullVal=null;
+    var undefinedVal=undefined;
+
+    var numValPlus=numVal+"";
+    var boolValPlus=boolVal+"";
+    var nullPlus=nullVal+"";
+    var undefinedPlus=undefinedVal+"";
+    console.log(numValPlus,typeof numValPlus);
+    console.log(boolValPlus,typeof boolValPlus);
+    console.log(nullPlus,typeof nullPlus);
+    console.log(undefinedPlus,typeof undefinedPlus);
+
+    //eval
+    var evalVal="1+2+5+8+10";
+    console.log(typeof evalVal);//string
+    var evalComputed=eval(evalVal);
+    console.log(evalComputed,typeof evalComputed);//26 "number"
+
+
+
+
+</script>
+</body>
+</html>
