@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="page-var-demo" id="page-var-demo">
+    <!--class="page-var-demo"用来设置样式；id="page-var-demo"用给JS用；-->
+    <div class="btns-groulp">
+        <a href="javascript:;" class="xxxx xxxxx j-open-demo" data-demo_id="456465465">打开演示窗口</a>
+        <!--j-open-demo 这些是给JS用来触发某些事件用的，data-demo_id用来储存需要的值的-->
+        <a href="javascript:;" class="xxxx xxxxx j-set-demo">设置演示数据</a>
+    </div>
+</div>
+<script>
+    var name="朱安邦",
+        gender;
+    console.log(name,typeof name);      //朱安邦 string
+    console.log(gender,typeof gender);  //undefined "undefined"
+</script>
+</body>
+</html>

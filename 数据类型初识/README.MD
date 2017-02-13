@@ -18,7 +18,7 @@ ECMAScript中有5种简单的数据类型，也称为基本数据类型；Undefi
 
 object本质是由一组无序的键值对组成的；
 
-typeof操作符；
+##### typeof操作符；
 
     console.log(typeof qqqq);//undefined，这个变量没有定义,但是不会报错；qqqq此时是变量；
     console.log(typeof (222));//number，是一个数字； typeof是操作符而不是方法，所以后面可以加()也可以不加；
@@ -29,6 +29,8 @@ typeof操作符；
     console.log(typeof function(){});//function，是一个方法，也是属于object类型的；js里万物皆对象
 
 从技术的角度上讲，函数在ECMAScript中是对象，不是一种数据类型，属于对象，在就是里万物皆对象的，但是，函数也确实有一些特殊的属性，因此通过typeof操作符来区分也是有必要的；
+
+typeof 运算符总是会返回一个字符串：
 
 typeof检测任何数据，返回的都是一个字符串，两次和两次以上的连续typeof结果肯定都是string；
 
@@ -565,6 +567,8 @@ Symbol值不能与其他类型的值进行运算，会报错;但是可以显式�
     console.log(Number(sym));//Cannot convert a Symbol value to a number
 
 ### 作为属性名的Symbol
+
+
 
 **[↑ 返回目录](#zero)**
 
