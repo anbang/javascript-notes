@@ -83,12 +83,12 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 	x%=y // x=x%y;
 
 
-  **[↑ 返回目录](#zero)**
+**[↑ 返回目录](#zero)**
 
 <a name="two"></a>
 ## 知识点二、自增与自减；
 
--  功能相反
+- 功能相反
   - ++ 对唯一的运算数进行递增操作(每次加1)
   - -- 对唯一的运算数进行递减操作(每次减1)
 - 规则相同
@@ -141,10 +141,7 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 
 		    //关系操作符
 		    var testNum=3;
-		    console.log("下面是赋值操作");
-		    console.log(testNum==1);
-		    console.log(testNum===1);
-		    console.log(testNum!=1);
+		    console.log("下面是关系操作符");
 		    console.log(testNum>1);
 		    console.log(testNum>=1);
 		    console.log(testNum<1);
@@ -180,6 +177,13 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
   - 对象，是否属于同一个对象
     - 是 ==
     - 否 !=
+
+		    var testNum=3;
+		    console.log("下面是关系操作符");
+		    console.log(testNum==1);
+		    console.log(testNum===1);
+		    console.log(testNum!=1);
+
 ##### 相同比较（也叫绝对相等/全等）
 - 运算符
   - === 比较两个运算数的返回值以及数据类型是否相同；
@@ -197,6 +201,13 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 - Instancesof 判断对相爱呢个实例是否属于某个类或构造函数
 - New 根据构造函数创建一个新的对象，并初始化该对象
 - Delete 删除指定对象的属性，数组元素或变量
+	- 可以删除对象里的属性：
+
+
+			var myObj = {name: 'aaaa', age: 21};  
+			delete myObj.age;  
+			console.log(myObj); // 输出对象{name: "aaaa"}  	
+
 - .及[] 存取对象和数组元素
 - () 函数调用，改变运算运算符优先级等；
 
@@ -206,34 +217,40 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 # 知识点五、逻辑运算符；
 ### !逻辑非：返回值
 
-- 返回值
-- True
-  - 空字符串
-  - 0
-  - Null
-  - NaN
-  - Undefined
-  - False
-  - -0；
-- False
-  - 对象
-  - 非空字符串
-  - 非0数值(Infinity)
-- 特性；
-- 如果运算数的值为false则返回true，否则返回false；
-- 连续使用两次，可将任意类型转为布尔类型值；（!!相当于Boolean）
+在JavaScript中，true和false有些复杂。在大多数编程语言中，布尔值true和false仅仅表示true/false。在JavaScript中，如"ssss"这样的字符串值，也可以看作true。
 
+- 返回值
+	- True(表达式或值计算为false的，都可以转为true)
+	  - 空字符串
+	  - 0
+	  - -0；
+	  - NaN
+	  - Null
+	  - Undefined
+	  - False
+
+	- False(表达式或值计算为true的，都可以转为false)
+	  - 对象
+	  - 非空字符串
+	  - 非0数值(Infinity)
+- 特性；
+	- 如果运算数的值为false则返回true，否则返回false；
+	- 连续使用两次，可将任意类型转为布尔类型值；（!!相当于Boolean）
+
+	    console.log(!true);//false
+	    console.log(true && false);//false
+	    console.log(true || false);//true
 
 ### &&逻辑与
 
 ##### 规则
 - 只有第一个值是true的时候，才会返回第二个值；第一个值为false，则返回第一个值；意是根据原理来返回的；&&是必须两个都为true才为true的；看取决于哪个值的
-- 第一个操作数的对象，返回第二个操作数（第一个为true了，关键取决于第二个值，所以返回第二个）
-- 第二个操作数是对象，如果想返回第二个对象，第一个必须为true；
-- 如果两个操作数都是对象，第一个是true，则返回第二个操作数；
-- 第一个操作数是null，返回null（第一个null已经是false了，后面第二个值无论是true-还是false已经不重要了，所以返回的是第一个值）
-- 第一个操作数是NaN，返回NaN（原理同上）
-- 第一个操作数是undefined，返回undefined（原理同上）
+	- 第一个操作数的对象，返回第二个操作数（第一个为true了，关键取决于第二个值，所以返回第二个）
+	- 第二个操作数是对象，如果想返回第二个对象，第一个必须为true；
+	- 如果两个操作数都是对象，第一个是true，则返回第二个操作数；
+	- 第一个操作数是null，返回null（第一个null已经是false了，后面第二个值无论是true-还是false已经不重要了，所以返回的是第一个值）
+	- 第一个操作数是NaN，返回NaN（原理同上）
+	- 第一个操作数是undefined，返回undefined（原理同上）
 ##### 特性
 - 当且进档两个运算数的值都是true时，才返回true，否则返回false(做if判断的时候)
 - 短路操作，当第一个操作数的值是false，则不再对第二个操作数进行求值（做变量赋值的时候）
@@ -312,6 +329,19 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 - 复合赋值运算符：位操作符与等号结合，复合赋值不会有性能方面的提升；
 
 
+
+& 	按位与
+
+|	按位或
+
+~	按位非
+
+^	按位异或
+
+<<	按位左移
+
+>>  按位右移
+
   **[↑ 返回目录](#zero)**
 
   <a name="seven"></a>
@@ -320,7 +350,16 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 - ?: 条件运算符，简介的if else；也叫三元运算符/三目运算符；
 	- 基本格式为：条件表达式?表达式一:表达式二；
 	- 其中问号之前的表示判断的条件，如果这个条件为真，则执行问号后面的语句，如果判断条件不成立，则执行冒号后面的语句；
+	- 简单的条件可以用三目运算符写；
 - typeof，类型判定运算符
+
+
+			console.log('typeof num:', typeof num);  
+			console.log('typeof Packt:', typeof 'aaaaaa');  
+			console.log('typeof true:', typeof true);  
+			console.log('typeof [1,2,3]:', typeof [1,2,3]);  
+			console.log('typeof {name:John}:', typeof {name:'sssss'});  	
+
 - ,逗号，在一行语句中执行多个不同的操作 ；
 - void，舍弃运算数的值，返回undefined作为表达式的值；
 
@@ -330,6 +369,12 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 ## 知识点八、=/==/===、!与!!的区别
 
 ##### =、==、===三者的区别；
+
+千万不要把"=="当做"="来使用，
+
+千万不要把"=="当做"="来使用，
+
+千万不要把"=="当做"="来使用，尤其是写if语句的时候一定要注意；
 
 - =、一个等号是赋值运算，把等号右边的值付给左边的变量，是从右想做计算，并且运算优先级最低；
 - ==。两个等号是比较运算，会得到一个真/假的逻辑只，遇到左右两边是不同的数据类型，默认会进行数据类型转换；

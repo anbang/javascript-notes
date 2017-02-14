@@ -1,37 +1,54 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="test.css"/>
-    <style>
-        #test{
-        width: 200px;height: 200px;background-color: #002d32;
-            position: absolute;
-            top: 300px;
-            left: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="./test.css">
 </head>
-<body>
-<div id="test">2222222222</div>
+<body class="flex-wrap col-flex">
+    <header class="midCenter flex-wrap row-flex">我是标题flex布局</header>
 
-<script>
+    <div class="page flex-wrap col-flex">
+        <div class="scroll-wrap">
+            <section class="midCenter flex-wrap" id="banner">
+                <div>我是banner</div>
+            </section>
 
-    var a;
-    // a 的值是 undefined
-    console.log("The value of a is " + a);
+            <section id="quirk" class="flex-wrap row-flex">
+                <div>2</div>
+                <div class="flex-wrap col-flex">
+                    <div>3</div>
+                    <div>4</div>
+                </div>
+            </section>
 
-    // Uncaught ReferenceError: b is not defined
-//    console.log("The value of b is " + b);
+            <section id="four-col" class="flex-wrap row-flex">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
 
-    // c 的值是 undefined
-    console.log("The value of c is " + c);
-    var c;
+            <section id="two-col" class="flex-wrap row-flex">
+                <div></div>
+                <div></div>
+            </section>
 
-    // Uncaught ReferenceError: x is not defined
-    console.log("The value of x is " + x);
-    let x;
-</script>
+            <section id="three-col" class="flex-wrap row-flex">
+                <div></div>
+                <div></div>
+                <div></div>
+            </section>
+        </div>
+    </div>
+    <footer class="flex-wrap row-flex">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </footer>
 </body>
 </html>
