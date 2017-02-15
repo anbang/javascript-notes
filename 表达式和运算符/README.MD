@@ -1,3 +1,11 @@
+表达式,运算符是程序的基础，最简单的
+
+	var myName="zhuanbang";
+
+这个就是一个表达式，把等号右边的字符串，赋值到左边myName这个变量名上；表达式在各个类型里会介绍，这里主要总结运算符；
+
+大多数的运算符是有+-==这种标点符号来表现，但是也有一些运算符是由关键字表示的，比如delete和instanceof，不过无论标点符号表示的运算符还是关键字表示的运算符，都是合法的运算符；
+
 <a name="zero"></a>
 # 运算符；
 
@@ -123,6 +131,8 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 		    num%3;
 		    console.log(num);
 
+注意：++i和i++是完全两回事；
+
 **[↑ 返回目录](#zero)**
 
 <a name="three"></a>
@@ -160,6 +170,8 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 	    console.log(null>2);//false
 	    console.log(NaN>2);//false
 
+注意：做关系比较的时候，一定要把值全部转为数值，这是一个很好的习惯；一定要避免2个字符串在一起比较大小；
+
 ### 等值关系检测；( == 和 === )
 #####相等比较
 - 操作符
@@ -172,7 +184,7 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
   - 对象，调用valueOf() 基本类型
   - 字符串与数值的比较，字符串转换为数值；
 - 比较原则
-  - Null与undefined；相等，比较前不做人和转换；
+  - Null与undefined；相等，比较前不做任何转换；
   - NaN，与任何数值都不想等，包括其自身；
   - 对象，是否属于同一个对象
     - 是 ==
@@ -184,6 +196,32 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 		    console.log(testNum===1);
 		    console.log(testNum!=1);
 
+【我手动画的转换图】
+![](https://raw.githubusercontent.com/Broszhu/zhuanbang-javascript-notes/master/img/path1/typeChange.jpg)
+
+
+	    //转换分析1
+	    console.log("zhuanbang"?true:false);//true,因为非空的字符串是一个真值；
+	
+	    //转换分析2
+	    console.log("zhuanbang"==true);//这个时候输出什么呢？在分析一里非空字符串是一个true，那么非空字符串==true吗？
+	
+	    //转换分析3
+	    console.log("zhuanbang"==false);//如果上面的的返回不是true，那么这个会返回true吗？
+	
+		//下面的分析的步骤；
+	    /*转换分析2-解析
+	    * 1、右边的布尔值会转为数字,true->1;"zhuanbang"==1
+	    * 2、左边的字符串会转为数字，"zhuanbang"因为里面有字母，所以转换为NaN;NaN==1
+	    * 3、NaN和任何数据都不想等，包括自己，所以结果是false，并不是true；
+	    * */
+	
+	    /*
+	    * 1、右边的布尔值会转为数字,false->0;"zhuanbang"==0
+	    * 2、左边的字符串会转为数字，"zhuanbang"因为里面有字母，所以转换为NaN;NaN==0
+	    * 3、NaN和任何数据都不想等，包括自己，所以结果是false，结果也不是true
+	    * */
+
 ##### 相同比较（也叫绝对相等/全等）
 - 运算符
   - === 比较两个运算数的返回值以及数据类型是否相同；
@@ -192,6 +230,16 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
   - 值类型间比较，只有数据类型相同，且数值相等时才能够相同；
   - 值类型与引用类型比较，肯定不相同，
   - 引用类型间的比较，比较他们的引用值（内存地址）
+
+简单的说，就是x和y比较，如果两者的类型不同，那就没有比较的意义了，直接返回false；
+
+    //相同的小分析
+    console.log("zhuanbang"===true);
+    console.log("1"===1);
+    console.log("zhuanbang"==="zhuanbang");
+    var person1={name:"zhuanbang"};
+    var person2={name:"zhuanbang"};
+    console.log(person1===person2);//false, 是不同的引用地址；在堆内存中储存是不一样的； 
 
 **[↑ 返回目录](#zero)**
 <a name="four"></a>
@@ -351,6 +399,24 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 	- 基本格式为：条件表达式?表达式一:表达式二；
 	- 其中问号之前的表示判断的条件，如果这个条件为真，则执行问号后面的语句，如果判断条件不成立，则执行冒号后面的语句；
 	- 简单的条件可以用三目运算符写；
+
+		    function trueOrFalse(val) {
+		        return val?console.log(val+" is true"):console.log(val+" is false")
+		    }
+		    trueOrFalse(null);
+		    trueOrFalse(undefined);
+		    trueOrFalse(0);
+		    trueOrFalse(NaN);
+		    trueOrFalse(-0);//0===-0
+		    trueOrFalse(false);
+		    trueOrFalse("");
+		    trueOrFalse(" ");
+		    trueOrFalse({});
+		    trueOrFalse([]);
+		    trueOrFalse(1);
+
+上面的利用三元运算符来判断值的真假；
+
 - typeof，类型判定运算符
 
 
@@ -361,6 +427,7 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 			console.log('typeof {name:John}:', typeof {name:'sssss'});  	
 
 - ,逗号，在一行语句中执行多个不同的操作 ；
+	- 忽略第一个操作符，返回第二个操作符；
 - void，舍弃运算数的值，返回undefined作为表达式的值；
 
 **[↑ 返回目录](#zero)**
@@ -396,6 +463,11 @@ ECMAScript里用于操作数据值的运算符也叫操作符，只是叫法不�
 **[↑ 返回目录](#zero)**
 
 <a name="footer"></a>
+
+下面图片是截自权威指南，体现运算符的优先级；
+
+![](http://i.imgur.com/Xa7Krpg.png)
+
 ## 思考题：
 
 - 123567秒转X分X秒；
