@@ -1,176 +1,31 @@
-html{  height:100%;  }
-body{  background: #fff;  margin:0;  padding:0;  width: 100%;  height: 100%;  }
-
-/** 水平伸缩容器**/
-.row-flex{
-    /*-moz-box-orient: horizontal;
-    -webkit-box-orient: horizontal;
-    -moz-box-direction: normal;
-    -webkit-box-direction: normal;
-    -moz-box-lines: multiple;
-    -webkit-box-lines: multiple;
-    -ms-flex-flow: row wrap;
-    -webkit-flex-flow: row wrap;*/
-    flex-flow: row wrap;
-}
-
-/** 垂直伸缩容器**/
-.col-flex{
-/*    -moz-box-orient: vertical;
-    -webkit-box-orient: vertical;
-    -moz-box-direction: normal;
-
-    -moz-box-lines: multiple;
-    -webkit-box-lines: multiple;
-    -webkit-flex-flow: column wrap;
-    -ms-flex-flow: column wrap;*/
-    flex-flow: column wrap;
-}
-
-/** 伸缩容器**/
-.flex-wrap{
-    /** 各种版本兼容**/
-    /*display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;*/
+ul {  padding: 0;  }
+li {  list-style: none;  }
+.flex-container {
     display: flex;
-}
-
-/** 垂直居中**/
-.midCenter{
-    /** 垂直居中核心**/
-    /*-moz-box-pack: center;
-    -webkit-box-pack: center;
-    box-pack:center;
-    -moz-box-align: center;
-    -webkit-box-align: center;
-    box-align: center;
-    box-pack:center;
-    -ms-flex-pack:center;
-    display: -ms-flexbox;
-    -ms-flex-align:center;*/
-    justify-content:center;
-    align-items: center;
-}
-
-/** 占位器**/
-.page{
-    /*-webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -ms-flex: 1;
-    -webkit-flex: 1;*/
-    flex: 1;
-    overflow: hidden;
-}
-
-/** 真正滚动**/
-.scroll-wrap{
-    position: relative;
+    background: deepskyblue;
     width: 100%;
     height: 100%;
-    overflow: scroll;
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-}
-
-/** 头和尾巴**/
-header,footer{
-    background:#f7f7f7;
-    height:44px;
-}
-
-footer>div{
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
-    border:1px solid #666;
-    margin:4px;
+    margin: 5px auto;
 }
 
 
-
-section{
-    margin:3px 5px;
+.flex-container.second {
+    flex-flow: row wrap;
+    -webkit-flex-flow: row wrap;
 }
-
-/** 真正设置高度 **/
-#banner{
-    border:2px solid #999;
-    margin:1px;
-    height:100px;
+.flex-item {
+    background: tomato;
+    padding: 5px;
+    /*width: 50%;
+    height: 50%;*/
+    flex-grow:100;
+    margin: 5px;
+    line-height: 80px;
+    color: white;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
 }
-#quirk,#four-col{
-    height:150px;
-}
-#three-col,#two-col{
-    height:100px;
-}
-
-
-/** 内部组件**/
-#four-col>div,#three-col>div,#two-col>div{
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    -ms-flex: 1;
-    -webkit-flex: 1;
-    flex: 1;
-}
-#four-col>div{
-    background: #aaebbe;
-    margin:0 2px;
-}
-#three-col>div{
-    background: #8f82bc;
-    margin:0 2px;
-}
-#two-col>div{
-    background: #f7baba;
-    margin:0 2px;
-}
-
-#quirk>div{
-    margin:0 2px;
-}
-
-#quirk>div:nth-child(1){
-    background: #b9e2ee;
-    -webkit-box-flex: 200;
-    -moz-box-flex: 200;
-    -ms-flex: 200;
-    -webkit-flex: 200;
-    flex: 200;
-}
-
-#quirk>div:nth-child(2){
-    -webkit-box-flex: 175;
-    -moz-box-flex: 175;
-    -ms-flex: 175;
-    -webkit-flex: 175;
-    flex: 175;
-
-}
-#quirk>div:nth-child(2)>div:nth-child(1){
-    background: #b9e2ee;
-
-    -webkit-box-flex: 60;
-    -moz-box-flex: 60;
-    -ms-flex: 60;
-    -webkit-flex: 60;
-    flex: 60;
-    margin-bottom: 4px;
-}
-#quirk>div:nth-child(2)>div:nth-child(2){
-    background: #b9e2ee;
-
-    -webkit-box-flex: 30;
-    -moz-box-flex: 30;
-    -ms-flex: 30;
-    -webkit-flex: 30;
-    flex: 30;
+.flex-demo {
+    display: flex;
 }
