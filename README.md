@@ -1,7 +1,52 @@
 # 朱安邦的JavaScript学习笔记
 我的学习笔记
 
-> 基于ES5的
+> 基于ES5,包含ES6的，笔记最近正在重新整理，有些链接可能失效；会尽快整理好；
+
+- 前端开发初识
+    - [编辑器的选择/开发环境介绍](./前端开发初识/README.MD#one)
+    - [HTML文档和标签介绍](./前端开发初识/README.MD#two)
+    - [JS由哪些部分组成、DOM初识](./前端开发初识/README.MD#three)
+    - [HTML中怎么使用JS/CSS](./前端开发初识/README.MD#four)
+    - [从noscript标签引深出的两种编程思想（优雅降低，渐进增强）](./前端开发初识/README.MD#five)
+    - [javascript的文档模式和ES6](./前端开发初识/README.MD#six)
+    - [变量的定义和储存值的类型判断](./前端开发初识/README.MD#seven)
+    - [强类型语言和弱类型语言的区别](./前端开发初识/README.MD#eight)
+    - [编程语言是做什么的？面向对象编程的真正意义是什么？](./前端开发初识/README.MD#nine)
+    - [练习题](./前端开发初识/README.MD#ten)
+    - [前端技术方向的选择,编程语言是做什么的？](./前端开发初识/README.MD#eleven)
+    - [JS代码检测的一些小方法](./前端开发初识/README.MD#twelve)
+    
+- 数据类型初识
+    - [String](./数据类型初识/README.MD#one)
+    - [Number](./数据类型初识/README.MD#two)
+    - [Boolean](./数据类型初识/README.MD#three)
+    - [null和undefined](./数据类型初识/README.MD#four)
+    - [Object](./数据类型初识/README.MD#five)
+    - [null和undefined的区别和联系](./数据类型初识/README.MD#six)
+    - [Symbol](./数据类型初识/README.MD#footer)
+    - [练习题](./数据类型初识/README.MD#footer)
+    
+- 变量声明和原理
+    - [变量的命名](./变量声明和原理/README.MD#one)
+    - [变量的声明](./变量声明和原理/README.MD#two)
+    - [变量的类型](./变量声明和原理/README.MD#three)
+    - [全局变量和局部变量](./变量声明和原理/README.MD#four)
+    - [注释和语法建议](./变量声明和原理/README.MD#five)
+    - [练习题](./变量声明和原理/README.MD#footer)
+    
+- 表达式和运算符
+    - [算术运算符](./表达式和运算符/README.MD#one)
+    - [自增与自减](./表达式和运算符/README.MD#two)
+    - [关系运算符](./表达式和运算符/README.MD#three)
+    - [对象运算符](./表达式和运算符/README.MD#four)
+    - [逻辑运算符](./表达式和运算符/README.MD#five)
+    - [位运算符](./表达式和运算符/README.MD#six)
+    - [其他运算符](./表达式和运算符/README.MD#seven)
+    - [=/==/===、!与!!的区别](./表达式和运算符/README.MD#eight)
+    - [计算器案例](./表达式和运算符/README.MD#nine)
+    - [表格排序案例](./表达式和运算符/README.MD#ten)
+    - [练习题](./表达式和运算符/README.MD#footer)
 
 - JavaScript基础-G1/G2/G3
   - [编程语言是干什么的](./JavaScript-基础/1.编程语言是什么.md)
