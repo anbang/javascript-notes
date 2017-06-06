@@ -1,9 +1,9 @@
-# 朱安邦的JavaScript学习笔记
+# 朱邦邦的JavaScript学习笔记
 我的学习笔记
 
 > 基于ES5,包含ES6的，笔记最近正在重新整理，有些链接可能失效；会尽快整理好；
 
-- 前端开发初识
+1. [前端开发初识](./前端开发初识/README.MD)
     - [编辑器的选择/开发环境介绍](./前端开发初识/README.MD#one)
     - [HTML文档和标签介绍](./前端开发初识/README.MD#two)
     - [JS由哪些部分组成、DOM初识](./前端开发初识/README.MD#three)
@@ -17,7 +17,7 @@
     - [前端技术方向的选择,编程语言是做什么的？](./前端开发初识/README.MD#eleven)
     - [JS代码检测的一些小方法](./前端开发初识/README.MD#twelve)
     
-- 数据类型初识
+1. [数据类型初识](./数据类型初识/README.MD)
     - [String](./数据类型初识/README.MD#one)
     - [Number](./数据类型初识/README.MD#two)
     - [Boolean](./数据类型初识/README.MD#three)
@@ -27,7 +27,7 @@
     - [Symbol](./数据类型初识/README.MD#footer)
     - [练习题](./数据类型初识/README.MD#footer)
     
-- 变量声明和原理
+1. [变量声明和原理](./变量声明和原理/README.MD)
     - [变量的命名](./变量声明和原理/README.MD#one)
     - [变量的声明](./变量声明和原理/README.MD#two)
     - [变量的类型](./变量声明和原理/README.MD#three)
@@ -35,7 +35,7 @@
     - [注释和语法建议](./变量声明和原理/README.MD#five)
     - [练习题](./变量声明和原理/README.MD#footer)
     
-- 表达式和运算符
+1. [表达式和运算符](./表达式和运算符/README.MD)
     - [算术运算符](./表达式和运算符/README.MD#one)
     - [自增与自减](./表达式和运算符/README.MD#two)
     - [关系运算符](./表达式和运算符/README.MD#three)
@@ -48,17 +48,15 @@
     - [表格排序案例](./表达式和运算符/README.MD#ten)
     - [练习题](./表达式和运算符/README.MD#footer)
 
-- JavaScript基础-G1/G2/G3
-  - [编程语言是干什么的](./JavaScript-基础/1.编程语言是什么.md)
-  - [变量，注释，严格模式](./JavaScript-基础/2.变量，注释，严格模式.md)
-  - [数据类型](./JavaScript-基础/3.数据类型.md)
-  - [运算符](./JavaScript-基础/4.运算符.md)
-  - [流程语句](./JavaScript-基础/5.流程语句.md)
-  - [函数初识](./JavaScript-基础/6.函数初识.md)
-  - 选项卡的写法和原理
-  - 99乘法表的写法和原理
-  - 计算器的写法和原理
-  - 本章总结
+1. [流程语句](./语句/README.MD)
+    - [循环语句](./语句/README.MD#one)
+    - [跳转语句](./语句/README.MD#two)
+    - [选择语句](./语句/README.MD#three)
+    - [异常处理语句](./语句/README.MD#four)
+
+
+---
+
 
 - 不同的数据类型详解
   - [Object类型](./数据类型详解/Object类型.md)

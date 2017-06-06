@@ -123,7 +123,7 @@
       代码段1
       break;
       ……
-      Default:
+      Default: []()
       代码段n;
       }
 - 流程
