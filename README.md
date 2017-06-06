@@ -21,7 +21,7 @@
     - [String](./数据类型初识/README.MD#one)
     - [Number](./数据类型初识/README.MD#two)
     - [Boolean](./数据类型初识/README.MD#three)
-    - [null和undefined](./数据类型初识/README.MD#four)
+    - [null和undefined](./数据类型初识/README.MD#four) （数据类型详解的时候不再总结，已经写的差不多了）
     - [Object](./数据类型初识/README.MD#five)
     - [null和undefined的区别和联系](./数据类型初识/README.MD#six)
     - [Symbol](./数据类型初识/README.MD#footer)
@@ -48,12 +48,21 @@
     - [表格排序案例](./表达式和运算符/README.MD#ten)
     - [练习题](./表达式和运算符/README.MD#footer)
 
-1. [流程语句](./语句/README.MD)
-    - [循环语句](./语句/README.MD#one)
-    - [跳转语句](./语句/README.MD#two)
-    - [选择语句](./语句/README.MD#three)
-    - [异常处理语句](./语句/README.MD#four)
+1. [流程语句](./语句/README.md)
+    - [循环语句](./语句/README.md#one)
+    - [跳转语句](./语句/README.md#two)
+    - [选择语句](./语句/README.md#three)
+    - [异常处理语句](./语句/README.md#four)
 
+1. [String类](./研究String类/README.md)
+1. [Array类](./研究Array类/README.md)
+1. [Number类](./研究Number类/README.md)
+1. [Boolean类](./研究Boolean类/README.md)
+1. [Object类](./研究Object类/README.md)
+1. [Function类](./研究Function类/README.md)
+1. [Math类](./研究Math类/README.md)
+1. [Data类](./研究Data类/README.md)
+1. [Global对象](./研究全局对象/README.md)
 
 ---
 

@@ -339,14 +339,19 @@ length计算包括空格
 <a name="four"><a/>
 
 ## 知识点四：null和undefined；
-- null
+
+undefined类型只有一个值，就是undefined；null类型也只有一个值就是null；它们的名称既是类型也是值；
+
+- null（空值，曾经赋过值，但是目前没有值）
   - 逻辑上null表示一个空对象的指针
   - 使用typeof检测的时候会返回object；（object原型的终点也是null）
-- undefined
+- undefined（没有值，指从没有赋过值）
   - 使用var声明变量但没有初始化
   - 区分空对象指针与尚未定义的变量
   - 对未初始化的变量以及未声明的变量使用
   - typeof运算符均会返回undefined；
+
+在非严格模式和严格模式下，我们可以声明一个undefined的局部变量，因为undefined是一个标识符，可以当作变量来使用和赋值；但却不能声明一个null的局部变量，因为null是一个特殊关键字，并不是一个标识符；注意这是为了深入理解null和undefined的背后原理而挖出来的不同，请不要真的声明一个undefined的变量（这是一个非常不好的习惯，严格点的压缩工具，压缩时都不会给你通过的，直接给你抛Error；）
 
 - undefined和null的关系；
 
