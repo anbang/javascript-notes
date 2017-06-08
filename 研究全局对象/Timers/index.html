@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Window</title>
+</head>
+<body>
+<input type="button" value="click me" id="btn1">
+
+<script>
+    var oBtn=document.getElementById("btn1");
+    oBtn.onclick=function () {
+        testClick("2222")
+    };
+    function testClick(arg) {
+        setTimeout(function () {
+            console.log("hello:"+arg)
+        },2000);
+    }
+</script>
+</body>
+</html>
