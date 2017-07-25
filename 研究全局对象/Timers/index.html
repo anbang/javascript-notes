@@ -7,6 +7,24 @@
 <body>
 <input type="button" value="click me" id="btn1">
 
+<swipe-module :swipeinfo="swipeInfo"></swipe-module>
+
+<!--template.html-->
+<div v-el:swipe class='swipe bar-slider'>
+    <div class='swipe-wrap'>
+        <div v-for="item in swipeinfo"><a :href=item.href><img :src=item.imgSrc /></a></div>
+    </div>
+    <!-- 分页 -->
+    <div class="pagination">
+        <span class="swipe-pagination-switch swipe-active-switch" @click="slideToCur(0)"></span>
+        <span class="swipe-pagination-switch" @click="slideToCur($index+1)" v-for="item in slideNum"></span>
+    </div>
+</div>
+
+<div><a href=""><img src=""/></a></div>
+<div><a href=""><img src=""/></a></div>
+<div><a href=""><img src=""/></a></div>
+
 <script>
     var oBtn=document.getElementById("btn1");
     oBtn.onclick=function () {
@@ -17,6 +35,8 @@
             console.log("hello:"+arg)
         },2000);
     }
+
+
 </script>
 </body>
 </html>
