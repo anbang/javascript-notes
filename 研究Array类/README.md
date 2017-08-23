@@ -102,9 +102,9 @@
 - concat        将两个数组进行拼接，原有数组不变，例如ary1.concat(ary2)
     - ary1.concat() 相当于clice(0)也是克隆数组
 - join      将数组按照指定的分隔符拆分字符串，原有的数组不变
-- soString  将数组转化为字符串，原有的数组不变
+- toString  将数组转化为字符串，原有的数组不变
 - sort      数组排序的方法，原有数组改变，我们通常这样写，ary.sort(function(a,b){return a-b;});来实现数组的升序排列 
-- revser    将数组倒过来排序，原来数组改变
+- reverse    将数组倒过来排序，原来数组改变
 - indexOf / lastIndexOf 获取数组中某一项的索引，通常用来检测数组中是否包含某一项内容，不包含返回的是-1；这个方法在IE678下不兼容；
 - forEach   循环数组中每一项，然后进行相关的操作，这个方法在IE678不兼容，
     - ary.forEach(function(item,index,input){},cantext);第二个参数是指定函数中的this，不写默认是window
