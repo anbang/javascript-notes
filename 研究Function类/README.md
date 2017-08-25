@@ -5,7 +5,7 @@
 函数是JavaScript里最有意思的了；而有意思的根源，则在于函数实际上是对象。每个函数都是 Function 类型的实例，而且都与其他引用类型一样具有属性和方法。**由于函数是对象，因此函数名实际上也是一个指向函数对象的指针，不会与某个函数绑定。**
 
  在前面的连接里有介绍函数的三种创建方法；
-[https://github.com/Broszhu/zhuanbang-javascript-notes/blob/master/JavaScript-%E5%9F%BA%E7%A1%80/6.%E5%87%BD%E6%95%B0%E5%88%9D%E8%AF%86.md](https://github.com/Broszhu/zhuanbang-javascript-notes/blob/master/JavaScript-%E5%9F%BA%E7%A1%80/6.%E5%87%BD%E6%95%B0%E5%88%9D%E8%AF%86.md "1.6函数的初识")
+[数据类型初识-function](https://github.com/zhubangbang/zhubangbang-javascript-notes/blob/master/数据类型初识/README_FUNCRTION.md)
 
 	```
 	//function语句的定义方法

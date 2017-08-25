@@ -35,6 +35,9 @@
 
 ![](http://i.imgur.com/7meEaR8.png)
 
+- 要有Github账号；
+- 要有自己的博客（独立域名/第三方的均可，比如博客园、csdn上开博客）
+
 **[↑ 返回目录](#zero)**
 
 <a name="two"></a>
@@ -166,8 +169,10 @@ DOM的几个级别的介绍；DOM目前分为三个级别；DOM1级，DOM2级，
 BOM最蛋疼的部分是没有统一的标准；从根本上讲BOM只处理浏览器窗口和框架；主要有
 - 弹出新浏览器窗口的功能；
 - 移动、缩放和关闭浏览器窗口的功能；
+    - window.close()
 - 提供浏览器详细信息的navigator对象；
 - 提供浏览器所加载页面的详细信息的location对象；
+    - windows.location.href
 - 提供用户显示器分辨率详细信息的srceen对象；
 - 对cookies的支持；
 - 像XMLHttpRequest和IE的ActiveXObject这样的自定义对象；
