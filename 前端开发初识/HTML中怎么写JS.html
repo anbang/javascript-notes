@@ -1,0 +1,45 @@
+<!doctype html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        //嵌入式的写法，直接放在上面，获取不到ID；
+        /*var oDiv3=document.getElementById("btn2");
+        console.log(oDiv3);//null*/
+
+        window.onload=function () {
+            var oDiv3=document.getElementById("btn2");
+            console.log(oDiv3,"window.onload");//null
+        }
+    </script>
+</head>
+<body>
+<!--JS行内写法:JS直接写在标签上-->
+<div>这是一段信息;<a href="javascript:;">这是百度的连接</a></div>
+<input type="button" value="click me 1" onclick="alert('这是行内的写法')">
+<br>
+<!--JS嵌入式的写法 :JS写在script标签内-->
+<input type="button" value="click me 2" id="btn1">
+<br>
+<br>
+<br>
+<input type="button" value="click me 3" id="btn2">
+
+<br>
+<img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png" alt="">
+
+<script>
+    //嵌入式的写法
+    var oDiv=document.getElementById("btn1");
+    oDiv.onclick=function () {
+        alert("这是嵌入式的写法")
+    }
+</script>
+<script src="src/btn.js"></script>
+
+</body>
+</html>

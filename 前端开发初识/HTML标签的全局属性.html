@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div-class{
+            color: red;
+        }
+        .div2{
+            background-color: red;
+        }
+        #div2{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+<div class="div-class">1</div>
+<div class="div-class">3</div>
+<div class="div-class">4</div>
+<div class="div-class">5</div>
+<div class="div-class">5</div>
+
+<p>22222>
+<p>22222</p>
+<div id='div1' title="这是title by div">这是DIV1的内容</div>
+<div id="div2">222</div>
+<span title="这是span的说明信息">这是span</span>
+
+<a href="#" title="这是title里面的文字">百度一下</a>
+
+<p>dads</p>
+<ul>
+    <li>
+        ddd
+    </li>
+</ul>
+<script>
+    var oDiv1=document.getElementById("div1");
+    var oDiv2=document.getElementById("div2");
+    oDiv1.innerText="我已经被JS改变了";//通过JS来改变html
+    oDiv2.style.color="red";//通过JS来改变CSS；
+    console.log("ID",oDiv1);
+
+
+
+    var oDivClass=document.getElementsByClassName("div-class");//这是一对标签的集合
+    console.log(oDivClass);
+    console.log(oDivClass[0]);
+</script>
+</body>
+</html>

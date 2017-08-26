@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            /*渐进增强的写法*/
+            width: 400px;
+            height: 200px;
+            background-color: orange;
+            /*这个是针对webkit内核的浏览器*/
+            -webkit-border-radius: 30px 10px;
+            /*这个属于所有的浏览器*/
+            border-radius: 30px 10px;
+        }
+        #div2{
+            /*优雅降级的写法*/
+            width: 400px;
+            height: 200px;
+            background-color: darkcyan;
+            /*这个属于所有的浏览器*/
+            border-radius: 30px 10px;
+            /*这个是针对webkit内核的浏览器*/
+            -webkit-border-radius: 30px 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">这是DIV1</div>
+<br>
+<br>
+<br>
+<div id="div2">这是DIV2</div>
+</body>
+</html>

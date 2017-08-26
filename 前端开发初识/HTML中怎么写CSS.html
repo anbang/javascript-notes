@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--嵌入式的写法-->
+    <style>
+        #demo-ul{
+            color: aqua;
+        }
+        .item-2{
+            color: orange;
+        }
+        .item-9999{
+            color: orange;
+        }
+
+
+        .ol-item{
+            color: coral;
+            border-bottom: 1px solid darkgreen;
+        }
+        .light-hight{
+            color: orange;
+        }
+        /* id 分 100*/
+        #test-demo{  color: rebeccapurple;  }
+        /* class 分10  标签是1分*/
+        body .test-demo{  color: orange;  }
+
+    </style>
+    <!--外链的写法-->\
+    <!--<style src="./wui/color.css?t=201708261529"></style>-->
+    <link rel="stylesheet" href="./wui/color.css?t=201708261529">
+
+</head>
+<body>
+<!--行内的CSS写法:css直接写在标签上-->
+<!--style="color: red"-->
+<div style="color: red" class="test-demo" id="test-demo">this is  div <span>span</span></div>
+<div >2</div>
+<div style="color: red">3</div>
+<div style="color: red">4</div>
+<div style="color: red">5</div>
+<div style="color: red">5</div>
+
+<!--嵌入式的写法-->
+<!--比起行内写法，方便维护;减少代码量-->
+<h1 class="light-hight">这是高亮的</h1>
+<ul id="demo-ul">
+    <li>001</li>
+    <li class="item-2">002</li>
+    <li>003</li>
+    <li>004</li>
+    <li>004</li>
+    <li>004</li>
+    <li>004</li>
+    <li>004</li>
+    <li>004</li>
+    <li>004</li>
+    <li>004</li>
+    <li>004</li>
+</ul>
+<ol>
+    <li class="ol-item">111</li>
+    <li class="ol-item">222</li>
+    <li class="ol-item">333</li>
+    <li class="ol-item">444</li>
+</ol>
+<p class="warning">你确定提交修改的信息吗？</p>
+</body>
+</html>
