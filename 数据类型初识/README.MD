@@ -668,3 +668,10 @@ Symbol值不能与其他类型的值进行运算，会报错;但是可以显式�
         console.log("22"-2+11);
         console.log("22"+11-2);
         console.log(+"22"+11);
+        
+        console.log(Number(true))
+        console.log(Number(false))
+        console.log(Number(""))
+        console.log(Number([1,2,3]))
+        console.log(parseInt([3,2,3]))
+        console.log(parseFloat([1,2,3]))
