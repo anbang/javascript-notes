@@ -399,7 +399,7 @@ null，undefined | 都是false  |
 数字 | 布尔  | 是进行数字的比较，布尔转为数字 | -
 数字 | 字符串  | 两边都要转换为数字再进行比较 | -
 布尔 | 字符串  | 两边都要转为数字再进行比较 | -
-null | undefined  | True;因为undefined派生自nul，l | -
+null | undefined  | True;因为undefined派生自null | -
 null/undefined | 其它所有类型  | Null和undefined和其他类型比较都是false；（这两个方法没有toString方法） | null==false,null==0,null==””
 
 
