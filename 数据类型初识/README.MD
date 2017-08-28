@@ -30,7 +30,7 @@ object本质是由一组无序的键值对组成的；
 
 从技术的角度上讲，函数在ECMAScript中是对象，不是一种数据类型，属于对象，在就是里万物皆对象的，但是，函数也确实有一些特殊的属性，因此通过typeof操作符来区分也是有必要的；
 
-typeof 运算符总是会返回一个字符串：
+typeof 的返回值是一个字符串类型的数据：
 
 typeof检测任何数据，返回的都是一个字符串，两次和两次以上的连续typeof结果肯定都是string；
 
@@ -42,6 +42,10 @@ typeof检测任何数据，返回的都是一个字符串，两次和两次以�
     console.log(typeof typeof {});
     console.log(typeof typeof null);
     console.log(typeof typeof function(){});
+
+**变量和数据之间的关系和区别**
+
+变量是数据的代言人，可以更方便快捷的操作数据；
 
 **[↑ 返回目录](#zero)**
 
@@ -137,7 +141,8 @@ length计算包括空格
 	    var evalComputed=eval(evalVal);
 	    console.log(evalComputed,typeof evalComputed);//26 "number"
 
-##### 如果把某个值转化为字符串，可以有一个快捷的方式，就是把它与一个字符串""相加就可以了；
+##### 如果把某个数据转化为字符串，可以有一个快捷的方式，就是把它与一个字符串""相加就可以了；
+
 
 	    //+""用来转换字符串
 	    var numVal=2;
@@ -154,6 +159,17 @@ length计算包括空格
 	    console.log(nullPlus,typeof nullPlus);
 	    console.log(undefinedPlus,typeof undefinedPlus);
 
+某个数据并不仅限于Number类型；数组也可以的；
+
+		console.log([1,2,3,4]+"")
+
+
+再看一组的加法(将字符串转为数字,注意浮点数的运算精度)；
+
+		console.log("1.1" + 1.1);
+		console.log(+"1.1" + 1.1);
+		console.log((+"1.1") + (+1.1));//2.2 注：加入括号为清楚起见，不是必需的。
+
 
 备注：先简单的总结，后面有专门深入总结；
 
@@ -163,6 +179,8 @@ length计算包括空格
 <a name="two"><a/>
 
 ## 知识点二、number;
+
+包含：正数、负数、零、小数、以及特殊的NaN；
 
 - 进制
   - 十进制（最常用）
@@ -185,7 +203,7 @@ length计算包括空格
     - 以e为底*10的正负N次幂
   - 最高精度：17位小数
   - 缺点
-    - 存在舍入误差(浮点数之间的运算也是非常不准确的，需要转成整数，然后再运算，运算后再转回对应的小数)
+    - 存在舍入误差(**浮点数之间的运算也是非常不准确的，需要转成整数，然后再运算，运算后再转回对应的小数**)
     - 无法测试特定浮点数值，不要直接对浮点数进行运算；
     - 在做有浮点数运算的情况下，先转成整数，然后得到结果后再转成小数；
 
@@ -212,8 +230,8 @@ length计算包括空格
           - 合法范围true
 - NaN
   - 含义
-    - Not a Number
-    - 非数值,，但是属于数值类型；
+    - Not a Number 
+    - 非数值,不是一个数值，但是NaN属于数值类型；
 
 	    console.log(10-"zhuanbang");//NaN   Not a Number
 	    var NaNVal=10-"zhuanbang";
@@ -223,7 +241,8 @@ length计算包括空格
   - 特点
     - 任何涉及NaN的操作都将返回NaN
     - NaN与人和数值都不相等包括其自身
-
+    
+		console.log(NaN==NaN)
 
   - 检测 isNaN
     - 可以转换为数值，为false
@@ -232,14 +251,16 @@ length计算包括空格
 	    //isNaN
 	    var age=25;
 	    var ageError=25-"男";
-	    console.log(isNaN(age));//false       age这个值不是一个数，对不对？      -> 不对  ->false
-	    console.log(isNaN(ageError));//true   ageError这个值不是一个数，对不对？ -> 对    ->true
+	    console.log(isNaN(age));//false       age这个值不是一个数，对吗？      -> 不对  ->false
+	    console.log(isNaN(ageError));//true   ageError这个值不是一个数，对吗？ -> 对    ->true
 
 
-- 数值转换的三种方法；
+- 数值转换的三种方法（五种方式）；
   - Number() 最霸道的转换方法，只要不是纯数值类型，全部不能成功转换；
   - parseInt() 是Number的升级版本；有字符串出现也可能转换为数值；从前往后开始转，只要有一位可以转为数字都可以成功转换为数字；123sad可以转为123；（备注:会忽略浮点号；遇到第一个非数值的符号后直接退出转换,其中"."也是不合法的数值符号）
   - parseFloat() 属于parseInt的升级版本；可以转换为浮点数123.12dw可以转换为123.12；
+  - -0  		比如"5"-0; 这个方法也属于Number()的；但是它属于隐式调用Number方法；
+  - +"52"	这种也可以转化为数字；
 
 详细的解读
 
@@ -334,6 +355,49 @@ length计算包括空格
 
 为false值的是，false本身、空字符串、0、NaN、null、undefined；这些值要记住，很重要；
 
+
+**!和!!**：
+
+!是取反的意思；先将其它的数据类型转换为布尔类型；然后在取反；
+
+!!是将其他的数据类型转换为不二类型，相当于Boolean；
+
+**自身做布尔运算时候的转换**
+
+类型 | 规律 | 示例
+--- | ---| ---
+Object | 都是true | Alert(!![])
+Number | 只是0和NaN是false | Alert(!!0)
+String | 只有空字符串是false(不是空格字符串) | Alser(!!””)
+Function | 都是true |
+null，undefined | 都是false  |
+
+**总结：0、NaN、””、null、undefined、false本身；只有这六个是false类型的；其它都是true；**
+
+
+**数据类型和逻辑运算规律表**
+
+【我手动画的转换图】
+![](https://raw.githubusercontent.com/Broszhu/zhuanbang-javascript-notes/master/img/path1/typeChange.jpg)
+
+详细解说
+
+
+类型A | 类型B | 比较时候的运算原理 | 说明
+----|------|----
+对象 | 对象  | 比较是不是同一个内存地址，肯定不相等 | []==[] false
+对象 | 字符串  | 对象先转化为字符串，然后做比较 |
+对象 | 布尔类型  | 两边都要先转为数字(false是0，true是1)；对象类型先转隐式调用toString方法，然后再Number() | []==false,[]==0,[1]==1,[1]==true,[2]==true
+对象 | 数字  | 对象要转为数字，再进行比较(对象先隐式调用toString方法转换为字符串，然后再把这个字符串转化为数字，相当于字符串放到number这个方法中) |
+数字 | 布尔  | 是进行数字的比较，布尔转为数字 |
+数字 | 字符串  | 两边都要转换为数字再进行比较 |
+布尔 | 字符串  | 两边都要转为数字再进行比较 |
+null | undefined  | True;因为undefined派生自nul，l |
+null/undefined | 其它所有类型  | Null和undefined和其他类型比较都是false；（这两个方法没有toString方法） | null==false,null==0,null==””
+
+
+
+
 **[↑ 返回目录](#zero)**
 
 <a name="four"><a/>
@@ -342,14 +406,33 @@ length计算包括空格
 
 undefined类型只有一个值，就是undefined；null类型也只有一个值就是null；它们的名称既是类型也是值；
 
+null是空值，是一个空指针，一般表示一个变量定义了但是没有值（值为空）；undefined是未定义；
+
+    console.log(xxx);// xxx is not defined
+    
+和下面
+    
+    var xxx;
+    console.log(xxx)
+
+两者是不一样的；
+
+没有发现对象，也是undefined；
+
+    var msg={
+        msg1:1,
+        mag2:2
+    };
+    console.log(msg.msg1);//1
+    console.log(msg.msg3);//undefined
+
 - null（空值，曾经赋过值，但是目前没有值）
   - 逻辑上null表示一个空对象的指针
   - 使用typeof检测的时候会返回object；（object原型的终点也是null）
 - undefined（没有值，指从没有赋过值）
-  - 使用var声明变量但没有初始化
+  - 使用var声明变量但没有初始化/赋值的
   - 区分空对象指针与尚未定义的变量
-  - 对未初始化的变量以及未声明的变量使用
-  - typeof运算符均会返回undefined；
+  - 对未初始化的变量以及未声明的变量使用typeof运算符均会返回undefined；
 
 在非严格模式和严格模式下，我们可以声明一个undefined的局部变量，因为undefined是一个标识符，可以当作变量来使用和赋值；但却不能声明一个null的局部变量，因为null是一个特殊关键字，并不是一个标识符；注意这是为了深入理解null和undefined的背后原理而挖出来的不同，请不要真的声明一个undefined的变量（这是一个非常不好的习惯，严格点的压缩工具，压缩时都不会给你通过的，直接给你抛Error；）
 
@@ -361,7 +444,7 @@ undefined类型只有一个值，就是undefined；null类型也只有一个值�
   - 没有必要将变量显示声明undefined；
   - 声明非空对象对应将其赋值为null；比如做定时器的时候用timer=null来重置变量；
 
-> Undefined只有一个值，就是特殊的undefine；（大写的Undefined是代表Undefined类的意思，就好比人类和人的关系；）
+> Undefined类只有一个值，就是特殊的undefine；（大写的Undefined是代表Undefined类的意思，就好比人类和人的关系；）
 
 	      var test1;
 	      var test2=undefined;
@@ -375,6 +458,34 @@ undefined类型只有一个值，就是undefined；null类型也只有一个值�
 > Null是第二个只有一个值的数据类型，这个特殊的值是null，从逻辑上来看，null值表示一个空对象指针，而这也正是typeof操作符检测null时候，返回"object"的原因；
 只要意在保存对象的变量还没有真正保存对象，就应该明确的让变量赋值为null值；这不仅可以体现null作为空对象指针的惯例，而且也有助于进一步却分null和undefined；
 
+
+
+<a name="six"><a/>
+## 六、null和undefined的区别和联系
+Undefined是javascript中的一大特点，是javascript独有的数据和数据类型(这个数据类型只有这一个值；就是undefined，它的类型也是undefined)，既然它是javascript独有的一个数据类型，那它在javascript编程里必然有它的特点；所以本节也在重复说；
+
+在javascript里，null和undefined都表示不存在的数据，并且undefined也是从null中继承而来的，那null是什么？undefined又是什么？他们两个都有什么共性和区别呢？看下面描述
+
+- null和undefined都是表示没有的，不存在的值；他们两个在进行逻辑转换时候都是false；这两个值进行比较是true；
+    - Null和undefined没有toString方法；所以null和undefined和人和数据比较都是false；
+    - 因为undefined派生自null，所以undefined和null做数据类型比较的时候的true；
+- null表示空引用，它是object类型，undefined表示未定义，它是undefined类型；
+- null是object类型，但不是object的实例；用instanceof为false；
+- 如果一个变量的值是null，那么必须主动的给它赋值null；
+- 一个变量未定义，或者变量定义里未赋值；则是undefined；
+    - 需要注意的是，一个变量如果没有定义，是不能直接在程序里使用的（就是不能直接读取，但可以赋值）；比如说，本来没有定义一个叫a的变量；但是我去aconsole.log(a);在浏览器里这个语法会报错的；但是可以用typeof去运算；但是如果a定义了，但没有赋值；可以读，它的值就是undefined；表示这个变量没有被赋值；
+- 对于属性来说，如果原来没有这个属性，根本就不存在这个属性，那么它的值就是undefined；
+    - 对象的属性不需要定义，如果不存在也可以直接去读，不会报错，而会给一个undefined的值；
+- 如果这个对象以后要用；但是现在还没有值，一般情况下，会给他一个null的值；（如果在处理数据的时候，临时创建了一个变量，逻辑运算后，这个变量没有用了，也推荐把这个对象置为null,比如做定时器的时候）
+- 在函数(方法)里，如果必须返回值；但是值又计算不出来，那就返回一个null；（这是规范，而不是语法规定，JS里遵循这个规范）
+    - 比如网页中没有ID是div1的元素，则下面的这句脚本返回null；
+    - Document.getElementById(“div1”)//返回null；
+    - 但是没有返回值的函数，它的返回值都是undefined；
+
+**白话文**：
+- null：     你有一个种树的想法，圈一块地，说你要在这里种树；
+- undefined：你有一个种树的想法，圈一块地，说你要在这里种树；同时你还挖了一个坑准备种树（仅仅是挖坑，也还没有种树）；
+
 **[↑ 返回目录](#zero)**
 
 <a name="five"><a/>
@@ -385,8 +496,8 @@ Object类型包括，数组、正则等等；
 
 - 定义：一组数据或功能的集合
 - 声明  
-  - Var o=new Object()//Object后面的()可以省略，但不推荐
-  - Var o={}
+  - var o=new Object()//Object后面的()可以省略，但不推荐
+  - var o={}
   
 - 属性和方法
   - constructor：保存用于创建当前对象的函数，构造函数就是Object()
@@ -445,68 +556,11 @@ str.length就是字符串的长度；
 
 js中规定一个对象的属性名是不可重复的(这句话一定要记住，处理很多事务的时候，经常会用到对象的属性来进行操作；)
 
-**null和undefined**：null是空值，是一个空指针，一般表示一个变量定义了但是没有值（值为空）；undefined是未定义；
-
-- Null是object类型，但不是object的实例；用instanceof为false；
-- Null和undefined没有toString方法；所以null和undefined和人和数据比较都是false；
-- 因为undefined派生自null，所以undefined和null做数据类型比较的时候的true；
-
 **typeof**：检测数据类型的运算符；返回的结果是一个字符串；里面包含了对应的数据类型；例如”object”在JS中typeof null的结果也是object；
 
 **Instanceof**：检测某一个实例是否属于这个类；在类的继承中检测的不是很严禁；
 
 **[↑ 返回目录](#zero)**
-
-<a name="six"><a/>
-## 六、null和undefined的区别和联系
-Undefined是javascript中的一大特点，是javascript独有的数据和数据类型(这个数据类型只有这一个值；就是undefined，它的类型也是undefined)，既然它是javascript独有的一个数据类型，那它在javascript编程里必然有它的特点；所以本节也在重复说；
-
-在javascript里，null和undefined都表示不存在的数据，并且undefined也是从null中继承而来的，那null是什么？undefined又是什么？他们两个都有什么共性和区别呢？看下面描述
-
-- null和undefined都是表示没有的，不存在的值；他们两个在进行逻辑转换时候都是false；这两个值进行比较是true；
-- null表示空引用，它的object类型，undefined表示未定义，它的undefined类型；
-- 如果一个变量的值是null，那么必须主动的给它赋值null；
-- 一个变量未定义，或者变量定义里未赋值；则是undefined；需要注意的是，一个变量如果没有定义，是不能直接在程序里使用的（就是不能直接读取，但可以赋值）；比如说，本来没有定义一个叫a的变量；但是我去aconsole.log(a);在浏览器里这个语法会报错的；但是可以用typeof去运算；但是如果a定义了，但没有赋值；可以读，它的值就是undefined；表示这个变量没有被赋值；
-- 对于属性来说，如果原来没有这个属性，根本就不存在这个属性，那么它的值就是undefined；对象的属性不需要定义，如果不存在也可以直接去读，不会报错，而会给一个undefined的值；
-- 如果这个对象以后要用；但是现在还没有值，一般情况下，会给他一个null的值；（如果在处理数据的时候，临时创建了一个变量，逻辑运算后，这个变量没有用了，也推荐把这个对象置为null）
-- 在函数(方法)里，如果必须返回值；但是值又计算不出来，那就返回一个null；（这是规范，而不是语法规定，JS里遵循这个规范）比如网页中没有ID是div1的元素，则下面的这句脚本返回null；
-
-Document.getElementById(“div1”)//返回null；
-
-但是没有返回值的函数，它的返回值都是undefined；
-
-**数据类型和逻辑运算规律表**
-
-【我手动画的转换图】
-![](https://raw.githubusercontent.com/Broszhu/zhuanbang-javascript-notes/master/img/path1/typeChange.jpg)
-
-详细解说
-
-
-类型A | 类型B | 比较时候的运算原理 | 说明
-----|------|----
-对象 | 对象  | 比较是不是同一个内存地址，肯定不相等 | []==[] false
-对象 | 字符串  | 对象先转化为字符串，然后做比较 |
-对象 | 布尔类型  | 两边都要先转为数字(false是0，true是1)；对象类型先转隐式调用toString方法，然后再Number() | []==false,[]==0,[1]==1,[1]==true,[2]==true
-对象 | 数字  | 对象要转为数字，再进行比较(对象先隐式调用toString方法转换为字符串，然后再把这个字符串转化为数字，相当于字符串放到number这个方法中) |
-数字 | 布尔  | 是进行数字的比较，布尔转为数字 |
-数字 | 字符串  | 两边都要转换为数字再进行比较 |
-布尔 | 字符串  | 两边都要转为数字再进行比较 |
-null | undefined  | True;因为undefined派生自nul，l |
-null/undefined | 其它所有类型  | Null和undefined和其他类型比较都是false；（这两个方法没有toString方法） | null==false,null==0,null==””
-
-
-**自身做布尔运算时候的转换**
-
-类型 | 规律 | 示例
---- | ---| ---
-Object | 都是true | Alert(!![])
-Number | 只是0和NaN是false | Alert(!!0)
-String | 只有空字符串是false(不是空格字符串) | Alser(!!””)
-Function | 都是true |
-null，undefined | 都是false  |
-
-**总结：0、NaN、””、null、undefined、false本身；只有这六个是false类型的；其它都是true；**
 
 
 # 七、Symbol 类型
@@ -579,6 +633,7 @@ Symbol值不能与其他类型的值进行运算，会报错;但是可以显式�
 
 <a name="footer"><a/>
 ## 练习题：
+- 如何让alert弹出框的信息换行
 - var str=true+11+null+9+indefined+”zhuanbang”+flase+null+9+[],str的值是多少？为什么？
 - 在js中，{}、[]分别代表什么意思？
 - NaN是什么意思？这个值有什么特点？
@@ -599,6 +654,9 @@ Symbol值不能与其他类型的值进行运算，会报错;但是可以显式�
   - False==”   ”
   - 0.1+0.2==0.3
   - “5”==5
-
-- 如何让alert弹出框的信息换行
 - 有哪些值转换后是false
+- 下面分别输出什么?
+    console.log("22"+11);
+    console.log("22"-2+11);
+    console.log("22"+11-2);
+    console.log(+"22"+11);
