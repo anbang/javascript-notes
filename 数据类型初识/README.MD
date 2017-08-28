@@ -656,7 +656,8 @@ Symbol值不能与其他类型的值进行运算，会报错;但是可以显式�
   - “5”==5
 - 有哪些值转换后是false
 - 下面分别输出什么?
-    console.log("22"+11);
-    console.log("22"-2+11);
-    console.log("22"+11-2);
-    console.log(+"22"+11);
+
+        console.log("22"+11);
+        console.log("22"-2+11);
+        console.log("22"+11-2);
+        console.log(+"22"+11);
