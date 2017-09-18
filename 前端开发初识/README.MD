@@ -144,7 +144,7 @@ script是属性有async，defer，charset，languge，src，type六个；一般�
          var oDiv=document.getElementById("div1");
          oDiv.innerText="现在已经被我占领了";
 
-- 浏览器对象模型(broser object model 简称 BOM)：提供与浏览器交互的方法和接口；BOM最蛋疼的部分是没有统一的标准；从根本上讲BOM只处理浏览器窗口和框架
+- 浏览器对象模型(browser object model 简称 BOM)：提供与浏览器交互的方法和接口；BOM最蛋疼的部分是没有统一的标准；从根本上讲BOM只处理浏览器窗口和框架
 
         windows.location.href
 
