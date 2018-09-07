@@ -3,7 +3,7 @@
 
 > 基于ES5,包含ES6的，笔记最近正在重新整理，有些链接可能失效；会尽快整理好；
 
-1. [前端开发初识](./前端开发初识/README.MD)
+1. [前端开发初识](./前端开发初识/)
     - [编辑器的选择/开发环境介绍](./前端开发初识/README.MD#one)
     - [HTML文档和标签介绍](./前端开发初识/README.MD#two)
     - [JS由哪些部分组成、DOM初识](./前端开发初识/README.MD#three)
@@ -17,7 +17,7 @@
     - [前端技术方向的选择,编程语言是做什么的？](./前端开发初识/README.MD#eleven)
     - [JS代码检测的一些小方法](./前端开发初识/README.MD#twelve)
     
-1. [数据类型初识](./数据类型初识/README.MD)
+1. [数据类型初识](./数据类型初识/)
     - [String](./数据类型初识/README.MD#one)
     - [Number](./数据类型初识/README.MD#two)
     - [Boolean](./数据类型初识/README.MD#three)
@@ -26,6 +26,15 @@
     - [null和undefined的区别和联系](./数据类型初识/README.MD#six)
     - [Symbol](./数据类型初识/README.MD#footer)
     - [练习题](./数据类型初识/README.MD#footer)
+
+1. [函数初识](./函数初识/)
+    - [初识函数](./数据类型初识/README.MD#one)
+    - [函数的定义](./数据类型初识/README.MD#two)
+    - [函数的调用](./数据类型初识/README.MD#three)
+    - [函数的方法](./数据类型初识/README.MD#four)
+    - [arguments对象](./数据类型初识/README.MD#five)
+    - [函数的参数](./数据类型初识/README.MD#six)
+    - [this关键字的指向](./数据类型初识/README.MD#seven)
     
 1. [变量声明和原理](./变量声明和原理/README.MD)
     - [变量的命名](./变量声明和原理/README.MD#one)
