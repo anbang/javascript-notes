@@ -1,7 +1,7 @@
 <a name="zero"><a/>
 # 数据类型初识
 
-> JS的数据类型；通过typeof来检测，得到的数据类型有 String、number、boolean、null、undefined、Object(一切数据的基础)；
+JS的数据类型；通过typeof来检测，得到的数据类型有 `String`、`number`、`boolean`、`null`、`undefined`、`Object` (Object是一切数据的基础)；
 
 - 一、[String](#one)
 - 二、[Number](#two)
@@ -12,9 +12,13 @@
 - 七、[Symbol](#footer)
 - 八、[练习题](#footer)
 
-ECMAScript中有5种简单的数据类型，也称为基本数据类型；Undefined、Null、Boolean、Number、String。
+ECMAScript中有5种简单的数据类型，也称为基本数据类型；
 
-一种复杂的数据类型，Object;(typeof检测还有一种特殊的Funtion)；
+`String`、`number`、`boolean`、`null`、`undefined`
+
+一种复杂数据类型，也称为引用数据类型(typeof检测还有一种特殊的Funtion)
+
+`Object` 
 
 object本质是由一组无序的键值对组成的；
 
@@ -76,7 +80,7 @@ length计算包括空格
 
 	    //字符串长度
 	    var strTest1="zhuanbang";//共9个
-	    var strTest2="朱安邦的JavaScript学习笔记";//共18
+	    var strTest2="朱邦邦的JavaScript学习笔记";//共18
 	    console.log(strTest1.length);//9
 	    console.log(strTest2.length);//18
 	    //这只是个简单的判断，如果想用JavaScript判断或者获取所占的字节，就不能这么判断了，因为中文和英文字符所占的字节长度不同，所以要想获得中文字符的真正长度，就需要对输入的字符进行判断或过滤(可以unicode区间进行判断)，如果符合中文字符，则使用不同的标准。	
@@ -108,17 +112,18 @@ length计算包括空格
 	      适用类型
 	      Number/Boolean/String/Object
 	      参数：number类型的数值基数；一般不需要写，仅作了解，如果需要按照2/8/16进制来转换，需要写；
+	      
+toString()和String()
 
-	    //toString()和String()
-	    var testNum=1;
-	    console.log(typeof testNum);//number
-	    var testTarget1=toString(testNum);
-	    var testTarget2=testNum.toString();//推荐用法
-	    var testTarget3=String(testNum);
-	    //var testTarget4=testNum.String();//错误的用法
-	    console.log(typeof testTarget1);//string
-	    console.log(typeof testTarget2);//string
-	    console.log(typeof testTarget3);//string
+            var testNum=1;
+            console.log(typeof testNum);//number
+            var testTarget1=toString(testNum);
+            var testTarget2=testNum.toString();//推荐用法
+            var testTarget3=String(testNum);
+            //var testTarget4=testNum.String();//错误的用法
+            console.log(typeof testTarget1);//string
+            console.log(typeof testTarget2);//string
+            console.log(typeof testTarget3);//string
 
 - String()
 
@@ -141,7 +146,7 @@ length计算包括空格
 	    var evalComputed=eval(evalVal);
 	    console.log(evalComputed,typeof evalComputed);//26 "number"
 
-##### 如果把某个数据转化为字符串，可以有一个快捷的方式，就是把它与一个字符串""相加就可以了；
+#####如果把某个数据转化为字符串，可以有一个快捷的方式，就是把它与一个字符串""相加就可以了；
 
 
 	    //+""用来转换字符串
@@ -161,7 +166,7 @@ length计算包括空格
 
 某个数据并不仅限于Number类型；数组也可以的；
 
-		console.log([1,2,3,4]+"")
+		console.log([1,2,3,4]+"");//1,2,3,4
 
 
 再看一组的加法(将字符串转为数字,注意浮点数的运算精度)；
@@ -269,11 +274,11 @@ length计算包括空格
         console.log(-"10"+ 10);//了解下
                        
 
-详细的解读
+类型转转
 
 ##### Number()
 
-> 一般用在数据类型的系统默认转换；
+数据类型的系统默认转换；
 
   - Boolean转换为数值的时候
     - true转为1；
