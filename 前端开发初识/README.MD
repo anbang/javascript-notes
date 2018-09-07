@@ -17,18 +17,19 @@
 # 一、编辑器的选择/开发环境介绍
 - WebStorm/IDEA,内置支持zen coding 、nodejs、拿来即用的，遇到gulp、git、markdown文件会智能提示对应的插件等，前端开发的神器，因为需要建立索引，启动时间比较长，占用内存大；
     - zen coding写法：div#page>div.logo+ul#navigation>li*5>a
-- sublime text 启动快，短小精悍型的，配合插件，可实现强大功能，适合喜欢捣腾的，不建议没有编程基础的初学者直接使用，可以编程一段事件后再用；
+- sublime text 启动快，短小精悍型的，配合插件，可实现强大功能，适合喜欢捣腾的；
+- vscode 类似sublime，但是比sublime好很多；
 - Editplus 、 Notepad  、 Dreamweaver 这些都不推荐前端开发初学者使用；很多老开发者还在使用，因为习惯，再就是配置了相关的插件，懒得折腾了，所以一直在用，毕竟干活效率才是最重要的；但是对于初学者，还是建议选择合适的；
 - Atom，github；WEB端编辑器；
 - 如果您会VIM，编辑器可以还可以用您以前的，主流的编辑器都有VIM语法插件；VIM+webStorm/sublime 等都比较顺手的；
 - 推荐使用webStorm，把精力放在研究代码上，不要在编辑器上浪费过多时间；
-- webstorm官网：http://www.jetbrains.com/webstorm/ (这个网站的下载速度还是可以的，如果有下载不来，联系我下，我贴网盘链接上来 )
+- webstorm官网：http://www.jetbrains.com/webstorm/ (这个网站的下载速度还是可以的，如果有下载不来，可以找第三方下载 )
 
 ##### 开发环境介绍
 
 相比其他语言，JavaScript的优势之一在于不用安装或配置任何复杂的环境就可以开始学习。
 
-- 编辑器推荐使用webstorm；
+- 编辑器推荐使用webstorm/vscode；
 - 浏览器用Chrome；
 
 这样就可以学习javascript，这门语言了，因为JS代码是执行时候才进行编译，所以环境比较简单；当然，请你不要纠结JavaScript 和 Java之间有什么关系，就好比雷锋和雷峰塔的区别，研究这些问题没有区别，你只需要问自己，想不想了解一些WEB方面的知识，如果你喜欢网页程序，那么跟着敲代码就好了，不要浪费时间；
@@ -62,33 +63,33 @@ HTML文件是由N个标签组成的，这些标签元素构成了搭建网站的
 - 类型声明（!DOCTYPE）的作用是告诉浏览器，以什么格式渲染下面的文件；
 - html标签是HTML文件的基础；(HTML标签内一般还会有head和body标签)
 ![](http://i.imgur.com/7meEaR8.png)
+
 例如上面这张图片中的HTML代码，就是最基础的HTML文件格式；
 
 ##### HTML4和HTML5的区别
 
 最重要的标志，就是看类型声明；
 
-- HTML5是用 <!DOCTYPE html> 这种的声明
-- HTML4是用 <!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 4.0 Transitional//EN” “http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd”> 这种的声明；
+- HTML5是用 `<!DOCTYPE html> ` 这种的声明
+- HTML4是用 `<! DOCTYPE html PUBLIC “-//W3C//DTD XHTML 4.0 Transitional//EN” “http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd”>` 这种的声明；
 
-<!DOCTYPE> 声明推荐是放在 HTML 文档的第一行，位于 <html> 标签之前。
+`<!DOCTYPE>` 声明推荐是放在 HTML 文档的第一行，位于 <html> 标签之前。
 
-** 为什么HTML和HTML5声明的类型不同？ **
+> 为什么HTML和HTML5声明的类型不同？
 
-- 在 HTML 4.01 中，<!DOCTYPE> 声明引用 DTD，因为 HTML 4.01 基于 SGML。DTD 规定了标记语言的规则，这样浏览器才能正确地呈现内容。
+- 在 HTML 4.01 中，`<!DOCTYPE>` 声明引用 DTD，因为 HTML 4.01 基于 SGML。DTD 规定了标记语言的规则，这样浏览器才能正确地呈现内容。
 - HTML5 不基于 SGML，所以不需要引用 DTD。
 
-**注释**：<!DOCTYPE> 声明没有结束标签，并且<!DOCTYPE> 声明对大小写不敏感。
+**注释**：`<!DOCTYPE>` 声明没有结束标签，并且对大小写不敏感。
 
 
-因为这里是告诉浏览器的渲染方式，所以这里绝对此文件是HTML4还是5，不过并没有什么软用，现在一般都是HTML5的声明格式；记住第一个就可以了；这些都不是重点
+因为这里是告诉浏览器的渲染方式，所以这里决定此文件是HTML4还是5，不过并没有什么软用，现在一般都是HTML5的声明格式；记住第一个就可以了；这些都不是重点
 
-另外HTML5为了更好的符合语义化和升级，新增了下面的标签;
-> header、footer、section、audio、video等；
+另外HTML5为了更好的符合语义化和升级，新增了 `header`、`footer`、`section`、`audio`、`video` 等标签；
 
 ##### 常用标签的简单介绍
 
-div、ul、li、p、span、a、img、table、tr、th、td、br/hr、h1/h2/h3
+`div`、`ul`、`li`、`p`、`span`、`a`、`img`、`table`、`tr`、`th`、`td`、`br`、`hr`、`h1`、`h2`、`h3`
 
 ![](http://i.imgur.com/wanAEUs.png)
 
@@ -99,24 +100,26 @@ div、ul、li、p、span、a、img、table、tr、th、td、br/hr、h1/h2/h3
 - id
 - title
 
-**class**：一个名字可以多个class公用；
+`class`：一个名字可以多个class公用；
 
-**id**：一个名字在一个页面里，只能一个标签使用；
+`id`：一个ID名在一个页面里，只能被一个标签使用、ID名具有唯一性；
 
-title：title里是自定义的内容，表现是鼠标放上去时候的，文字提示；
+`title`：title里是自定义的内容，表现是鼠标放上去时候的，文字提示；
 
-** a标签中的。href** 
+**a标签中的 `href`** 
 
 href是Hypertext Reference的缩写。意思是指定超链接目标的URL。href已经是缩写了，很多不知道其中原理的人会念成"赫尔夫"，其实这是不正确的；href并不是一个单词，而是一个缩写；
 
-##### HTML规则
+##### HTML书写规范规则
 其实个人觉得为了总结而总结是一件很痛苦的事情，记得用zencoding生成的就是标准的书写规范，然后注意下面这句话就可以了；
 
-- 书写HTML标签的规范：标签要闭合，层级要明确，双引号和单引号不能混合使用；
+- 标签要闭合
+- 层级要明确
+- 单引号和双引号不要混用；
 
 ##### script标签的属性：
 
-script是属性有async，defer，charset，languge，src，type六个；一般常用的就是src，type；而且type是属于可忽略的属性，推荐不写；
+script是属性有 `async`，`defer`，`charset`，`languge`，`src`，`type` 六个；一般常用的就是src，type；而且type是属于可忽略的属性，推荐不写；
 
 因为HTML不是这个笔记的总结重点，就先这样了；
 
@@ -137,14 +140,14 @@ script是属性有async，defer，charset，languge，src，type六个；一般�
 
 一个完整的javascript实现应该有下列三个不同部分组成：
 ![](https://raw.githubusercontent.com/Broszhu/zhuanbang-javascript-notes/master/img/path1/javascript.png)
-- 核心(ECMAScript)：提供核心语言功能；
+- `ECMAScript`：提供核心语言功能,是核心，规定了这们语言的书写规范；
     - var jd="京东商城";
-- 文档对象模型(document object model 简称DOM)：提供访问和操作网页内容的方法和接口；
+- `DOM`：提供访问和操作网页内容的方法和接口,(document object model 简称DOM 文档对象模型)
 
          var oDiv=document.getElementById("div1");
          oDiv.innerText="现在已经被我占领了";
 
-- 浏览器对象模型(browser object model 简称 BOM)：提供与浏览器交互的方法和接口；BOM最蛋疼的部分是没有统一的标准；从根本上讲BOM只处理浏览器窗口和框架
+- `BOM`：提供与浏览器交互的方法和接口；BOM最蛋疼的部分是没有统一的标准；从根本上讲BOM只处理浏览器窗口和框架,(browser object model 简称 BOM 浏览器对象模型)
 
         windows.location.href
 
@@ -171,7 +174,7 @@ ECMAScript规定了Javascript这门语言的组成部分；主要规定了语法
 
   ```
 
-> HTML页面，通过DOM可以看成树形图，借助DOM提供的API，可以轻松的增删改查；下面是几个标签的层级关系
+HTML页面，通过DOM可以看成树形图，借助DOM提供的API，可以轻松的增删改查；下面是几个标签的层级关系
 
 ```
 <!DOCTYPE html>
@@ -202,7 +205,7 @@ DOM的几个级别的介绍；DOM目前分为三个级别；DOM1级，DOM2级，
 
 - DOM3级：引入了以统一方式加载和保存文档的方法（在DOM加载和保存模块中定义）；新增了验证文档的方法（在DOM验证模块中定义）；DOM3级也对DOM核心进行了扩展，开始支持XML1.0，涉及XML infoset，Xpath和XML Base。
 
-  ##### 3、BOM部分；
+##### 3、BOM部分；
 BOM最蛋疼的部分是没有统一的标准；从根本上讲BOM只处理浏览器窗口和框架；主要有
 - 弹出新浏览器窗口的功能；
 - 移动、缩放和关闭浏览器窗口的功能；
@@ -306,7 +309,7 @@ JavaScript中我们学的所有的知识点其实都是基于浏览器内置类�
 
 ##### 3、外联式；
 
-** 注意编码格式统一,否则中文会乱码 **
+**注意编码格式统一,否则中文会乱码**
 
 通过script的src属性引用一个文件；关于script的标签位置，按照传统的做法，是写在head元素中；这种做法的目地是把所有外部文件(CSS,JS)的引用都放在相同的地方；可是如果放在顶部；HTML加载的时候，是从上到下依次解析的；页面加载很多HTML的时候，就会堵塞后面的DOM节点加载；导致页面呈现的内容出现延迟，而延迟期间浏览器窗口将是空白的；
 
@@ -365,7 +368,7 @@ JavaScript中我们学的所有的知识点其实都是基于浏览器内置类�
 
 项目中，很少会遇到行内写JS的，工作中我只在给wifi组做支撑的时候见到过这么写的；当时他们的wifi管理页面，用luci lua 一个开源项目修改的，页面的HTML CSS,JS是直接渲染出来的，里面的CSS,JS大都是行内写的，维护起来真的太坑了；我在写JS的时候，把需要我写的JS代码和模块，全部外链式引导页面，把CSS，JS和他们lua代码分开；不和他们的代码掺合在一起，否则以后维护起来就太蛋疼了；
 
-##### 嵌入式与外链式的区别？
+> 嵌入式与外链式的区别？
 
 在HTML中嵌入javascript代码虽然没有问题，但是一般认为最好的做法还是尽可能使用外部文件来包含javascript代码，不过，并不存在必须使用外链式的规定；但外链式的优点如下
 - 维护性好：JS代码和HTML代码混在一起，维护的时候需要改动HTML页面，而现在为了专注和分工明确，基本都是前后端分离的做法；页面输入都是后端的页面；如果是外链式的，只需要维护自己的JS文件即可，不需要接触HTML文件；
@@ -389,21 +392,21 @@ href 用于标示资源和文档关系,src 用于替换标签内容
 	
 	<a href="http://www.baidu.com">百度</a>
 
-** 为什么 style不用src**
+**为什么 style不用src**
 
 至于说为什么当初就决定外部样式表用link href来链接，而不是用style src来载入，可能是因为第一批互联网人认为样式表更符合外部链接资源的特征，它更接近附属的资源，而不是内嵌的内容。比如考虑alternate stylesheets，在同一时间只需要链接一组样式表，而不是载入所有。当然你可以简单的归结为历史遗留（也就是当初某个浏览器开发者的一个偶然决定导致）。这是一个扯淡的问题，制作标准的人不是中国人，是老外；
 
-** 其它的一些意外**
+**其它的一些意外**
 
-有些名词是中国第一批程序员，翻译的问题；最明显的一个名次[上下文]，就是代码所在的执行环境，英文
+有些名词是中国第一批程序员，翻译的问题；最明显的一个名次`上下文`，就是代码所在的执行环境，英文
 
-context，这个应该翻译成[代码运行环境] 才更符合语义，但是第一批互联网人翻译成中文书，都这么写，然后我们这些小辈们为了统一，也都这么叫了；
+context，这个应该翻译成`代码运行环境` 才更符合语义，但是第一批互联网人翻译成中文书，都这么写，然后我们这些小辈们为了统一，也都这么叫了；
 
 在HTTP协议的知识里，有一个叫HTTP Referer的；属于请求头（header）的一部分，当浏览器向web服务器发送请求的时候，一般会带上Referer，告诉服务器我是从哪个页面链接过来的，服务器籍此可以获得一些信息用于处理。
 
 比如从我的博客链接到一个朋友那里，他的服务器就能够从HTTP Referer中统计出每天有多少用户点击我主页上。链接访问他的网站，以前自己倒腾过网站的朋友，在百度统计,55LA统计之类的，会有这方面的统计信息供查看；
 
-这里的Referer其实应该是英文单词referrer，也不知道是拼错的人太多了导致标准跟着拼错，还是编写标准的人拼错了，开发者讲错纠错，反正现在的情况就都写成HTTP Referer了，只能将错就错的写了。历史遗留问题，无解的；
+这里的Referer其实应该是英文单词referrer，也不知道是拼错的人太多了导致标准跟着拼错，还是编写标准的人拼错了，开发者讲错纠错，反正现在的情况就都写成HTTP Referer了，只能将错就错的写了。历史遗留问题，无解；
 
 **css中的行内、嵌入式、外链式**
 下面就是css的各种写法；
@@ -457,7 +460,7 @@ context，这个应该翻译成[代码运行环境] 才更符合语义，但是�
 
 不过狭义而言，渐进增强一般说的是使用CSS3技术，在不影响老浏览器的正常显示与使用情形下来增强体验，而优雅降级则是体现html标签的语义，以便在js/css的加载失败/被禁用时，也不影响用户的相应功能。
 
-#####CSS3中的方案
+##### CSS3中的方案
 
 .transition {   /* 渐进增强写法 */
   -webkit-transition: all .5s;
@@ -519,8 +522,8 @@ CSS不是笔记的重点，所以就不多写了；
 - 英文全称是variable，定义变量是关键字就是var
 
 	    var a="hello word";
-	    //var 是变量声明富豪，同样的还有 let const(后面会介绍)
-	    //a     是变量名，可以任意起，但是有些单词是不能用的，后面会介绍
+	    //var 是变量声明符号，同样的还有 let const(后面会介绍)
+	    //a     是变量名，可以任意起，但是有些单词属于关键字和保留字是不能用的，后面会介绍
 	    //"hello word"  是代表了JS中的数据值；
 
 		//函数的写法
@@ -531,7 +534,7 @@ CSS不是笔记的重点，所以就不多写了；
 		greetMe("broszhu"); // "Hi broszhu"
 
 - 用等号把a和"hello word"连接起来的意思，就是把数据hello word这个字符串赋值给a这个变量；等号右边赋值给等号左边；
-- 其中""和''这种包裹的类型，在JS中称为数据类型；
+- 其中""和''这种包裹的类型，在JS中称为字符串，是一种数据类型；
 - 下面这些在JS中都是合规的写法，分别代表不同的类型
 
 	    var string="2222";//字符串
@@ -601,6 +604,12 @@ Javascript中代表的数据的变量，可以随意修改类型；但是不建�
 
 console.log方法能接收多个参数，除了console.log("string" + num)还可以写成console.log("string", num);
 
+    console.log("info","haha");
+    console.log("info2"+"haha2");
+
+    console.warn("这是一段警告信息");
+    console.error("出错啦，你的配置信息有误");
+
 当然单个的也是可以的；
 
 **[↑ 返回目录](#zero)**
@@ -640,7 +649,11 @@ ECMAScript 是JavaScript语言的下一代标准，已经在2015年6月正式发
 
 要学习Javascript，ES5是必须会的，如果ES5的基础打的好，ES6一个礼拜就熟练入手了，因为他是ES6是基于ES5的改变和优化，你知道其中的原理后，很容易过渡，现在浏览器也没有全面支持，你有大把的时间研究ES5，ES5才是根基，等ES6,ES8全面普及了，笔记里会总结ES6,但是正常的演示代码基于ES5；
 
-代码初衷是兼容到IE8的；但是很多时候,在IE8兼容的JS，IE67中也就基本没大问题了，最多有点小问题，兼容到IE6，和兼容到IE8的代码量几乎差不多，所以就向下兼容，最多会兼容到IE6
+    //ES6- 是ECMAScrip2015  不是ECMAScrip5
+    //ES8- 是ECMAScrip2017  不是ECMAScrip8
+    主流开发方式是：ES6+开发，客户端应用会转成ES5
+
+代码初衷是兼容到IE8的；但是很多时候,在IE8兼容的JS，IE67中也就基本没大问题了，最多有点小问题，兼容到IE6，和兼容到IE8的代码量几乎差不多，所以就向下兼容，最多会兼容到IE6,现在都2018年了，企业的开发，很多只兼容chrome了；
 
 **[↑ 返回目录](#zero)**
 

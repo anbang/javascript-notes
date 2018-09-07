@@ -10,7 +10,7 @@
         .div-class{
             color: red;
         }
-        .div2{
+        #div2{
             background-color: red;
         }
         #div2{
@@ -25,7 +25,7 @@
 <div class="div-class">5</div>
 <div class="div-class">5</div>
 
-<p>22222>
+<p>22222</p>
 <p>22222</p>
 <div id='div1' title="这是title by div">这是DIV1的内容</div>
 <div id="div2">222</div>
@@ -45,8 +45,6 @@
     oDiv1.innerText="我已经被JS改变了";//通过JS来改变html
     oDiv2.style.color="red";//通过JS来改变CSS；
     console.log("ID",oDiv1);
-
-
 
     var oDivClass=document.getElementsByClassName("div-class");//这是一对标签的集合
     console.log(oDivClass);
