@@ -10,20 +10,24 @@
 在javascript里 声明变量简写为 var ；通过var name 就可以声明一个变量了；
 注意变量的声明和定义是两回事；
 
-- var name            ->变量的声明
-- name="朱安邦"        ->变量的定义
-- var name=”朱安邦”    ->变量的声明加定义；
+```$xslt
+var name;            //变量的声明
+name="朱邦邦";        //变量的定义
+var name="朱邦邦";    //变量的声明加定义
+```
 
-> var name=”朱安邦”；其实是实现两步；
+> var name=”朱邦邦”；其实是实现两步；
 > 第一步 var name；先声明一个name的变量；
-> 第二步 name=”朱安邦” 创建数据"朱安邦"这个字符串，并且把字符串"朱安邦"这条数据赋值给name这个变量；在定义(赋值)变量的name值；
+> 第二步 name=”朱邦邦” 创建数据"朱邦邦"这个字符串，并且把字符串"朱邦邦"这条数据赋值给name这个变量；在定义(赋值)变量的name值；
 > 
 > 这个时候name的类型就是所代表值的类型；可以通过typeof来检测；通过检测可以知道这个变量所代表的值是一个字符串类型的数据；
 
-    var name="朱安邦",
-        gender;
-    console.log(name,typeof name);      //朱安邦 string
-    console.log(gender,typeof gender);  //undefined "undefined"
+```$xslt
+var name="朱邦邦",
+    gender;
+console.log(name,typeof name);      //朱邦邦 string
+console.log(gender,typeof gender);  //undefined "undefined"
+```
 
 虽然关键字var不是必须的，但是最好每次声明一个新变量都加上；
 
@@ -46,7 +50,7 @@
 	- 关于关键字和保留字，这个可以拿生活中的现象举例子，大人给小孩起名字的时候，小孩的名字一定不能和他父亲母亲的名字一样；当然也不能和爷爷，奶奶，外公，外婆，舅舅，姑姑等等这些名字一样；这个就是现实中约定俗成的规则；
 	- 在JS中，也有些单词是有特殊意义的，或者是为了以后语言升级做准备的；而这些单词就不能作为变量名；比如前面接触的typeof，function；这样的单词就不能作为变量名；
 
-- 4、变量区分大小写，test和Test是不一样的,必须严格一样，才算是一个变量的；(在javascript里，onclick必须要写出onclick，不能写成onClick；)
+- 4、变量区分大小写，test和Test是不一样的,必须严格一样，才算是一个变量的；(在javascript里，`onclick` 必须要写出`onclick`，不能写成`onClick`；)
 
 ##### 变量命名的优化方法（推荐遵守的，非强制）；
 
@@ -80,18 +84,27 @@
 - Class名：用”-”连接符的方法；class=”header-nav” 比如这样的；
 - JS变量名：myRoomDoorKey；小驼峰
 - data-diy_attr	自定义属性；
-- j-trigger-target	JS中需要用的雷类名
+- j-trigger-target	JS中需要用的类名
 - jQuery对象名：$myKey；小驼峰前面加$；这种方法是从匈牙利+驼驼峰总结出来的；其实真实项目中，很少有匈牙利命名法的；匈牙利命名法见过最多的都是出现在写DEMO的时候用；
-- 除非特别难起的变量名，否则不要用中文拼音做变量名；不要听信某些教材和视频中说的严禁用拼音命名的话，有的甚至还把linux创始人林纳斯的代码风范拿出来说事。其实那些并没有什么软用；开始就和大家说了变量是用来区别不同数据的；而优化变量名的意义在于能够快速识别这个变量名所代表的数据；比如你要记录游戏场景下的角色出血值；你还要想半天单词，或者找翻译，然后起出来的变量名，自己下次看到或者别人看到的时候还要去翻译或者思考下；这种情况下，为什么不直接用 chuxue这种的方式呢？只需要后面加一行注视说明什么意思就可以了；我个人是很反感为了遵守优化规则而脱裤子放屁的方式的；曾经在项目中遇到过一个真实的事；某个变量看了半天不知道到底代表什么意思（因为当时有接触到差不多10种的用户相关类型的金额数），查了翻译也没有查到；后来问了下，才知道那个坑货把单词给拼错了两个字母；
+- 除非特别难起的变量名，否则不要用中文拼音做变量名，但是遇到难起的变量名，使用中文也别有负担，但是禁止中英文混搭；
+- 注释可以辅助整理思路；
 
-		<div class="page-var-demo" id="page-var-demo">
-		    <!--class="page-var-demo"用来设置样式；id="page-var-demo"用给JS用；-->
-		    <div class="btns-groulp">
-		        <a href="javascript:;" class="xxxx xxxxx j-open-demo" data-demo_id="456465465">打开演示窗口</a>
-		        <!--j-open-demo 这些是给JS用来触发某些事件用的，data-demo_id用来储存需要的值的-->
-		        <a href="javascript:;" class="xxxx xxxxx j-set-demo">设置演示数据</a>
-		    </div>
-		</div>
+不要听信某些教材和视频中说的严禁用拼音命名的话，有的甚至还把linux创始人林纳斯的代码风范拿出来说事。其实那些并没有什么软用；开始就和大家说了变量是用来区别不同数据的；而优化变量名的意义在于能够快速识别这个变量名所代表的数据；
+
+比如你要记录游戏场景下的角色出血值；你还要想半天单词，或者找翻译，然后起出来的变量名，自己下次看到或者别人看到的时候还要去翻译或者思考下；这种情况下，为什么不直接用 chuxue这种的方式呢？只需要后面加一行注视说明什么意思就可以了；
+
+很反感为了遵守优化规则而脱裤子放屁的方式的；曾经在项目中遇到过一个真实的事；某个变量看了半天不知道到底代表什么意思（因为当时有接触到差不多10种的用户相关类型的金额数），查了翻译也没有查到；后来问了下，才知道那个坑货把单词给拼错了两个字母；
+
+```$xslt
+<div class="page-var-demo" id="page-var-demo">
+    <!--class="page-var-demo"用来设置样式；id="page-var-demo"用给JS用；-->
+    <div class="btns-groulp">
+        <a href="javascript:;" class="xxxx xxxxx j-open-demo" data-demo_id="456465465">打开演示窗口</a>
+        <!--j-open-demo 这些是给JS用来触发某些事件用的，data-demo_id用来储存需要的值的-->
+        <a href="javascript:;" class="xxxx xxxxx j-set-demo">设置演示数据</a>
+    </div>
+</div>
+```
 
 **[↑ 返回目录](#zero)**
 
@@ -101,7 +114,7 @@
 
 变量通过var来声明；
 
-有些要避免的，否则后面写代码的时候可能会把自己给坑了；
+下面是要避免的，否则写代码的时候可能会把自己给坑了；
 
 - 重复声明；
 - 不声明直接赋值
@@ -110,38 +123,49 @@
 > 推荐：先声明，后定义；
 
 - 需要读写的变量，读写前，一定要声明；
-- 需要运算的变量，运算器，一定要赋值；
+- 需要运算的变量，运算前，一定要赋值；
 - 书写的时候，推荐把变量名放在页面的上面（上部分）去声明+定义；这样不仅可以放心大胆的用，而且可以方便查找变量；
 - 在任何情况下声明变量都要用var先声明；在使用一个变量之前应当先声明，变量是使用关键字var来声明的；
-      var a=1;
-      function test(){
-        var b=c=2;//这时候会隐式声明全局变量；
-      }
-      test();
-      console.log(a,c)
 
-> 这种是非常不好的写法；不要写var a=b=c=1;这种声明；上面代码中c就会被隐式声明为全局变量；下面这种写法是可以的
+```$xslt
+  var a=1;
+  function test(){
+    var b=c=2;//这时候会隐式声明全局变量；
+  }
+  test();
+  console.log(a,c)
+```
 
-    var a= 1,c;
-    function test(){
-      var b=c=2;
-    }
-    test();
-    console.log(a,c)
+上面是非常不好的写法；不要写 `var b=c=2` 这种声明；上面代码中c就会被隐式声明为全局变量；
 
-> 因为开始c已经声明了；后面是给c赋值；
+下面这种写法是可以的
 
-推荐下面这种写法；
+```$xslt
+var a= 1,c;
+function test(){
+  var b=c=2;
+}
+test();
+console.log(a,c)
+```
+
+因为开始c已经声明了，后面只是给c赋值；
+
+多个变量声明赋值时候，同一类的变量推荐下面这种写法；
 
       var name="zhuanbang",
           age=26,
           height="174cm";
 
 这样既可以简洁，又保证可读性；
-注意：任何变量赋值前都需要声明变量，不要隐式创建全局变量；
+
+**注意：任何变量赋值前都需要声明变量，不要隐式创建全局变量；**
 
 ##### 重复声明和遗漏声明的区别：
-在javascript里使用var重复声明是合法而且不会有任何事情的，如果重复声明带有初始化的值，那么就和一条简单的赋值语句没有什么两样，但是如果你忘记声明了，视图读取一个没有声明的变量的值，javascript可能会报错；在严格模式中，给一个没有声明的变量赋值也是会报错的；非严格模式下虽然不会报错，但是不要抱着侥幸的心理；这是一个不好的习惯，会造成很多bug；建议始终使用var来声明变量；
+
+在javascript里使用 `var` 重复声明是合法而且不会有任何事情的，如果重复声明带有初始化的值，那么就和一条简单的赋值语句没有什么两样，但是如果你忘记声明了，试图读取一个没有声明的变量的值，javascript可能会报错；
+
+在严格模式中，给一个没有声明的变量赋值也是会报错的；非严格模式下虽然不会报错，但是不要抱着侥幸的心理；这是一个不好的习惯，建议始终使用var来声明变量；
 
 ES6扩展了2种声明方法；
 
@@ -158,7 +182,26 @@ ES6扩展了2种声明方法；
 
 常量不可以通过赋值改变其值，也不可以在脚本运行时重新声明。它必须被初始化为某个值。
 
+```$xslt
+const myName="zhu";
+let age=2;
+age =22;
+// myName=4;//Error
+console.log(age);
+```
+
 常量的作用域规则与 let 块级作用域变量相同。若省略const关键字，则该标识符将被视为变量。
+
+```$xslt
+if(true){
+    var a=2;
+}
+if(true){
+    let b=3;
+}
+console.log(a);
+console.log(b);//b is not defined
+```
 
 在同一作用域中，不能使用与变量名或函数名相同的名字来命名常量。
 
@@ -186,18 +229,20 @@ ES6扩展了2种声明方法；
 ECMAScript规定变量包含两种不同数据类型的值，基本类型值和引用类型值；在给变量赋值的时候，解析器必须要明确这个值是基本类型还是引用类型值，因为他们的赋值方式是不同的；string/number/boolean/null/undefined都是基本数据类型；因此可以操作保存在变量中是实际值，此时变量储存的是实际的值；而引用类型的值是保存在内存中的，此时变量储存的是内存的地址，而不是真实的值；而我们操作引用类型的变量时，实际操作的是它引用地址对应的对象，而不是直接操作对象的；
 基本类型和引用类型的操作原理
 
-      var number1= 1,
-      number2=number1;
-      number1=2;//改变了number1的值
-      console.log(number1);//2
-      console.log(number2);//1
-      console.log(number1===number2);//false
+```$xslt
+var number1= 1,
+    number2=number1;
+number1=2;//改变了number1的值
+console.log(number1);//2
+console.log(number2);//1
+console.log(number1===number2);//false
 
-      var obj1={name:"zhu"},
-      obj2=obj1;
-      obj1.name="zhuanbang";
-      console.log(obj1.name,obj2.name);//zhuanbang,zhuanbang
-      console.log(obj1.name===obj2.name);//true
+var obj1={name:"zhu"},
+obj2=obj1;
+obj1.name="zhuanbang";
+console.log(obj1.name,obj2.name);//zhuanbang,zhuanbang
+console.log(obj1.name===obj2.name);//true
+```
 
 ![](https://raw.githubusercontent.com/Broszhu/zhuanbang-javascript-notes/master/img/path1/dataType.png)
 
@@ -264,33 +309,39 @@ ECMAScript规定变量包含两种不同数据类型的值，基本类型值和�
 ###### 注释
 javascript的注释。单行注释是"//注释文字"，多行注释是/*注释文字*/
 
-      //注释文字
+```$xslt
+//注释文字
 
-      /*
-      * 多行注释1
-      * 多行注释2
-      * /
+/*
+* 多行注释1
+* 多行注释2
+* /
+```
 
 ##### 语法建议：
 
+```$xslt
 //bad
 var a=2 //没有分号，也是可以的，但是不推荐这么做；压缩的时候可能会出错； 理论上加分号性能会更好，浏览器不必花时间判断是否要加分号了(无论加不加分号，浏览器解析的时候会判断的，如果需要加的地方没有加，浏览器解析时候会加上去之后再解析)
 
 //good
 var b=3;
+```
 
 ##### 不建议使用var a=b=c=1;这种的写法；
 
 if-else 推荐加上{}；
 
-      //bad   
-      if(true)
-      console.log("bad");//有效，但是容易出错，不要使用；
+```$xslt
+//bad   
+if(true)
+    console.log("bad");//有效，但是容易出错，不要使用；
 
-      //good
-      if(true){
-      console.log("good");//推荐使用,可以降低修改代码时出错的几率，可以让代码的意图更明确；
-      }
+//good
+if(true){
+    console.log("good");//推荐使用,可以降低修改代码时出错的几率，可以让代码的意图更明确；
+}
+```
 
 分号很多地方是可选的，推荐除了{}外都给加上；语句也可以换行的，但是有两个例外不能换行
 
@@ -300,7 +351,7 @@ if-else 推荐加上{}；
 **[↑ 返回目录](#zero)**
 
 <a name="footer"><a/>
-## 六、面试题：
+## 六、练习题：
 01-02-01、var a=b=c=d=1是什么意思？如果接下来在写一句a=9;a,b,c的值分别是多少？
 01-02-02、var a=b=c=d=[1,2,3,4,5]是什么意思？如果接下来再写一句d[5]=0,a,b,c的值分别是多少？
 01-02-03、var a=b=c=d=[1,2,3,4,5]是什么意思？如果接下来在写一句d=[0],a,b,c的值会发生变化吗？
@@ -311,10 +362,12 @@ if-else 推荐加上{}；
 01-02-08、说一说html代码，css代码和js代码的注释写法；
 01-02-09、以下哪些单词不属于javascript保留字
 
-          A、with
-          B、parent
-          C、class
-          D、void
+```$xslt
+  A、with
+  B、parent
+  C、class
+  D、void
+```
 
 -
 
