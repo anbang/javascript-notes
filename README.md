@@ -169,4 +169,3 @@
 
 
 
-![](http://i.imgur.com/sUHkgQF.png)
